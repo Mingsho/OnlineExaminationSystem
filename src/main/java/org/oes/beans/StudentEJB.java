@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.oes.model;
+package org.oes.beans;
 
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.ejb.Stateless;
+import org.oes.model.Student;
+import org.oes.utilities.Constants;
 
 /**
  *
@@ -17,5 +19,16 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class StudentEJB {
+    
+    @PersistenceContext(unitName = Constants.PersistenceName )
+    EntityManager eManager;
+    
+    
+    public Student createStudent(Student std)
+    {
+        eManager.persist(std);
+        return std;
+    }
+    
     
 }
