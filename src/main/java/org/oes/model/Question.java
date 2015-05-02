@@ -38,12 +38,14 @@ public class Question implements Serializable {
     private String option4;
     
     @Column(nullable=false)
-    private int defaultMarks;
+    private float defaultMarks;
     
     @Column(nullable=false)
-    private String correctOption;
+    private int correctOption;
     
     public Question(){}
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters and Setter">
     
     public long getQuestionID()
     {
@@ -89,5 +91,23 @@ public class Question implements Serializable {
     {
         this.option4=sOption4;
     }
+    public float getDefaultMarks()
+    {
+        return this.defaultMarks;
+    }
+    public void setDefaultMarks(float fDefaultMarks)
+    {
+        this.defaultMarks=fDefaultMarks;
+    }
+    public int getCorrectOption()
+    {
+        return this.correctOption;
+    }
+    public void setCorrectOption(int nCorrectOption)
+    {
+        this.correctOption=nCorrectOption;
+    }
+    
+    //</editor-fold>
     
 }

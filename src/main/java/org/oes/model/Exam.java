@@ -11,7 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import java.util.Date;
+import java.util.List;
 import java.io.Serializable;
 
 
@@ -32,6 +36,9 @@ public class Exam implements Serializable {
     private int examDuration;
     private int totalQuestions;
     private float passPercentage;
+    
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Result> results;
     
     public Exam(){}
     

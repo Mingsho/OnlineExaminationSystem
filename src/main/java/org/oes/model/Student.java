@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinColumn;
@@ -31,6 +32,11 @@ public class Student extends User implements Serializable {
            inverseJoinColumns = @JoinColumn(name= "Course_FK"))
    private List<Course> enrolledCourses;
    
+   @OneToMany(fetch = FetchType.LAZY)
+   @JoinColumn(name="Student_Result_FK")
+   private List<Result> examResults;
+   
+   
    public Student(){}
    
    public List<Course> getEnrolledCourses()
@@ -40,6 +46,14 @@ public class Student extends User implements Serializable {
    public void setEnrolledCourses(List<Course> lstCourses)
    {
        this.enrolledCourses=lstCourses;
+   }
+   public List<Result> getExamResults()
+   {
+       return this.examResults;
+   }
+   public void setExamResults(List<Result> lstResults)
+   {
+       this.examResults=lstResults;
    }
     
 }

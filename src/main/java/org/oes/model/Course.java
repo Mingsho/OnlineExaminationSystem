@@ -40,8 +40,13 @@ public class Course implements Serializable {
     private List<Student> enrolledStudents;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name = "Course_FK")
+    @JoinColumn(name = "Course_Exam_FK")
     private List<Exam> scheduledExams;
+    
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="Course_Question_FK")
+    private List<Question> questionList;
+    
     
     public Course()
     {
@@ -91,6 +96,15 @@ public class Course implements Serializable {
     public void setScheduledExams(List<Exam> cScheduledExams)
     {
         this.scheduledExams=cScheduledExams;
+    }
+    public List<Question> getQuestionList()
+    {
+        return this.questionList;
+    }
+    public void setQuestionList(List<Question> lstQuestions)
+    {
+        this.questionList=lstQuestions;
+        
     }
             
             
