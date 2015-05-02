@@ -20,13 +20,74 @@ import java.io.Serializable;
 public class Question implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Question_ID;
-    private String Question;
-    private String Option1;
-    private String Option2;
-    private String Option3;
+    private long questionID;
+    
+    @Column(nullable=false)
+    private String question;
+    
+    @Column(name="Opt1", length=100, nullable=false)
+    private String option1;
+    
+    @Column(name="Opt2", length=100, nullable=false)
+    private String option2;
+    
+    @Column(name="Opt3", length=100, nullable=false)
+    private String option3;
+    
+    @Column(name="Opt1", length=100, nullable=false)
     private String option4;
-    private int DefaultMarks;
-    private String CorrectOption;
+    
+    @Column(nullable=false)
+    private int defaultMarks;
+    
+    @Column(nullable=false)
+    private String correctOption;
+    
+    public Question(){}
+    
+    public long getQuestionID()
+    {
+        return this.questionID;
+    }
+    public String getQuestion()
+    {
+        return this.question;
+    }
+    public void setQuestion(String sQuestion)
+    {
+        this.question=sQuestion;
+    }
+    public String getOption1()
+    {
+        return this.option1;
+    }
+    public void setOption1(String sOption1)
+    {
+        this.option1=sOption1;
+    }
+    public String getOption2()
+    {
+        return this.option2;
+    }
+    public void setOption2(String sOption2)
+    {
+        this.option2=sOption2;
+    }
+    public String getOption3()
+    {
+        return this.option3;
+    }
+    public void setOption3(String sOption3)
+    {
+        this.option3=sOption3;
+    }
+    public String getOption4()
+    {
+        return this.option4;
+    }
+    public void setOption4(String sOption4)
+    {
+        this.option4=sOption4;
+    }
     
 }

@@ -6,11 +6,15 @@
 package org.oes.model;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+
 
 /**
  *
  * @author Mingso
  */
+
+@Entity
 public class Admin extends User {
     
 }

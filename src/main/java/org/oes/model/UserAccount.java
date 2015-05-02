@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.io.Serializable;
 import javax.persistence.FetchType;
 
@@ -19,19 +22,48 @@ import javax.persistence.FetchType;
  */
 
 @Entity
-public class UserAccount {
+public class UserAccount implements Serializable {
     
+    @Id
+    @Column(name="UID")
+    private long userID;
     private String username;
     private String password;
-    @OneToOne(fetch = FetchType.EAGER)
+   
+    @PrimaryKeyJoinColumn(name="UID", referencedColumnName= "userId")
+    @OneToOne(optional = false, mappedBy = "userAccount")
     private User user;
     
-    public UserAccount(String username,
-            String password, User user )
+    public UserAccount(){}
+    
+    public long getUserID()
     {
-        this.username=username;
-        this.password=password;
-        this.user=user;
-        
+        return this.userID;
     }
+    public String getUserName()
+    {
+        return this.username;
+    }
+    public void setUserName(String uName)
+    {
+        this.username=uName;
+    }
+    public String getPassword()
+    {
+        return this.password;
+    }
+    public void setPassword(String pass)
+    {
+        this.password= pass;
+    }
+    
+    public User getUser()
+    {
+        return this.user;
+    }
+    public void setUser(User user)
+    {
+        this.user=user;
+    }
+    
 }

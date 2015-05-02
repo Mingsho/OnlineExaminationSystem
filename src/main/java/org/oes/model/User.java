@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 import java.sql.Blob;
 import java.io.Serializable;
 
@@ -27,83 +29,86 @@ import java.io.Serializable;
 public class User implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long User_ID;
+    private long userId;
     @Column(nullable = false)
-    private String FirstName;
-    private String MiddleName;
+    private String firstName;
+    private String middleName;
     @Column(nullable = false)
-    private String LastName;
-    private String ContactNumber;
-    private String Address;
-    private String EmailAddress;
-    private Blob ProfilePicture;
+    private String lastName;
+    private String contactNumber;
+    private String address;
+    private String email;
+    private Blob profilePicture;
+    @OneToOne
+    @JoinColumn(name = "UID")
+    private UserAccount userAccount;
     
     //<editor-fold defaultstate="Collapsed" desc="Getters & Setters">
     
     public long getUserID()
     {
-        return User_ID;
+        return userId;
     }
     public void setUserID(long UserID)
     {
-        User_ID=UserID;
+        userId=UserID;
     }
     public String getFirstName()
     {
-        return FirstName;
+        return firstName;
     }
     public void setFirstName(String FirstName)
     {
-        this.FirstName=FirstName;
+        this.firstName=FirstName;
     }
     public String getMiddleName()
     {
-        return MiddleName;
+        return middleName;
     }
     public void setMiddleName(String MiddleName)
     {
-        this.MiddleName= MiddleName;
+        this.middleName= MiddleName;
     }
     public String getLastName()
     {
-        return LastName;
+        return lastName;
     }
     public void setLastName(String LastName)
     {
-        this.LastName=LastName;
+        this.lastName=LastName;
     }
     public String getContactNumber()
     {
-        return ContactNumber;
+        return contactNumber;
     }
     public void setContactNumber(String ContactNumber)
     {
-        this.ContactNumber=ContactNumber;
+        this.contactNumber=ContactNumber;
     }
     public String getAddress()
     {
-        return Address;
+        return address;
     }
     public void setAddress(String Address)
     {
-        this.Address=Address;
+        this.address=Address;
     }
     public String getEmailAddress()
     {
-        return EmailAddress;
+        return email;
     }
     public void setEmailAddress(String EmailAdd)
     {
-        this.EmailAddress=EmailAdd;
+        this.email=EmailAdd;
     }
     
     public Blob getProfilePicture()
     {
-        return ProfilePicture;
+        return profilePicture;
     }
     public void setProfilePicture(Blob ProfilePic)
     {
-        this.ProfilePicture=ProfilePic;
+        this.profilePicture=ProfilePic;
     }
     
    //</editor-fold>
