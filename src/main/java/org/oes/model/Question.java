@@ -34,7 +34,7 @@ public class Question implements Serializable {
     @Column(name="Opt3", length=100, nullable=false)
     private String option3;
     
-    @Column(name="Opt1", length=100, nullable=false)
+    @Column(name="Opt4", length=100, nullable=false)
     private String option4;
     
     @Column(nullable=false)

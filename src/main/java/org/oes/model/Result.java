@@ -42,6 +42,8 @@ public class Result implements Serializable {
     
     public Result(){}
     
+    //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
+    
     public long getResultID()
     {
         return this.resultId;
@@ -86,6 +88,10 @@ public class Result implements Serializable {
     {
         this.status=stat;
     }
+    
+    //</editor-fold>
+    
+    
     
     
     

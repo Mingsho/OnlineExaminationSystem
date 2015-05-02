@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.JoinColumn;
 import java.io.Serializable;
 import javax.persistence.FetchType;
 
@@ -25,13 +27,13 @@ import javax.persistence.FetchType;
 public class UserAccount implements Serializable {
     
     @Id
-    @Column(name="UID")
     private long userID;
     private String username;
     private String password;
    
-    @PrimaryKeyJoinColumn(name="UID", referencedColumnName= "userId")
-    @OneToOne(optional = false, mappedBy = "userAccount")
+    @MapsId
+    @OneToOne
+    @JoinColumn(name="U_ID")
     private User user;
     
     public UserAccount(){}

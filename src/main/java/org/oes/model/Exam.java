@@ -14,9 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
+import javax.persistence.Temporal;
 import java.util.Date;
 import java.util.List;
 import java.io.Serializable;
+import javax.persistence.TemporalType;
 
 
 
@@ -30,17 +32,27 @@ public class Exam implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private long examID;
     @Column(nullable = false, length = 50)
+    
     private String examTitle;
+    
+    @Temporal(TemporalType.DATE)
     private Date examStartDate;
+    
+    @Temporal(TemporalType.DATE)
     private Date examEndDate;
+    
     private int examDuration;
+    
     private int totalQuestions;
+    
     private float passPercentage;
     
     @OneToMany(fetch = FetchType.LAZY)
     private List<Result> results;
     
     public Exam(){}
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     
     public long getExamID()
     {
@@ -95,5 +107,9 @@ public class Exam implements Serializable {
     {
         this.passPercentage=ePassPercentage;
     }
+    
+    //</editor-fold>
+    
+    
     
 }

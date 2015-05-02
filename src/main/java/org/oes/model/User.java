@@ -14,9 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.sql.Blob;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 
 
 /**
@@ -39,8 +40,9 @@ public class User implements Serializable {
     private String address;
     private String email;
     private Blob profilePicture;
-    @OneToOne
-    @JoinColumn(name = "UID")
+    
+    @OneToOne(cascade = CascadeType.ALL,
+            mappedBy = "user")
     private UserAccount userAccount;
     
     //<editor-fold defaultstate="Collapsed" desc="Getters & Setters">

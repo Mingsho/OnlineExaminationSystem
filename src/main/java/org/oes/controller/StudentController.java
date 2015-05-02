@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.ejb.EJB;
+import java.io.Serializable;
 import org.oes.model.Student;
 import org.oes.beans.StudentEJB;
 
@@ -20,7 +21,7 @@ import org.oes.beans.StudentEJB;
 
 @ManagedBean(name = "StudentBean")
 @SessionScoped
-public class StudentController {
+public class StudentController implements Serializable  {
     
     @EJB StudentEJB studentEJB;
     
@@ -37,7 +38,7 @@ public class StudentController {
             
             this.student=new Student();
             
-            return "/pages/user/CreateUserAccount.xhtml";
+            return "success";
             
            
            
