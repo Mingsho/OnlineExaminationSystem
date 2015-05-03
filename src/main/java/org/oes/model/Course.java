@@ -5,7 +5,6 @@
  */
 package org.oes.model;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Column;
@@ -53,6 +52,7 @@ public class Course implements Serializable {
         
     }
     
+    //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public long getCourseID()
     {
         return this.courseId;
@@ -108,5 +108,5 @@ public class Course implements Serializable {
     }
             
             
-    
+    //</editor-fold>
 }

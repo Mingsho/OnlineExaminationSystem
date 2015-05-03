@@ -26,31 +26,17 @@ import org.oes.model.UserTypes;
 @Named("StudentBean")
 public class StudentController implements Serializable  {
     
-    private long generatedStudentID;
-    
-    private UserTypes[] userTypes;
-    
-    @EJB StudentEJB studentEJB;
-    
+  
+    @EJB 
+    private StudentEJB studentEJB;
     private UIComponent btnCreate;
     private Student student=new Student();
-    
-    
-    
+   
     public String createStudent()
     {
         try{
             
             student= studentEJB.createStudent(student);
-            
-            //FacesContext fContext=FacesContext.getCurrentInstance();
-            //this.generatedStudentID=getIdParam(fContext);
-            
-           
-            
-            //this.generatedStudentID=student.getUserID();
-            
-            //this.student=new Student();
             
             return "CreateUserAccount";
             
@@ -68,13 +54,6 @@ public class StudentController implements Serializable  {
         
     }
     
-    public long getIdParam(FacesContext fC)
-    {
-        Map<String, String> param=fC.getExternalContext().getRequestParameterMap();
-        return Long.parseLong(param.get("StudentID"));
-    }
-    
-    
     public Student getStudent()
     {
         return this.student;
@@ -89,16 +68,12 @@ public class StudentController implements Serializable  {
     {
         return this.btnCreate;
     }
+    
     public void setBtnCreate(UIComponent btnCreate)
     {
         this.btnCreate=btnCreate;
     }
-    
-    public long getGeneratedStudentID()
-    {
-        return this.generatedStudentID;
-    }
-    
+  
     public UserTypes[] getUserTypes()
     {
         return UserTypes.values();

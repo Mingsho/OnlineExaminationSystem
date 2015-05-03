@@ -4,29 +4,27 @@
  * and open the template in the editor.
  */
 package org.oes.beans;
-
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import javax.ejb.Stateless;
-import org.oes.model.User;
+import org.oes.model.Course;
 import org.oes.utilities.Constants;
+
 
 /**
  *
  * @author Mingso
  */
 @Stateless
-public class UserEJB {
+public class CourseEJB {
     
-    @PersistenceContext(name = Constants.PersistenceName)
+    @PersistenceContext(name=Constants.PersistenceName)
     EntityManager eManager;
     
-    public User createUserProfile(User user)
+    public Course createCourse(Course course)
     {
-        
-        eManager.persist(user);
-        eManager.flush();
-        return user;
+        eManager.persist(course);
+        return course;
     }
     
 }

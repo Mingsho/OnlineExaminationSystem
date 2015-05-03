@@ -8,13 +8,17 @@
     </h:head>
     <h:body>
         <h:form id="userAccount">
-            <h:selectOneMenu value="#{StudentBean.userTypes}">
-                <f:selectItems value="#{StudentBean.userTypes}" var="userType"
+            <h:selectOneMenu value="#{UserBean.selectedUserType}">
+                <f:selectItems value="#{UserBean.userTypes}" var="userType"
                                itemValue="#{userType}" itemLabel="#{userType.label}" />
             </h:selectOneMenu> 
             <h:outputFormat value="The id is: {0}">
-                <f:param value="#{StudentBean.student.userID}" />
+                <f:param value="#{UserBean.user.userID}" />
             </h:outputFormat>
+            <h:commandButton id="btnCreateAccount" value="Create Account"
+                             binding="#{UserBean.btnCreateAccount}"
+                             action="#{UserBean.createUserAccount()}" />
+            <h:outputLabel value="#{UserBean.strTest}" />
         </h:form>
     </h:body>
 </html>

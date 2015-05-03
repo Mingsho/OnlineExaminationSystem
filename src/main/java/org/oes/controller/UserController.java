@@ -27,9 +27,11 @@ public class UserController implements Serializable {
     @EJB StudentEJB studentEJB;
     
     private UIComponent btnCreateProfile;
+    private UIComponent btnCreateAccount;
     private User user= new User();
     private UserAccount userAccount=new UserAccount();
     private String selectedUserType;
+    private String strTest="default";
     
     
     public String createUserProfile()
@@ -76,17 +78,28 @@ public class UserController implements Serializable {
         return null;
     }
     
-    public String createStudentAccount()
+    public void createStudentAccount()
     {
-        return null;
+        strTest="Create Student Account";
     }
-    public String createTeacherAccount()
+    public void createTeacherAccount()
     {
-        return null;
+        strTest="Create Teacher Account";
     }
-    public String createAdminAccount()
+    public void createAdminAccount()
     {
-        return null;
+        strTest="Create Admin Account";
+    }
+    
+    
+    public User getUser()
+    {
+        return this.user;
+      
+    }
+    public void setUser(User user)
+    {
+        this.user=user;
     }
     
     public UserTypes[] getUserTypes()
@@ -102,6 +115,14 @@ public class UserController implements Serializable {
     {
         this.btnCreateProfile=uComponent;
     }
+    public UIComponent getBtnCreateAccount()
+    {
+        return this.btnCreateAccount;
+    }
+    public void setBtnCreateAccount(UIComponent uComponent)
+    {
+        this.btnCreateAccount= uComponent;
+    }
     public String getSelectedUserType()
     {
         return this.selectedUserType;
@@ -110,5 +131,12 @@ public class UserController implements Serializable {
     {
         this.selectedUserType=sSelectedUType;
     }
-    
+    public String getStrTest()
+    {
+        return this.strTest;
+    }
+    public void setStrTest(String strTest)
+    {
+        this.strTest=strTest;
+    }
 }

@@ -11,24 +11,27 @@
             
             <h:form id="userForm">
                 <h:panelGrid columns="3">
+                    <h:outputLabel id="lblUserType" for="dListUserType" value="User Type:" />
+                    <h:selectOneMenu value="#{UserBean.selectedUserType}">
+                        <f:selectItems value="#{UserBean.userTypes}" var="userType"
+                               itemValue="#{userType}" itemLabel="#{userType.label}" />
+                    </h:selectOneMenu>
                     <h:outputLabel id="lblFirstName" for="txtFirstName" value="First Name:" />
-                    <h:inputText id="txtFirstName" title="FirstName" value="#{StudentBean.student.firstName}" /><br/>
+                    <h:inputText id="txtFirstName" title="FirstName" value="#{UserBean.user.firstName}" /><br/>
                     <h:outputLabel id="lblMiddleName" for="txtMiddleName" value="Middle Name:" />
-                    <h:inputText id="txtMiddleName" title="MiddleName" value="#{StudentBean.student.middleName}" /><br/>
+                    <h:inputText id="txtMiddleName" title="MiddleName" value="#{UserBean.user.middleName}" /><br/>
                     <h:outputLabel id="lblLastName" for="txtLastName" value="Last Name:" />
-                    <h:inputText id="txtLastName" title="LastName" value="#{StudentBean.student.lastName}" /><br/>
+                    <h:inputText id="txtLastName" title="LastName" value="#{UserBean.user.lastName}" /><br/>
                     <h:outputLabel id="lblContactNumber" for="txtContactNumber" value="Contact Number" />
-                    <h:inputText id="txtContactNumber" title="ContactNumber" value="#{StudentBean.student.contactNumber}" /><br/>
+                    <h:inputText id="txtContactNumber" title="ContactNumber" value="#{UserBean.user.contactNumber}" /><br/>
                     <h:outputLabel id="lblAddress" for="txtAddress" value="Address:" />
-                    <h:inputTextarea id="txtAddress" title="Address" value="#{StudentBean.student.address}" /><br/>
+                    <h:inputTextarea id="txtAddress" title="Address" value="#{UserBean.user.address}" /><br/>
                     <h:outputLabel id="lblEmail" for="txtEmail" value="Email:" />
-                    <h:inputText id="txtEmail" title="Email" value="#{StudentBean.student.emailAddress}" /><br/>
+                    <h:inputText id="txtEmail" title="Email" value="#{UserBean.user.emailAddress}" /><br/>
                 </h:panelGrid>
                 <h:commandButton id="btnCreate" value="Create"
-                                 binding="#{StudentBean.btnCreate}"
-                                 action="#{StudentBean.createStudent()}">
-                    
-                    <f:param name="StudentID" value="#{StudentBean.generatedStudentID}" />
+                                 binding="#{UserBean.btnCreateProfile}"
+                                 action="#{UserBean.createUserProfile()}">
                 </h:commandButton><br/>
             </h:form>
         </f:view>
