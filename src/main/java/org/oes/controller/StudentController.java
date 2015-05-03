@@ -5,13 +5,16 @@
  */
 package org.oes.controller;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.util.Map;
 import org.oes.model.Student;
 import org.oes.beans.StudentEJB;
+import org.oes.model.UserTypes;
 
 
 /**
@@ -19,9 +22,13 @@ import org.oes.beans.StudentEJB;
  * @author Mingso
  */
 
-@ManagedBean(name = "StudentBean")
 @SessionScoped
+@Named("StudentBean")
 public class StudentController implements Serializable  {
+    
+    private long generatedStudentID;
+    
+    private UserTypes[] userTypes;
     
     @EJB StudentEJB studentEJB;
     
@@ -36,12 +43,17 @@ public class StudentController implements Serializable  {
             
             student= studentEJB.createStudent(student);
             
-            this.student=new Student();
-            
-            return "success";
+            //FacesContext fContext=FacesContext.getCurrentInstance();
+            //this.generatedStudentID=getIdParam(fContext);
             
            
-           
+            
+            //this.generatedStudentID=student.getUserID();
+            
+            //this.student=new Student();
+            
+            return "CreateUserAccount";
+            
         }
         catch(IllegalArgumentException iEx)
         {
@@ -55,6 +67,13 @@ public class StudentController implements Serializable  {
         return null;
         
     }
+    
+    public long getIdParam(FacesContext fC)
+    {
+        Map<String, String> param=fC.getExternalContext().getRequestParameterMap();
+        return Long.parseLong(param.get("StudentID"));
+    }
+    
     
     public Student getStudent()
     {
@@ -75,5 +94,14 @@ public class StudentController implements Serializable  {
         this.btnCreate=btnCreate;
     }
     
+    public long getGeneratedStudentID()
+    {
+        return this.generatedStudentID;
+    }
+    
+    public UserTypes[] getUserTypes()
+    {
+        return UserTypes.values();
+    }
     
 }

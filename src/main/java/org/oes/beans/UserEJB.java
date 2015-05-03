@@ -7,36 +7,25 @@ package org.oes.beans;
 
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.ejb.Stateless;
-import org.oes.model.Student;
-import org.oes.model.UserAccount;
+import org.oes.model.User;
 import org.oes.utilities.Constants;
 
 /**
  *
  * @author Mingso
  */
-
 @Stateless
-public class StudentEJB {
+public class UserEJB {
     
-    @PersistenceContext(unitName = Constants.PersistenceName )
+    @PersistenceContext(name = Constants.PersistenceName)
     EntityManager eManager;
     
-    
-    public Student createStudent(Student std)
+    public User createUserProfile(User user)
     {
-        eManager.persist(std);
+        eManager.persist(user);
         eManager.flush();
-        return std;
+        return user;
     }
-    
-    public UserAccount createStudentProfile(UserAccount uAccount)
-    {
-        eManager.persist(uAccount);
-        return uAccount;
-    }
-    
     
 }

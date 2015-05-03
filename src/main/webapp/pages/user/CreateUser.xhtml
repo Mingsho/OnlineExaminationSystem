@@ -26,7 +26,10 @@
                 </h:panelGrid>
                 <h:commandButton id="btnCreate" value="Create"
                                  binding="#{StudentBean.btnCreate}"
-                                 action="#{StudentBean.createStudent()}" /><br/>
+                                 action="#{StudentBean.createStudent()}">
+                    
+                    <f:param name="StudentID" value="#{StudentBean.generatedStudentID}" />
+                </h:commandButton><br/>
             </h:form>
         </f:view>
     </h:body>
