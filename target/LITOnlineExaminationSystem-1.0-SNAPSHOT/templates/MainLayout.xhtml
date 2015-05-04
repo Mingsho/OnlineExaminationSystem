@@ -9,13 +9,25 @@
         <f:facet name="top">
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <ui:insert><title>Facelet Title</title></ui:insert>
+            
+        </f:facet>
+        <f:facet name="middle">
+            <h:outputStylesheet name="bootstrap/css/bootstrap.min.css" />
+            <h:outputStylesheet name="css/sb-admin.css" />
+            <h:outputScript name="js/jquery-1.11.2.min.js" />
+            <h:outputScript name="bootstrap/js/bootstrap.min.js" />
+        </f:facet>
+        <f:facet name="last">
+            <h:outputStylesheet name="css/font-awesome.css" />
         </f:facet>
     </h:head>
         
         
     <h:body>
-        <ui:insert name="mainContent" />
+        <ui:include src="Header.xhtml" />
+        <ui:include src="Content.xhtml" />
     </h:body>
 </html>
 

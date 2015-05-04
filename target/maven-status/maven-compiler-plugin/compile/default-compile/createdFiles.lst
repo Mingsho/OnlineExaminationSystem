@@ -1,8 +1,10 @@
 org\oes\model\Exam_.class
+org\oes\beans\CourseEJB.class
 org\oes\beans\UserEJB.class
 org\oes\model\Teacher.class
 org\oes\model\PassStatus.class
 org\oes\model\Course.class
+org\oes\controller\CourseController.class
 org\oes\model\Teacher_.class
 org\oes\model\Student_.class
 org\oes\model\User_.class
@@ -11,9 +13,10 @@ org\oes\model\UserTypes.class
 org\oes\model\Student.class
 org\oes\model\Result_.class
 org\oes\beans\StudentEJB.class
+org\oes\model\IUserInterface.class
+org\oes\model\UserAccount_.class
 org\oes\controller\UserController.class
 org\oes\model\Result.class
-org\oes\model\UserAccount_.class
 org\oes\model\Admin_.class
 org\oes\controller\StudentController.class
 org\oes\model\Exam.class

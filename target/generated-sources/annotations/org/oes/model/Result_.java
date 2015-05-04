@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import org.oes.model.PassStatus;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-05-03T14:53:53")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-05-05T00:29:12")
 @StaticMetamodel(Result.class)
 public class Result_ { 
 
