@@ -39,6 +39,24 @@ public class Student extends User implements Serializable {
    
    public Student(){}
    
+   public Student getStudentFromBaseInstance(User user)
+   {
+       Student std=new Student();
+       if(user!=null)
+       {
+           
+           std.setFirstName(user.getFirstName());
+           std.setMiddleName(user.getMiddleName());
+           std.setLastName(user.getLastName());
+           std.setContactNumber(user.getContactNumber());
+           std.setEmailAddress(user.getEmailAddress());
+           std.setAddress(user.getAddress());
+           
+       }
+       
+       return std;
+   }
+   
    public List<Course> getEnrolledCourses()
    {
        return this.enrolledCourses;

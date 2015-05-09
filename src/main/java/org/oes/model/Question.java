@@ -22,7 +22,7 @@ public class Question implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private long questionID;
     
-    @Column(nullable=false)
+    @Column(nullable=false, length=255)
     private String question;
     
     @Column(name="Opt1", length=100, nullable=false)

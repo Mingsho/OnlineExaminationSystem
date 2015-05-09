@@ -8,12 +8,18 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.util.Map;
+import javax.faces.context.ExternalContext;
 import org.oes.model.User;
 import org.oes.model.UserAccount;
 import org.oes.beans.UserEJB;
+import org.oes.model.Student;
+import org.oes.model.Admin;
+import org.oes.model.Teacher;
 import org.oes.beans.StudentEJB;
-import org.oes.model.UserTypes;
+import org.oes.model.UserType;
 
 /**
  *
@@ -28,29 +34,52 @@ public class UserController implements Serializable {
     
     private UIComponent btnCreateProfile;
     private UIComponent btnCreateAccount;
-    private User user= new User();
+    private User user=new User();
+    
     private UserAccount userAccount=new UserAccount();
-    private String selectedUserType;
+    private UserType selectedUserType;
     private String strTest="default";
+    
+    ExternalContext externalContext=FacesContext.getCurrentInstance().getExternalContext();
+    Map<String, Object> sessionMap=externalContext.getSessionMap();
     
     
     public String createUserProfile()
     {
+        String navigationOutcome="failure";
         try
         {
-            user= userEJB.createUserProfile(user);
             
-            return "CreateUserAccount";
+            
+            switch(selectedUserType)
+            {
+                case ADMIN:
+                    createAdminAccount();
+                    break;
+                case STUDENT:
+                    Student objStudent= createStudentProfile(user);
+                    sessionMap.put("objUser", objStudent);
+                    navigationOutcome="success";
+                    break;
+                case TEACHER:
+                    createTeacherAccount();
+                    break;
+            }
+            /*user= userEJB.createUserProfile(user);
+            
+            return "CreateUserAccount";*/
                     
         }
         catch(Exception eX)
         {
             eX.printStackTrace();
+            //navigationOutcome="failure";
         }
         
-        return null;
+        return navigationOutcome;
     }
     
+    /*
     public String createUserAccount()
     {
         try
@@ -60,7 +89,7 @@ public class UserController implements Serializable {
                 switch(selectedUserType)
                 {
                     case "Student":
-                        createStudentAccount();
+                        createStudentProfile();
                         break;
                     case "Teacher":
                         createTeacherAccount();
@@ -76,11 +105,16 @@ public class UserController implements Serializable {
             eX.printStackTrace();
         }
         return null;
-    }
+    }*/
     
-    public void createStudentAccount()
+    public Student createStudentProfile(User user)
     {
-        strTest="Create Student Account";
+        Student std=new Student();
+        std=std.getStudentFromBaseInstance(user);
+        studentEJB.testCreate(std);
+        //return "CreateUserAccount";
+        return std;
+       
     }
     public void createTeacherAccount()
     {
@@ -102,9 +136,9 @@ public class UserController implements Serializable {
         this.user=user;
     }
     
-    public UserTypes[] getUserTypes()
+    public UserType[] getUserTypes()
     {
-        return UserTypes.values();
+        return UserType.values();
     }
     
     public UIComponent getBtnCreateProfile()
@@ -123,11 +157,11 @@ public class UserController implements Serializable {
     {
         this.btnCreateAccount= uComponent;
     }
-    public String getSelectedUserType()
+    public UserType getSelectedUserType()
     {
         return this.selectedUserType;
     }
-    public void setSelectedUserType(String sSelectedUType)
+    public void setSelectedUserType(UserType sSelectedUType)
     {
         this.selectedUserType=sSelectedUType;
     }

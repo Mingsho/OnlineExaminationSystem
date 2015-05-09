@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.Map;
 import org.oes.model.Student;
 import org.oes.beans.StudentEJB;
-import org.oes.model.UserTypes;
+import org.oes.model.UserType;
 
 
 /**
@@ -29,16 +29,21 @@ public class StudentController implements Serializable  {
   
     @EJB 
     private StudentEJB studentEJB;
-    private UIComponent btnCreate;
+    private UIComponent btnCreateStudentProfile;
     private Student student=new Student();
    
     public String createStudent()
     {
+        String strReturnUrl=null;
         try{
             
             student= studentEJB.createStudent(student);
             
-            return "CreateUserAccount";
+            FacesContext.getCurrentInstance().getExternalContext().
+                    getSessionMap().put("objStudent", student);
+            
+            strReturnUrl="CreateUserAccount";
+            
             
         }
         catch(IllegalArgumentException iEx)
@@ -50,7 +55,7 @@ public class StudentController implements Serializable  {
             ex.printStackTrace();
         }
         
-        return null;
+        return strReturnUrl;
         
     }
     
@@ -64,19 +69,19 @@ public class StudentController implements Serializable  {
         this.student=student;
     }
     
-    public UIComponent getBtnCreate()
+    public UIComponent getBtnCreateProfile()
     {
-        return this.btnCreate;
+        return this.btnCreateStudentProfile;
     }
     
-    public void setBtnCreate(UIComponent btnCreate)
+    public void setBtnCreateProfile(UIComponent btnCreate)
     {
-        this.btnCreate=btnCreate;
+        this.btnCreateStudentProfile=btnCreate;
     }
   
-    public UserTypes[] getUserTypes()
+    public UserType[] getUserTypes()
     {
-        return UserTypes.values();
+        return UserType.values();
     }
     
 }

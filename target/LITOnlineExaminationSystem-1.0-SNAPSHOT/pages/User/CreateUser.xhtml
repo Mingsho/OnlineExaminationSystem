@@ -28,6 +28,7 @@
                     <h:inputTextarea id="txtAddress" title="Address" value="#{UserBean.user.address}" /><br/>
                     <h:outputLabel id="lblEmail" for="txtEmail" value="Email:" />
                     <h:inputText id="txtEmail" title="Email" value="#{UserBean.user.emailAddress}" /><br/>
+                    <h:outputLabel id="lblTest" value="#{UserBean.strTest}" />
                 </h:panelGrid>
                 <h:commandButton id="btnCreate" value="Create"
                                  binding="#{UserBean.btnCreateProfile}"

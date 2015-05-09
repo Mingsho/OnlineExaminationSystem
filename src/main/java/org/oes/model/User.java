@@ -112,7 +112,14 @@ public class User implements Serializable {
     {
         this.profilePicture=ProfilePic;
     }
-    
+    public UserAccount getUserAccount()
+    {
+        return this.userAccount;
+    }
+    public void setUserAccount(UserAccount userAccount)
+    {
+        this.userAccount=userAccount;
+    }
    //</editor-fold>
     
 }

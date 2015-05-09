@@ -10,6 +10,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.MapsId;
@@ -26,7 +28,7 @@ import javax.persistence.FetchType;
 @Entity
 public class UserAccount implements Serializable {
     
-    @Id
+    @Id 
     private long userID;
     private String username;
     private String password;

@@ -14,20 +14,24 @@
             
         </f:facet>
         <f:facet name="middle">
-            <h:outputStylesheet name="bootstrap/css/bootstrap.min.css" />
-            <h:outputStylesheet name="css/sb-admin.css" />
-            <h:outputScript name="js/jquery-1.11.2.min.js" />
-            <h:outputScript name="bootstrap/js/bootstrap.min.js" />
+            <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+            <h:outputStylesheet library="css" name="sb-admin.css" />
+            <h:outputScript library="js" name="jquery-1.11.2.js" target="body" />
+            <h:outputScript library="bootstrap" name="js/bootstrap.js" target="body" />
+            
         </f:facet>
         <f:facet name="last">
             <h:outputStylesheet name="css/font-awesome.css" />
         </f:facet>
     </h:head>
         
-        
     <h:body>
-        <ui:include src="Header.xhtml" />
-        <ui:include src="Content.xhtml" />
+        <div id="wrapper">
+            <ui:include src="Header.xhtml" />
+            <ui:include src="Sidebar.xhtml" />
+            <ui:include src="Content.xhtml" />
+        </div>
     </h:body>
+    
 </html>
 

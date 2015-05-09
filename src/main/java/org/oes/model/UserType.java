@@ -9,7 +9,7 @@ package org.oes.model;
  *
  * @author Mingso
  */
-public enum UserTypes {
+public enum UserType {
     
     STUDENT ("Student"),
     TEACHER ("Teacher"),
@@ -17,7 +17,7 @@ public enum UserTypes {
     
     private String label;
     
-    private UserTypes(String label)
+    private UserType(String label)
     {
         this.label=label;
     }
