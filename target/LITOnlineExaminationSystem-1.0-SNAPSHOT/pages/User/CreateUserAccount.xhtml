@@ -5,39 +5,45 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
             
-                
-        <f:view>
-            <h:form id="userAccount" class="form-horizontal" role="form">
-                
-                <fieldset>
-                    <legend>Create User Account</legend>
-                </fieldset>
-                
-                <div class="form-group">
-                    <h:outputLabel id="lblUsername" class="col-sm-2 control-label" value="Username: "
-                                   for="txtUsername" />
-                    <div class="col-sm-10">
-                        <h:inputText id="txtUsername" class="form-control"
-                                     a:placeholder="e.g Hamilton123" /><br/>
+        <ui:define name="mainContent">
+            <f:view>
+                <h:form id="userAccount" class="form-horizontal" role="form">
+
+                    <fieldset>
+                        <legend>Create User Profile: Step 2 of 2</legend>
+                    </fieldset>
+
+                    <div class="form-group">
+                        <h:outputLabel id="lblUsername" class="col-sm-2 control-label" value="Username: "
+                                       for="txtUsername" />
+                        <div class="col-sm-10">
+                            <h:inputText id="txtUsername" class="form-control"
+                                         value="#{UserAccountBean.userAccount.userName}"
+                                         a:placeholder="e.g Hamilton123" /><br/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblPassword" class="col-sm-2 control-label" value="Password: "
+                                       for="txtPassword" />
+                        <div class="col-sm-10">
+                            <h:inputSecret id="txtPassword" class="form-control"
+                                           value="#{UserAccountBean.userAccount.password}"
+                                           a:placeholder="Type in a secure password..."/><br/>
+                        </div>
+
                     </div>
                     
-                </div>
-                <div class="form-group">
-                    <h:outputLabel id="lblPassword" class="col-sm-2 control-label" value="Password: "
-                                   for="txtPassword" />
                     <div class="col-sm-10">
-                        <h:inputSecret id="txtPassword" class="form-control" /><br/>
+                        <h:commandButton id="btnCreateAccount" class="btn btn-primary btn-md"
+                                         value="Create Account" binding="#{UserAccountBean.btnCreateProfile}"
+                                         action="#{UserAccountBean.createUser()}"/>
                     </div>
-                    
-                </div>
-                <div class="col-sm-10">
-                    <h:commandButton id="btnCreateAccount" class="btn btn-primary btn-md"
-                                     value="Create Account" binding="#{TestBean.testButton}"
-                                     action="#{TestBean.createUserAccount()}"/>
-                </div>
-                <h:outputLabel
-            </h:form>
-        </f:view>
+
+                </h:form>
+            </f:view>
+        </ui:define>
+        
             
     </ui:composition>
    

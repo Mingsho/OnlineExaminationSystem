@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Entity
 public class Question implements Serializable {
     
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long questionID;
     
     @Column(nullable=false, length=255)

@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Result implements Serializable {
     
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long resultId;
     
     @Column(name="Attempted_Date")

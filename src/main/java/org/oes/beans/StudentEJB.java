@@ -10,8 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.ejb.Stateless;
 import org.oes.model.Student;
-import org.oes.model.UserAccount;
-import org.oes.model.User;
 import org.oes.utilities.Constants;
 
 /**
@@ -33,18 +31,14 @@ public class StudentEJB {
         return std;
     }
     
-    public void testCreate(User user)
+    public boolean isStudentExist(Student std)
     {
-        eManager.persist(user);
+        boolean bRetVal=false;
+        
+        if(eManager.contains(std))
+            bRetVal=true;
+        return bRetVal;
         
     }
-    
    
-    public UserAccount createStudentProfile(UserAccount uAccount)
-    {
-        eManager.persist(uAccount);
-        return uAccount;
-    }
-    
-    
 }

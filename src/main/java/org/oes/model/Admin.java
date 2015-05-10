@@ -17,4 +17,23 @@ import javax.persistence.Entity;
 @Entity
 public class Admin extends User {
     
+    
+    public Admin getAdminFromBaseInstance(User user)
+    {
+        Admin admin=new Admin();
+        
+        if(user!=null)
+        {
+            admin.setFirstName(user.getFirstName());
+            admin.setMiddleName(user.getMiddleName());
+            admin.setLastName(user.getMiddleName());
+            admin.setContactNumber(user.getContactNumber());
+            admin.setAddress(user.getAddress());
+            admin.setEmailAddress(user.getEmailAddress());
+            
+        }
+        
+        return admin;
+    }
+    
 }

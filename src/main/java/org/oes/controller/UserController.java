@@ -4,16 +4,14 @@
  * and open the template in the editor.
  */
 package org.oes.controller;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.ejb.EJB;
-import javax.faces.component.UIComponent;
+import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.Map;
-import javax.faces.context.ExternalContext;
 import org.oes.model.User;
-import org.oes.model.UserAccount;
 import org.oes.beans.UserEJB;
 import org.oes.model.Student;
 import org.oes.model.Admin;
@@ -21,108 +19,65 @@ import org.oes.model.Teacher;
 import org.oes.beans.StudentEJB;
 import org.oes.model.UserType;
 
+
 /**
  *
  * @author Mingso
  */
-@SessionScoped
-@Named("UserBean")
-public class UserController implements Serializable {
+@ManagedBean(name="UserBean")
+@RequestScoped
+public class UserController {
     
-    @EJB UserEJB userEJB;
-    @EJB StudentEJB studentEJB;
+    //@EJB private UserEJB userEJB;
+    //@EJB private StudentEJB studentEJB;
     
-    private UIComponent btnCreateProfile;
-    private UIComponent btnCreateAccount;
+    private UICommand btnCreateProfile;
     private User user=new User();
-    
-    private UserAccount userAccount=new UserAccount();
     private UserType selectedUserType;
     private String strTest="default";
     
-    ExternalContext externalContext=FacesContext.getCurrentInstance().getExternalContext();
-    Map<String, Object> sessionMap=externalContext.getSessionMap();
+    public UserController(){}
     
-    
-    public String createUserProfile()
+    public String createUser()
     {
+        //outcome for the result of this subroutine.
         String navigationOutcome="failure";
+        //create sessionmap from the external context.
+        Map<String, Object> sessionMap=FacesContext.
+                getCurrentInstance().getExternalContext().getSessionMap();
         try
         {
             
-            
-            switch(selectedUserType)
+            switch(selectedUserType) //determine the selected user type from the dropdown list.
             {
                 case ADMIN:
-                    createAdminAccount();
+                    Admin admin= new Admin();
+                    admin=admin.getAdminFromBaseInstance(user);
+                    sessionMap.put("objUser", admin);
+                    navigationOutcome="success";
                     break;
                 case STUDENT:
-                    Student objStudent= createStudentProfile(user);
-                    sessionMap.put("objUser", objStudent);
+                    //Student objStudent= createStudentProfile(user);
+                    Student student=new Student();
+                    student=student.getStudentFromBaseInstance(user);
+                    sessionMap.put("objUser", student);
                     navigationOutcome="success";
                     break;
                 case TEACHER:
-                    createTeacherAccount();
+                    Teacher teacher=new Teacher();
+                    teacher=teacher.getTeacherFromBaseInstance(user);
+                    sessionMap.put("objUser", teacher);
+                    navigationOutcome="success";
                     break;
             }
-            /*user= userEJB.createUserProfile(user);
-            
-            return "CreateUserAccount";*/
-                    
         }
         catch(Exception eX)
         {
-            eX.printStackTrace();
-            //navigationOutcome="failure";
+            System.out.println(eX.getMessage());
+            //eX.printStackTrace();
         }
         
         return navigationOutcome;
-    }
-    
-    /*
-    public String createUserAccount()
-    {
-        try
-        {
-            if(selectedUserType!=null && selectedUserType.isEmpty())
-            {
-                switch(selectedUserType)
-                {
-                    case "Student":
-                        createStudentProfile();
-                        break;
-                    case "Teacher":
-                        createTeacherAccount();
-                        break;
-                    case "Admin":
-                        createAdminAccount();
-                        break;
-                }
-            }
-        }
-        catch(Exception eX)
-        {
-            eX.printStackTrace();
-        }
-        return null;
-    }*/
-    
-    public Student createStudentProfile(User user)
-    {
-        Student std=new Student();
-        std=std.getStudentFromBaseInstance(user);
-        studentEJB.testCreate(std);
-        //return "CreateUserAccount";
-        return std;
-       
-    }
-    public void createTeacherAccount()
-    {
-        strTest="Create Teacher Account";
-    }
-    public void createAdminAccount()
-    {
-        strTest="Create Admin Account";
     }
     
     
@@ -141,22 +96,15 @@ public class UserController implements Serializable {
         return UserType.values();
     }
     
-    public UIComponent getBtnCreateProfile()
+    public UICommand getBtnCreateProfile()
     {
         return this.btnCreateProfile;
     }
-    public void setBtnCreateProfile(UIComponent uComponent)
+    public void setBtnCreateProfile(UICommand uComponent)
     {
         this.btnCreateProfile=uComponent;
     }
-    public UIComponent getBtnCreateAccount()
-    {
-        return this.btnCreateAccount;
-    }
-    public void setBtnCreateAccount(UIComponent uComponent)
-    {
-        this.btnCreateAccount= uComponent;
-    }
+    
     public UserType getSelectedUserType()
     {
         return this.selectedUserType;

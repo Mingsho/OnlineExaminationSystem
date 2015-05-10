@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Exam implements Serializable {
     
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long examID;
     @Column(nullable = false, length = 50)
     

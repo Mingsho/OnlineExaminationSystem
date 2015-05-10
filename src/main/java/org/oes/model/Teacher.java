@@ -18,4 +18,20 @@ import java.io.Serializable;
 @Entity
 public class Teacher extends User {
     
+    
+    public Teacher getTeacherFromBaseInstance(User user)
+    {
+        Teacher teacher=new Teacher();
+        if(user!=null)
+        {
+            teacher.setFirstName(user.getFirstName());
+            teacher.setMiddleName(user.getMiddleName());
+            teacher.setLastName(user.getLastName());
+            teacher.setContactNumber(user.getContactNumber());
+            teacher.setAddress(user.getAddress());
+            teacher.setEmailAddress(user.getEmailAddress());
+        }
+        return teacher;
+    }
+    
 }

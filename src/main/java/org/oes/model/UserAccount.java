@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.MapsId;
@@ -33,8 +34,8 @@ public class UserAccount implements Serializable {
     private String username;
     private String password;
    
-    @MapsId
     @OneToOne
+    @MapsId
     @JoinColumn(name="U_ID")
     private User user;
     

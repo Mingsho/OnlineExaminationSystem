@@ -1,41 +1,94 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <f:view>
+<ui:composition template="/templates/MainLayout.xhtml"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
             
-            <h:form id="userForm">
-                <h:panelGrid columns="3">
-                    <h:outputLabel id="lblUserType" for="dListUserType" value="User Type:" />
-                    <h:selectOneMenu value="#{UserBean.selectedUserType}">
-                        <f:selectItems value="#{UserBean.userTypes}" var="userType"
-                               itemValue="#{userType}" itemLabel="#{userType.label}" />
-                    </h:selectOneMenu>
-                    <h:outputLabel id="lblFirstName" for="txtFirstName" value="First Name:" />
-                    <h:inputText id="txtFirstName" title="FirstName" value="#{UserBean.user.firstName}" /><br/>
-                    <h:outputLabel id="lblMiddleName" for="txtMiddleName" value="Middle Name:" />
-                    <h:inputText id="txtMiddleName" title="MiddleName" value="#{UserBean.user.middleName}" /><br/>
-                    <h:outputLabel id="lblLastName" for="txtLastName" value="Last Name:" />
-                    <h:inputText id="txtLastName" title="LastName" value="#{UserBean.user.lastName}" /><br/>
-                    <h:outputLabel id="lblContactNumber" for="txtContactNumber" value="Contact Number" />
-                    <h:inputText id="txtContactNumber" title="ContactNumber" value="#{UserBean.user.contactNumber}" /><br/>
-                    <h:outputLabel id="lblAddress" for="txtAddress" value="Address:" />
-                    <h:inputTextarea id="txtAddress" title="Address" value="#{UserBean.user.address}" /><br/>
-                    <h:outputLabel id="lblEmail" for="txtEmail" value="Email:" />
-                    <h:inputText id="txtEmail" title="Email" value="#{UserBean.user.emailAddress}" /><br/>
-                    <h:outputLabel id="lblTest" value="#{UserBean.strTest}" />
-                </h:panelGrid>
-                <h:commandButton id="btnCreate" value="Create"
-                                 binding="#{UserBean.btnCreateProfile}"
-                                 action="#{UserBean.createUserProfile()}">
-                </h:commandButton><br/>
-            </h:form>
+    
+    <ui:define name="mainContent">
+        <f:view>
+            <fieldset>
+                <legend>Create User Profile: Step 1 or 2</legend>
+                <h:form id="frmUserProfile" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <h:outputLabel id="lblUserType" class="col-sm-2 control-label"
+                                       for="dListUserType" value="User Type:" />
+                        <div class="col-sm-10">
+                            <h:selectOneMenu id="dListUserType" value="#{UserBean.selectedUserType}">
+                                <f:selectItems value="#{UserBean.userTypes}" />
+                            </h:selectOneMenu><br/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblFirstName" class="col-sm-2 control-label"
+                                       for="txtFirstName" value="First Name:" />
+                        <div class="col-sm-10">
+                             <h:inputText id="txtFirstName" title="FirstName" a:placeholder="e.g. David"
+                                          class="form-control" value="#{UserBean.user.firstName}" /><br/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblMiddleName" class="col-sm-2 control-label"
+                                       for="txtMiddleName" value="Middle Name:" />
+                        <div class="col-sm-10">
+                            <h:inputText id="txtMiddleName" title="MiddleName" a:placeholder="e.g. Jacob"
+                                         class="form-control"
+                                         value="#{UserBean.user.middleName}"/><br/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblLastName" class="col-sm-2 control-label"
+                                       for="txtLastName" value="Last Name:" />
+                        <div class="col-sm-10">
+                            <h:inputText id="txtLastName" title="LastName" a:placeholder="e.g. Johnson"
+                                         class="form-control"
+                                         value="#{UserBean.user.lastName}" /><br/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblContactNumber" class="col-sm-2 control-label"
+                                       for="txtContactNumber" value="Contact Number" />
+                        <div class="col-sm-10">
+                            <h:inputText id="txtContactNumber" title="ContactNumber"
+                                         a:placeholder="e.g. 0458789631" class="form-control"
+                                         value="#{UserBean.user.contactNumber}" /><br/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblAddress" class="col-sm-2 control-label"
+                                       for="txtAddress" value="Address:" />
+                        <div class="col-sm-10">
+                            <h:inputTextarea id="txtAddress" title="Address"
+                                             a:placeholder="e.g. 108 Lonsdale Street, Melbourne" class="form-control"
+                                             value="#{UserBean.user.address}" /><br/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblEmail" class="col-sm-2 control-label"
+                                       for="txtEmail" value="Email:" />
+                        <div class="col-sm-10">
+                            <h:inputText id="txtEmail" title="Email"
+                                         a:placeholder="e.g. david@tba.com" class="form-control"
+                                         value="#{UserBean.user.emailAddress}" /><br/>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <h:commandButton id="btnCreate" value="Create" 
+                                        class="btn btn-primary btn-md"
+                                        binding="#{UserBean.btnCreateProfile}"
+                                        action="#{UserBean.createUser()}">
+                        </h:commandButton><br/>
+                    </div>
+                    
+                </h:form>
+                
+            </fieldset>
         </f:view>
-    </h:body>
-</html>
+    </ui:define>
+    
+</ui:composition>
+                
+            
+                
 

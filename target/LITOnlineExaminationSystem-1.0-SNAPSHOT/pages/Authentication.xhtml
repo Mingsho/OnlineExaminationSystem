@@ -1,13 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
     </h:head>
     <h:body>
-        Hello from Facelets
+        <f:view>
+            <h:form id="frmLogin">
+                <h:outputLabel id="lblUserName" for="txtUserName"
+                               value="Username: " />
+                <h:inputText id="txtUserName" a:placeholder="Username" /><br/>
+                <h:outputLabel id="lblPassword" for="txtPassword"
+                               value="Password: " />
+                <h:inputSecret id="txtPassword" a:placeholder="Password" /><br/>
+                <h:commandButton id="btnLogin" value="Login">
+                </h:commandButton>
+            </h:form>
+        </f:view>
     </h:body>
 </html>
 

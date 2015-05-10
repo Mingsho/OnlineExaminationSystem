@@ -29,7 +29,7 @@ import javax.persistence.CascadeType;
 @Table(name = "UserProfile")
 public class User implements Serializable {
     
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
     @Column(nullable = false)
     private String firstName;

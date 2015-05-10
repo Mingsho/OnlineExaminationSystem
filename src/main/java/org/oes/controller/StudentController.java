@@ -37,7 +37,7 @@ public class StudentController implements Serializable  {
         String strReturnUrl=null;
         try{
             
-            student= studentEJB.createStudent(student);
+           // student= studentEJB.createStudent(student);
             
             FacesContext.getCurrentInstance().getExternalContext().
                     getSessionMap().put("objStudent", student);

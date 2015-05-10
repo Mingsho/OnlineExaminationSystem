@@ -25,7 +25,7 @@ import java.util.List;
 @Entity
 public class Course implements Serializable {
     
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long courseId;
     @Column(nullable = false, unique = true)
     private String courseCode;

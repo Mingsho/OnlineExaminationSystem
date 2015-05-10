@@ -29,4 +29,5 @@ public class UserEJB {
         return user;
     }
     
+    
 }
