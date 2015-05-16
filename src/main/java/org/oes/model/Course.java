@@ -14,8 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 
 
 /**
@@ -23,6 +26,10 @@ import java.util.List;
  * @author Mingso
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Course.GetAllCourses", query="SELECT C FROM Course C"),
+    @NamedQuery(name="Course.GetCourseById", query="SELECT C FROM Course C WHERE C.courseId= :Id")
+})
 public class Course implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +49,8 @@ public class Course implements Serializable {
     @JoinColumn(name = "Course_Exam_FK")
     private List<Exam> scheduledExams;
     
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY,
+            cascade = CascadeType.PERSIST)
     @JoinColumn(name="Course_Question_FK")
     private List<Question> questionList;
     

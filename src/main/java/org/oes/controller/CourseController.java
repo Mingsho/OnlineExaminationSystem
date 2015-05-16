@@ -5,10 +5,11 @@
  */
 package org.oes.controller;
 import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.ejb.EJB;
-import javax.faces.component.UIComponent;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import org.oes.beans.CourseEJB;
 import org.oes.model.Course;
 
@@ -16,16 +17,25 @@ import org.oes.model.Course;
  *
  * @author Mingso
  */
-@Named("CourseBean")
-@SessionScoped
+@Named
+@RequestScoped
 public class CourseController implements Serializable {
     
     @EJB
     private CourseEJB courseEJB;
-    private Course course=new Course();
-    private UIComponent btnCreateCourse;
     
+    private Course course;
     
+    public CourseController()
+    {
+        
+    }
+    
+    @PostConstruct
+    public void init()
+    {
+        course=new Course();
+    }
     public void createCourse()
     {
         course=courseEJB.createCourse(course);
@@ -41,14 +51,5 @@ public class CourseController implements Serializable {
     {
         this.course=course;
     }
-    public UIComponent getBtnCreateCourse()
-    {
-        return this.btnCreateCourse;
-    }
-    public void setBtnCreateCourse(UIComponent uComponent)
-    {
-        this.btnCreateCourse= uComponent;
-    }
-    
     
 }

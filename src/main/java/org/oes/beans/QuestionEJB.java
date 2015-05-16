@@ -21,6 +21,12 @@ public class QuestionEJB {
     @PersistenceContext(name=Constants.PersistenceName)
     EntityManager eManager;
     
+    public Question createQuestion(Question question)
+    {
+        eManager.persist(question);
+        return question;
+    }
+    
     
     
 }

@@ -13,10 +13,14 @@
             <h:form id="frmLogin">
                 <h:outputLabel id="lblUserName" for="txtUserName"
                                value="Username: " />
-                <h:inputText id="txtUserName" a:placeholder="Username" /><br/>
+                <h:inputText id="txtUserName" a:placeholder="Username"
+                             required="true"
+                             requiredMessage="Please fill in the required field!"/><br/>
                 <h:outputLabel id="lblPassword" for="txtPassword"
                                value="Password: " />
-                <h:inputSecret id="txtPassword" a:placeholder="Password" /><br/>
+                <h:inputSecret id="txtPassword" a:placeholder="Password"
+                               required="true"
+                               requiredMessage="Please key in your password!"/><br/>
                 <h:commandButton id="btnLogin" value="Login">
                 </h:commandButton>
             </h:form>

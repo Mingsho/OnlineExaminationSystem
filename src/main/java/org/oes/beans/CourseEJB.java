@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package org.oes.beans;
+
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import javax.ejb.Stateless;
+import java.util.List;
 import org.oes.model.Course;
 import org.oes.utilities.Constants;
 
@@ -24,6 +28,18 @@ public class CourseEJB {
     public Course createCourse(Course course)
     {
         eManager.persist(course);
+        return course;
+    }
+    public List<Course> getAllCourse()
+    {
+        TypedQuery<Course> lstCourses=eManager.
+                createNamedQuery("Course.GetAllCourses", Course.class);
+        return lstCourses.getResultList();
+    }
+    public Course getCourseById(long courseId)
+    {
+        Query query=eManager.createNamedQuery("Course.GetCourseById");
+        Course course= (Course)query.setParameter("Id", courseId).getSingleResult();
         return course;
     }
     

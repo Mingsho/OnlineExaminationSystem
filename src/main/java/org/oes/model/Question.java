@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 import java.io.Serializable;
 
 /**
@@ -25,23 +27,28 @@ public class Question implements Serializable {
     @Column(nullable=false, length=255)
     private String question;
     
-    @Column(name="Opt1", length=100, nullable=false)
-    private String option1;
+    @Column(name="Opt1", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private OptionNumber option1;
     
-    @Column(name="Opt2", length=100, nullable=false)
-    private String option2;
+    @Column(name="Opt2", nullable=false)
+    @Enumerated(EnumType.STRING)
+    private OptionNumber option2;
     
-    @Column(name="Opt3", length=100, nullable=false)
-    private String option3;
+    @Column(name="Opt3", nullable=false)
+    @Enumerated(EnumType.STRING)
+    private OptionNumber option3;
     
-    @Column(name="Opt4", length=100, nullable=false)
-    private String option4;
+    @Column(name="Opt4", nullable=false)
+    @Enumerated(EnumType.STRING)
+    private OptionNumber option4;
     
     @Column(nullable=false)
     private float defaultMarks;
     
     @Column(nullable=false)
-    private int correctOption;
+    @Enumerated(EnumType.STRING)
+    private OptionNumber correctOption;
     
     public Question(){}
     
@@ -59,35 +66,35 @@ public class Question implements Serializable {
     {
         this.question=sQuestion;
     }
-    public String getOption1()
+    public OptionNumber getOption1()
     {
         return this.option1;
     }
-    public void setOption1(String sOption1)
+    public void setOption1(OptionNumber sOption1)
     {
         this.option1=sOption1;
     }
-    public String getOption2()
+    public OptionNumber getOption2()
     {
         return this.option2;
     }
-    public void setOption2(String sOption2)
+    public void setOption2(OptionNumber sOption2)
     {
         this.option2=sOption2;
     }
-    public String getOption3()
+    public OptionNumber getOption3()
     {
         return this.option3;
     }
-    public void setOption3(String sOption3)
+    public void setOption3(OptionNumber sOption3)
     {
         this.option3=sOption3;
     }
-    public String getOption4()
+    public OptionNumber getOption4()
     {
         return this.option4;
     }
-    public void setOption4(String sOption4)
+    public void setOption4(OptionNumber sOption4)
     {
         this.option4=sOption4;
     }
@@ -99,11 +106,11 @@ public class Question implements Serializable {
     {
         this.defaultMarks=fDefaultMarks;
     }
-    public int getCorrectOption()
+    public OptionNumber getCorrectOption()
     {
         return this.correctOption;
     }
-    public void setCorrectOption(int nCorrectOption)
+    public void setCorrectOption(OptionNumber nCorrectOption)
     {
         this.correctOption=nCorrectOption;
     }

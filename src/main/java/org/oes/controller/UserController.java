@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package org.oes.controller;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.ejb.EJB;
 import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
@@ -24,17 +24,16 @@ import org.oes.model.UserType;
  *
  * @author Mingso
  */
-@ManagedBean(name="UserBean")
+@Named("UserBean")
 @RequestScoped
 public class UserController {
     
     //@EJB private UserEJB userEJB;
     //@EJB private StudentEJB studentEJB;
     
-    private UICommand btnCreateProfile;
+    //private UICommand btnCreateProfile;
     private User user=new User();
     private UserType selectedUserType;
-    private String strTest="default";
     
     public UserController(){}
     
@@ -96,15 +95,6 @@ public class UserController {
         return UserType.values();
     }
     
-    public UICommand getBtnCreateProfile()
-    {
-        return this.btnCreateProfile;
-    }
-    public void setBtnCreateProfile(UICommand uComponent)
-    {
-        this.btnCreateProfile=uComponent;
-    }
-    
     public UserType getSelectedUserType()
     {
         return this.selectedUserType;
@@ -113,12 +103,5 @@ public class UserController {
     {
         this.selectedUserType=sSelectedUType;
     }
-    public String getStrTest()
-    {
-        return this.strTest;
-    }
-    public void setStrTest(String strTest)
-    {
-        this.strTest=strTest;
-    }
+    
 }
