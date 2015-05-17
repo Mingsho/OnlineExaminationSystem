@@ -9,4 +9,85 @@
         Hello from Facelets
     </h:body>
 </html>
-
+<ui:composition template="/templates/MainLayout.xhtml"
+            xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+            xmlns:h="http://xmlns.jcp.org/jsf/html"
+            xmlns:f="http://xmlns.jcp.org/jsf/core"
+            xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <ui:define name="pageTitle">Schedule an Exam</ui:define>
+    <ui:define name="mainContent">
+        <f:view>
+            <fieldset>
+                <legend></legend>
+            </fieldset>
+            <h:form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <h:outputLabel id="lblExamTitle"
+                                   for="txtExamTitle"
+                                   class="col-sm-2 control-label"
+                                   value="Exam Title: "/>
+                    <div class="col-sm-10">
+                        <h:inputText id="txtExamTitle"
+                                     class="form-control"
+                                     a:placeholder="e.g. Term 1 Examination"
+                                     value=""/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel id="" value=""
+                                   class=""
+                                   for=""/>
+                    <div class="col-sm-10">
+                        <h:inputText id="" class=""
+                                     value=""
+                                     a:placeholder=""
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel id="" value=""
+                                   class=""
+                                   for=""/>
+                    <div class="col-sm-10">
+                        <h:inputText id="" class=""
+                                     value=""
+                                     a:placeholder=""
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel id="" value=""
+                                   class=""
+                                   for=""/>
+                    <div class="col-sm-10">
+                        <h:inputText id="" class=""
+                                     value=""
+                                     a:placeholder=""
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel id="" value=""
+                                   class=""
+                                   for=""/>
+                    <div class="col-sm-10">
+                        <h:inputText id="" class=""
+                                     value=""
+                                     a:placeholder=""
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel id="" value=""
+                                   class=""
+                                   for=""/>
+                    <div class="col-sm-10">
+                        <h:inputText id="" class=""
+                                     value=""
+                                     a:placeholder=""
+                    </div>
+                </div>
+            </h:form>
+        </f:view>
+    </ui:define>
+                
+    
+</ui:composition>

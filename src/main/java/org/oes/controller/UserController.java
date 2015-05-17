@@ -24,7 +24,7 @@ import org.oes.model.UserType;
  *
  * @author Mingso
  */
-@Named("UserBean")
+@Named
 @RequestScoped
 public class UserController {
     

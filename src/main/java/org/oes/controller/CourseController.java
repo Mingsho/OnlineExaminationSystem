@@ -8,6 +8,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import org.oes.beans.CourseEJB;
@@ -38,9 +39,18 @@ public class CourseController implements Serializable {
     }
     public void createCourse()
     {
-        course=courseEJB.createCourse(course);
+        //FacesContext fContext= FacesContext.getCurrentInstance();
         
-        this.course=new Course();
+        //try {
+            
+            
+            course=courseEJB.createCourse(course);
+        
+            this.course=new Course();
+                
+        //} catch (Exception e) {
+        //}
+        
     }
     
     public Course getCourse()

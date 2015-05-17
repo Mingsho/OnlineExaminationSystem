@@ -14,7 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.sql.Blob;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
@@ -27,6 +28,15 @@ import javax.persistence.CascadeType;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "UserProfile")
+@NamedQueries({
+    
+    @NamedQuery(name = "User.GetByUnamePwd",
+            query = "SELECT U FROM User U WHERE U.userAccount.username= :uName"
+                    + " AND U.userAccount.password= :pWd"),
+    @NamedQuery(name="User.GetCountUnamePwd",
+            query="SELECT COUNT(U) FROM User U WHERE U.userAccount.username= :uName"
+                    + " AND U.userAccount.password= :pWd")
+})
 public class User implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

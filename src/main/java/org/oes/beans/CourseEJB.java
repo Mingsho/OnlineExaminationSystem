@@ -25,10 +25,15 @@ public class CourseEJB {
     @PersistenceContext(name=Constants.PersistenceName)
     EntityManager eManager;
     
-    public Course createCourse(Course course)
+    public Course createCourse(Course course) 
     {
         eManager.persist(course);
         return course;
+    }
+    public void updateCourse(Course course)
+    {
+        eManager.merge(course);
+        eManager.flush();
     }
     public List<Course> getAllCourse()
     {
@@ -42,5 +47,8 @@ public class CourseEJB {
         Course course= (Course)query.setParameter("Id", courseId).getSingleResult();
         return course;
     }
-    
+    public boolean isCourseExists(Course course)
+    {
+        return eManager.contains(course);
+    }
 }

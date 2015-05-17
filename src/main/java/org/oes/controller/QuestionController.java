@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.enterprise.context.RequestScoped;
 import javax.ejb.EJB;
 import java.util.List;
+import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import org.oes.model.OptionNumber;
 import org.oes.model.Question;
@@ -21,7 +22,7 @@ import org.oes.beans.CourseEJB;
  *
  * @author Mingso
  */
-@Named("QuestionBean")
+@Named
 @RequestScoped
 public class QuestionController {
     
@@ -33,16 +34,28 @@ public class QuestionController {
     private OptionNumber correctOption;
     private List<Course> courseList;
     private Course selectedCourse;
+    private long selectedCourseId;
     
     public void createQuestion()
     {
-        question=questionEJB.createQuestion(question);
-        
+        if (selectedCourseId>0) {
+            
+            List<Question> lstQuestion= new ArrayList<>();
+            lstQuestion.add(question);
+            Course course=courseEJB.getCourseById(selectedCourseId);
+            course.setQuestionList(lstQuestion);
+            
+            courseEJB.updateCourse(course);
+            
+            
+        }
+        this.question=new Question();
     }
     
     @PostConstruct
     public void init()
     {
+        this.question=new Question();
         this.courseList=courseEJB.getAllCourse();
     }
     
@@ -83,5 +96,15 @@ public class QuestionController {
     public void setSelectedCourse(Course course)
     {
         this.selectedCourse=course;
+ 
     }
+    public long getSelectedCourseId()
+    {
+        return this.selectedCourseId;
+    }
+    public void setSelectedCourseId(long courseId)
+    {
+        this.selectedCourseId=courseId;
+    }
+    
 }

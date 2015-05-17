@@ -21,7 +21,7 @@ import org.oes.model.UserAccount;
  *
  * @author Mingso
  */
-@ManagedBean(name="UserAccountBean")
+@ManagedBean
 @RequestScoped
 public class UserAccountController {
     

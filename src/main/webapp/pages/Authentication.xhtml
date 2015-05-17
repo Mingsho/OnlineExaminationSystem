@@ -13,15 +13,25 @@
             <h:form id="frmLogin">
                 <h:outputLabel id="lblUserName" for="txtUserName"
                                value="Username: " />
-                <h:inputText id="txtUserName" a:placeholder="Username"
+                <h:inputText id="txtUserName"
+                             a:placeholder="Username"
                              required="true"
-                             requiredMessage="Please fill in the required field!"/><br/>
+                             requiredMessage="Please fill in the required field!"
+                             value="#{loginController.userName}">
+                    <f:validateRequired/>
+                </h:inputText><h:message for="txtUserName" style="color: red"/><br/>
                 <h:outputLabel id="lblPassword" for="txtPassword"
                                value="Password: " />
-                <h:inputSecret id="txtPassword" a:placeholder="Password"
+                <h:inputSecret id="txtPassword"
+                               a:placeholder="Password"
                                required="true"
-                               requiredMessage="Please key in your password!"/><br/>
-                <h:commandButton id="btnLogin" value="Login">
+                               requiredMessage="Please key in your password!"
+                               value="#{loginController.password}">
+                    <f:validateRequired/>
+                </h:inputSecret><h:message for="txtPassword" style="color: red" /><br/>
+                <h:commandButton id="btnLogin"
+                                 value="Login"
+                                 action="#{loginController.login()}">
                 </h:commandButton>
             </h:form>
         </f:view>

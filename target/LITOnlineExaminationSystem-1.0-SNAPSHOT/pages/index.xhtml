@@ -1,9 +1,11 @@
     <ui:composition template="/templates/MainLayout.xhtml"
         xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html">
         
         <ui:define name="mainContent">
             this is the main content
+            <h:outputLabel id="lblTest" value="#{loginController.userType}" />
         </ui:define>
         
     </ui:composition>

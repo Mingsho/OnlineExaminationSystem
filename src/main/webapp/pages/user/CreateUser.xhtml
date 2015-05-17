@@ -14,71 +14,110 @@
                     <div class="form-group">
                         <h:outputLabel id="lblUserType" class="col-sm-2 control-label"
                                        for="dListUserType" value="User Type:" />
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <h:selectOneMenu id="dListUserType"
-                                             value="#{UserBean.selectedUserType}"
+                                             value="#{userController.selectedUserType}"
                                              class="form-control">
-                                <f:selectItems value="#{UserBean.userTypes}" />
+                                <f:selectItems value="#{userController.userTypes}" />
                             </h:selectOneMenu><br/>
                         </div>
                     </div>
                     <div class="form-group">
                         <h:outputLabel id="lblFirstName" class="col-sm-2 control-label"
                                        for="txtFirstName" value="First Name:" />
-                        <div class="col-sm-10">
-                             <h:inputText id="txtFirstName" title="FirstName" a:placeholder="e.g. David"
-                                          class="form-control" value="#{UserBean.user.firstName}" /><br/>
+                        <div class="col-sm-6">
+                             <h:inputText id="txtFirstName"
+                                          title="FirstName"
+                                          a:placeholder="e.g. David"
+                                          class="form-control"
+                                          value="#{userController.user.firstName}"
+                                          required="true"
+                                          requiredMessage="*FirstName cannot be blank">
+                                 <f:validateRequired/>
+                             </h:inputText><br/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtFirstName" style="color: red" />
                         </div>
                     </div>
                     <div class="form-group">
                         <h:outputLabel id="lblMiddleName" class="col-sm-2 control-label"
                                        for="txtMiddleName" value="Middle Name:" />
-                        <div class="col-sm-10">
-                            <h:inputText id="txtMiddleName" title="MiddleName" a:placeholder="e.g. Jacob"
+                        <div class="col-sm-6">
+                            <h:inputText id="txtMiddleName"
+                                         title="MiddleName"
+                                         a:placeholder="e.g. Jacob"
                                          class="form-control"
-                                         value="#{UserBean.user.middleName}"/><br/>
+                                         value="#{userController.user.middleName}"/><br/>
                         </div>
                     </div>
                     <div class="form-group">
                         <h:outputLabel id="lblLastName" class="col-sm-2 control-label"
                                        for="txtLastName" value="Last Name:" />
-                        <div class="col-sm-10">
-                            <h:inputText id="txtLastName" title="LastName" a:placeholder="e.g. Johnson"
+                        <div class="col-sm-6">
+                            <h:inputText id="txtLastName"
+                                         title="LastName"
+                                         a:placeholder="e.g. Johnson"
                                          class="form-control"
-                                         value="#{UserBean.user.lastName}" /><br/>
+                                         value="#{userController.user.lastName}"
+                                         required="true"
+                                         requiredMessage="*Last Name cannot be blank!">
+                                <f:validateRequired/>
+                            </h:inputText><br/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtLastName" style="color: red" />
                         </div>
                     </div>
                     <div class="form-group">
                         <h:outputLabel id="lblContactNumber" class="col-sm-2 control-label"
                                        for="txtContactNumber" value="Contact Number" />
-                        <div class="col-sm-10">
-                            <h:inputText id="txtContactNumber" title="ContactNumber"
-                                         a:placeholder="e.g. 0458789631" class="form-control"
-                                         value="#{UserBean.user.contactNumber}" /><br/>
+                        <div class="col-sm-6">
+                            <h:inputText id="txtContactNumber"
+                                         title="ContactNumber"
+                                         a:placeholder="e.g. 0458789631"
+                                         class="form-control"
+                                         value="#{userController.user.contactNumber}"
+                                         validatorMessage="*Please,only enter numeric values">
+                                <f:validateRegex pattern="^([0-9]*)$" />
+                            </h:inputText><br/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtContactNumber" style="color: red" />
                         </div>
                     </div>
                     <div class="form-group">
                         <h:outputLabel id="lblAddress" class="col-sm-2 control-label"
                                        for="txtAddress" value="Address:" />
-                        <div class="col-sm-10">
-                            <h:inputTextarea id="txtAddress" title="Address"
-                                             a:placeholder="e.g. 108 Lonsdale Street, Melbourne" class="form-control"
-                                             value="#{UserBean.user.address}" /><br/>
+                        <div class="col-sm-6">
+                            <h:inputTextarea id="txtAddress"
+                                             title="Address"
+                                             a:placeholder="e.g. 108 Lonsdale Street, Melbourne"
+                                             class="form-control"
+                                             value="#{userController.user.address}" /><br/>
                         </div>
                     </div>
                     <div class="form-group">
                         <h:outputLabel id="lblEmail" class="col-sm-2 control-label"
                                        for="txtEmail" value="Email:" />
-                        <div class="col-sm-10">
-                            <h:inputText id="txtEmail" title="Email"
-                                         a:placeholder="e.g. david@tba.com" class="form-control"
-                                         value="#{UserBean.user.emailAddress}" /><br/>
+                        <div class="col-sm-6">
+                            <h:inputText id="txtEmail"
+                                         title="Email"
+                                         a:placeholder="e.g. david@tba.com"
+                                         class="form-control"
+                                         value="#{userController.user.emailAddress}"
+                                         validatorMessage="*Email format must be correct!">
+                                <f:validateRegex pattern="[-0-9a-zA-Z.+_]" />
+                            </h:inputText><br/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtEmail" style="color: red" />
                         </div>
                     </div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-8">
                         <h:commandButton id="btnCreate" value="Create" 
-                                        class="btn btn-primary btn-md"
-                                        action="#{UserBean.createUser()}">
+                                        class="btn btn-primary btn-md pull-right"
+                                        action="#{userController.createUser()}">
                         </h:commandButton><br/>
                     </div>
                     
