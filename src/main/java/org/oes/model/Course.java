@@ -28,7 +28,9 @@ import javax.persistence.CascadeType;
 @Entity
 @NamedQueries({
     @NamedQuery(name="Course.GetAllCourses", query="SELECT C FROM Course C"),
-    @NamedQuery(name="Course.GetCourseById", query="SELECT C FROM Course C WHERE C.courseId= :Id")
+    @NamedQuery(name="Course.GetCourseById", query="SELECT C FROM Course C WHERE C.courseId= :Id"),
+    @NamedQuery(name="Course.ScheduledExam",
+            query="SELECT C FROM Course C WHERE C.scheduledExams.courseId= :Id")
 })
 public class Course implements Serializable {
     

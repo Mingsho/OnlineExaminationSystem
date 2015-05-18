@@ -23,7 +23,10 @@ import java.util.List;
  */
 
 @Entity
-@NamedQuery(name = "Student.GetAll", query = "SELECT S FROM Student S")
+@NamedQueries({
+    @NamedQuery(name = "Student.GetAll", query = "SELECT S FROM Student S")
+})
+
 public class Student extends User implements Serializable {
     
    @ManyToMany

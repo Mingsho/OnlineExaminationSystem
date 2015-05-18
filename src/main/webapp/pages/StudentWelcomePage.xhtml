@@ -1,12 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello Students!!!
+        <f:view>
+            <fieldset>
+                <legend>Select Scheduled Exam</legend>
+            </fieldset>
+            <h:form id="frmSelectScheduledExam" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <h:outputLabel id="lblSelectCourse"
+                                   value="Select Course: "
+                                   for="dListEnrolledCourses"
+                                   class="col-sm-2"/>
+                    <div class="col-sm-6">
+                        <h:selectOneMenu id="dListEnrolledCourses"
+                                         value="#{examinationController.selectedCourseId}"
+                                         class="form-control">
+                                        
+                            <f:selectItem itemLabel="---Select your course---" />
+                            <f:selectItems value="#{examinationController.lstEnrolledCourses}"
+                                           var="course"
+                                           itemLabel="#{course.courseName}"
+                                           itemValue="#{course.courseID}" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div>
+                        <h:outputLabel id="lblUserName"
+                                       value="#{examinationController.loggedInUser.firstName}" />
+                    </div>
+                    
+                </div>
+            </h:form>
+            
+        </f:view>
     </h:body>
 </html>
 

@@ -10,64 +10,70 @@
                 <fieldset>
                     <legend>Create Course</legend>
                     
-                    <h:form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <h:outputLabel id="lblCourseCode" class="col-sm-2 control-label" value="Course Code: " for="txtCourseCode" />
-                        <div class="col-sm-6">
-                            <h:inputText id="txtCourseCode"
-                                         a:placeholder="e.g. IT2013"
-                                         class="form-control"
-                                         required="true"
-                                         requiredMessage="*Course code cannot be blank!"
-                                         value="#{courseController.course.courseCode}" >
-                                <f:validateRequired/>
-                            </h:inputText><br/>
-                        </div>
-                        <div class="col-sm-4">
-                            <h:message for="txtCourseCode" style="color: red"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel id="lblCourseName" class="col-sm-2 control-label"
-                                       value="Course Name: " for="txtCourseName" />
-                        <div class="col-sm-6">
-                            <h:inputText id="txtCourseName"
-                                         a:placeholder="Course Name"
-                                         class="form-control"
-                                         value="#{courseController.course.courseName}"
-                                         required="true"
-                                         requiredMessage="*Course name cannot be blank!">
-                                <f:validateRequired/>
-                            </h:inputText><br/>
-                        </div>
-                        <div class="col-sm-4">
-                            <h:message for="txtCourseName" style="color:red"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel id="lblCourseDescription" class="col-sm-2 control-label"
-                                       value="Course Description: " for="txtCourseDescription" />
-                        <div class="col-sm-6">
-                            <h:inputTextarea id="txtCourseDescription"
+                    <h:form id="frmCreateCourse" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <h:outputLabel id="lblCourseCode" class="col-sm-2 control-label" value="Course Code: " for="txtCourseCode" />
+                            <div class="col-sm-6">
+                                <h:inputText id="txtCourseCode"
+                                             a:placeholder="e.g. IT2013"
                                              class="form-control"
-                                             value="#{courseController.course.courseDescription}">
-                                <f:validateLength maximum="150" />
-                            </h:inputTextarea><br/>
+                                             required="true"
+                                             requiredMessage="*Course code cannot be blank!"
+                                             value="#{courseController.course.courseCode}" >
+                                    <f:validateRequired/>
+                                </h:inputText><br/>
+                            </div>
+                            <div class="col-sm-4">
+                                <h:message for="txtCourseCode" style="color: red"/>
+                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <h:message for="txtCourseDescription" style="color: red"/>
+                        <div class="form-group">
+                            <h:outputLabel id="lblCourseName" class="col-sm-2 control-label"
+                                           value="Course Name: " for="txtCourseName" />
+                            <div class="col-sm-6">
+                                <h:inputText id="txtCourseName"
+                                             a:placeholder="Course Name"
+                                             class="form-control"
+                                             value="#{courseController.course.courseName}"
+                                             required="true"
+                                             requiredMessage="*Course name cannot be blank!">
+                                    <f:validateRequired/>
+                                </h:inputText><br/>
+                            </div>
+                            <div class="col-sm-4">
+                                <h:message for="txtCourseName" style="color:red"/>
+                            </div>
                         </div>
-                    </div>
-                        
-                    <div class="col-sm-8">
-                        <h:commandButton id="btnCreateCourse"
-                                         value="Create Course"
-                                         class="btn btn-primary btn-md pull-right"
-                                         action="#{courseController.createCourse()}">
-                        </h:commandButton>
-                    </div>
+                        <div class="form-group">
+                            <h:outputLabel id="lblCourseDescription" class="col-sm-2 control-label"
+                                           value="Course Description: " for="txtCourseDescription" />
+                            <div class="col-sm-6">
+                                <h:inputTextarea id="txtCourseDescription"
+                                                 class="form-control"
+                                                 value="#{courseController.course.courseDescription}">
+                                    <f:validateLength maximum="150" />
+                                </h:inputTextarea><br/>
+                            </div>
+                            <div class="col-sm-4">
+                                <h:message for="txtCourseDescription" style="color: red"/>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <h:commandButton id="btnCreateCourse"
+                                             value="Create Course"
+                                             class="btn btn-primary btn-md pull-right"
+                                             action="#{courseController.createCourse()}">
+                            </h:commandButton>
+                        </div>
+                        <div class="col-sm-12">
+                            
+                        </div>
                 </h:form>
-                </fieldset>
+            </fieldset>
+                <div id="message1">
+                    <h:messages globalOnly="true" class="fa fa-fw fa-check" />
+                </div>
                 
             </f:view>
         </ui:define>

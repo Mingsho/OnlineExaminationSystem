@@ -36,9 +36,11 @@ public class Exam implements Serializable {
     private String examTitle;
     
     @Temporal(TemporalType.DATE)
+    @Column(nullable=false)
     private Date examStartDate;
     
     @Temporal(TemporalType.DATE)
+    @Column(nullable=false)
     private Date examEndDate;
     
     private int examDuration;

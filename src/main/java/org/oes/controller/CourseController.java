@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import org.oes.beans.CourseEJB;
 import org.oes.model.Course;
 
@@ -39,17 +40,21 @@ public class CourseController implements Serializable {
     }
     public void createCourse()
     {
-        //FacesContext fContext= FacesContext.getCurrentInstance();
+        FacesContext fContext= FacesContext.getCurrentInstance();
         
-        //try {
+        try {
             
             
             course=courseEJB.createCourse(course);
+            
+            fContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Course Created!", "Course created successfully!"));
         
             this.course=new Course();
                 
-        //} catch (Exception e) {
-        //}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
     }
     

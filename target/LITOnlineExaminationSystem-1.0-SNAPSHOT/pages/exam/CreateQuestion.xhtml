@@ -17,9 +17,10 @@
                                        class="col-sm-2 control-label"
                                        value="Select Course: "
                                        for="dListCourse"/>
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <h:selectOneMenu id="dListCourse"
-                                             value="#{questionController.selectedCourseId}">
+                                             value="#{questionController.selectedCourseId}"
+                                             class="form-control">
                                 <f:selectItem itemLabel="---Select a Course---"/>
                                 <f:selectItems value="#{questionController.courseList}"
                                                var="course"
@@ -34,21 +35,37 @@
                                        class="col-sm-2 control-label"
                                        value="Question: " 
                                        for="txtQuestion" />
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <h:inputTextarea id="txtQuestion"
                                              a:placeholder="Type question..."
                                              value="#{questionController.question.question}"
-                                             class="form-control" /><br/>
+                                             class="form-control"
+                                             required="true"
+                                             requiredMessage="*Question Cannot be blank!">
+                                <f:validateRequired />
+                            </h:inputTextarea>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtQuestion" style="color: red" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel id="lblOption1" class="col-sm-2 control-label" value="Option1: "
+                        <h:outputLabel id="lblOption1"
+                                       class="col-sm-2 control-label"
+                                       value="Option1: "
                                        for="txtOption1" />
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <h:inputText id="txtOption1"
                                          a:placeholder="Type option1..."
                                          value="#{questionController.question.option1}"
-                                         class="form-control" /><br/>
+                                         class="form-control"
+                                         required="true"
+                                         requiredMessage="*Option1 cannot be blank!">
+                                <f:validateRequired/>
+                            </h:inputText>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtOption1" style="color: red" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,11 +73,18 @@
                                        class="col-sm-2 control-label"
                                        value="Option2: "
                                        for="txtOption2" />
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <h:inputText id="txtOption2"
                                          a:placeholder="Type option2..."
                                          value="#{questionController.question.option2}"
-                                         class="form-control" /><br/>
+                                         class="form-control"
+                                         required="true"
+                                         requiredMessage="*Option2 cannot be blank!">
+                                <f:validateRequired/>
+                            </h:inputText>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtOption2" style="color: red" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -68,11 +92,18 @@
                                        class="col-sm-2 control-label"
                                        value="Option3: "
                                        for="txtOption3" />
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <h:inputText id="txtOption3"
                                          a:placeholder="Type option3..."
                                          value="#{questionController.question.option3}"
-                                         class="form-control" /><br/>
+                                         class="form-control"
+                                         required="true"
+                                         requiredMessage="*Option3 cannot be blank!">
+                                <f:validateRequired/>
+                            </h:inputText>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtOption3" style="color: red" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,17 +111,25 @@
                                        class="col-sm-2 control-label"
                                        value="Option3: "
                                        for="txtOption4" />
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <h:inputText id="txtOption4"
                                          a:placeholder="Type option4..."
                                          value="#{questionController.question.option4}"
-                                         class="form-control" />
+                                         class="form-control"
+                                         required="true"
+                                         requiredMessage="*Option4 cannot be blank!">
+                                <f:validateRequired/>
+                            </h:inputText>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtOption4" style="color: red" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel id="lblCorrectOption" class="col-sm-2 control-label"
+                        <h:outputLabel id="lblCorrectOption"
+                                       class="col-sm-2 control-label"
                                        value="Select Correct Option: "/>
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <h:selectOneRadio id="rdBtnCorrectOption"
                                               value="#{questionController.question.correctOption}"
                                               class="form-control">
@@ -103,12 +142,15 @@
                         </div>
                     </div>
                     
-                    <div class="col-sm-10">
+                    <div class="col-sm-8">
                         <h:commandButton id="btnCreateQuestion"
                                          value="Create Question"
                                          action="#{questionController.createQuestion()}"
                                          class="btn btn-primary btn-md" >
                         </h:commandButton>
+                    </div>
+                    <div id="message1">
+                        <h:messages globalOnly="true" class="fa fa-fw fa-check" />
                     </div>
                 </h:form>
             </fieldset>

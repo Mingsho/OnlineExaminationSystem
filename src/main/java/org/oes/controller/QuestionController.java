@@ -33,11 +33,14 @@ public class QuestionController {
     private Question question;
     private OptionNumber correctOption;
     private List<Course> courseList;
-    private Course selectedCourse;
     private long selectedCourseId;
     
     public void createQuestion()
     {
+        try {
+            
+        } catch (Exception e) {
+        }
         if (selectedCourseId>0) {
             
             List<Question> lstQuestion= new ArrayList<>();
@@ -88,15 +91,6 @@ public class QuestionController {
         if(courseList==null)
             return null;
         return this.courseList;
-    }
-    public Course getSelectedCourse()
-    {
-        return this.selectedCourse;
-    }
-    public void setSelectedCourse(Course course)
-    {
-        this.selectedCourse=course;
- 
     }
     public long getSelectedCourseId()
     {

@@ -5,14 +5,16 @@
  */
 package org.oes.beans;
 
-
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import javax.ejb.Stateless;
 import java.util.List;
+import java.util.ArrayList;
 import org.oes.model.User;
+import org.oes.model.Student;
 import org.oes.utilities.Constants;
 
 /**
@@ -25,6 +27,11 @@ public class UserEJB {
     @PersistenceContext(name = Constants.PersistenceName)
     EntityManager eManager;
     
+    /**
+     * Create basic user profile
+     * @param user
+     * @return User
+     */
     public User createUserProfile(User user)
     {
         
@@ -32,6 +39,25 @@ public class UserEJB {
         eManager.flush();
         return user;
     }
+    /**
+     * Return all users from the db
+     * @return List User
+     */
+    public List<User> getAllUser()
+            throws IllegalArgumentException
+    {
+        TypedQuery<User> lstUsers=eManager.createNamedQuery("User.GetAllUser", User.class);
+        
+        return lstUsers.getResultList();
+        
+    }
+    
+    /**
+     * Simple check of username and password
+     * @param uName
+     * @param pWd
+     * @return boolean
+     */
     private boolean checkUnamePwd(String uName, String pWd)
     {
         boolean bRetVal=false;
@@ -47,6 +73,12 @@ public class UserEJB {
         
         return bRetVal;
     }
+    /**
+     * Get user by username
+     * @param uName
+     * @param pWd
+     * @return User
+     */
     public User getByUnamePwd(String uName, String pWd) throws NoResultException
     {
         User user=null;
@@ -61,16 +93,28 @@ public class UserEJB {
         }
         return user;
     }
-    public String getUserType(long uId)
+    /**
+     * Get all users who are students.
+     * 
+     */
+    public List<User> getAllStudents()
     {
-        Query query=eManager.createNamedQuery("SELECT dtype FROM UserProfile"
-                + " WHERE userid= :Id");
-        query.setParameter("Id", uId);
+        List<User> lstUsers=getAllUser();
+        List<User> lstStudents=new ArrayList<>();
         
-        String strUserType=query.getSingleResult().toString();
-        
-        return strUserType;
-        
+        //iterate through each user in lstUsers
+        for(User user: lstUsers)
+        {
+            //select users who are students
+            if(user instanceof Student)
+            {
+                lstStudents.add(user);
+            }
+        }
+        return lstStudents;
+            
     }
+    
+   
     
 }

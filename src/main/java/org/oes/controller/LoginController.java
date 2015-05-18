@@ -10,11 +10,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.ejb.EJB;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
-import javax.rmi.CORBA.Util;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.faces.context.FacesContext;
 import javax.persistence.NoResultException;
+import javax.annotation.PostConstruct;
 import org.oes.model.User;
 import org.oes.model.Student;
 import org.oes.beans.UserEJB;
@@ -33,42 +32,26 @@ public class LoginController implements Serializable {
     @EJB UserEJB userEJB;
     private String userName;
     private String password;
+    private User user;
     private String userType;
     
-    public String getUserName()
+    
+    @PostConstruct
+    public void init()
     {
-        return this.userName;
-    }
-    public void setUserName(String userName)
-    {
-        this.userName=userName;
-    }
-    public String getPassword()
-    {
-        return this.password;
-    }
-    public void setPassword(String password)
-    {
-        this.password=password;
-    }
-    public String getUserType()
-    {
-        return this.userType;
-    }
-    public void setUserType(String strUserType)
-    {
-        this.userType=strUserType;
+        user=new User();
     }
     public String login() 
     {
         try {
             
-            User user=userEJB.getByUnamePwd(userName, password);
+            user=userEJB.getByUnamePwd(userName, password);
         
             if(user!=null)
             {
                 HttpSession session= SessionHandler.getSession();
                 session.setAttribute("username", this.userName);
+                session.setAttribute("LoggedIn", user);
                 
                 if(user instanceof Student)
                     return "examinee";
@@ -96,6 +79,39 @@ public class LoginController implements Serializable {
         HttpSession session=SessionHandler.getSession();
         session.invalidate();
         return "Authentication";
+    }
+    
+    public String getUserName()
+    {
+        return this.userName;
+    }
+    public void setUserName(String userName)
+    {
+        this.userName=userName;
+    }
+    public String getPassword()
+    {
+        return this.password;
+    }
+    public void setPassword(String password)
+    {
+        this.password=password;
+    }
+    public String getUserType()
+    {
+        return this.userType;
+    }
+    public void setUserType(String strUserType)
+    {
+        this.userType=strUserType;
+    }
+    public User getUser()
+    {
+        return this.user;
+    }
+    public void setUser(User user)
+    {
+        this.user=user;
     }
     
 }

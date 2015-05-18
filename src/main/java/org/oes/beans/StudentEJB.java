@@ -8,8 +8,12 @@ package org.oes.beans;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import javax.ejb.Stateless;
+import java.util.List;
+import java.util.ArrayList;
 import org.oes.model.Student;
+import org.oes.model.Course;
 import org.oes.utilities.Constants;
 
 /**
@@ -40,5 +44,43 @@ public class StudentEJB {
         return bRetVal;
         
     }
-   
+    public List<Student> getAllStudents()
+    {
+        TypedQuery<Student> lstStudents=eManager.createNamedQuery("Student.GetAll", Student.class);
+        
+        return lstStudents.getResultList();
+    }
+    public Student getStudentById(long studentId)
+            throws IllegalArgumentException
+    {
+        List<Student> lstStudentTemp=getAllStudents();
+        Student student=null;
+        
+        for(Student std: lstStudentTemp)
+        {
+            if(std.getUserID()==studentId)
+            {
+                student=std;
+            }
+        }
+        return student;
+    }
+    public List<Course> getEnrolledCourses(long studentId)
+    {
+        Student std=getStudentById(studentId);
+        List<Course> lstEnrolledCourses;
+        
+        if(std!=null)
+            lstEnrolledCourses=std.getEnrolledCourses();
+        else
+            lstEnrolledCourses=null;
+        
+        return lstEnrolledCourses;
+        
+    }
+    public void enrollStudent(List<Course> courses)
+    {
+        
+    }
+    
 }

@@ -5,11 +5,11 @@
  */
 package org.oes.controller;
 import java.util.Map;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.ejb.EJB;
-import javax.faces.component.UICommand;
+import javax.annotation.PostConstruct;
 import org.oes.beans.StudentEJB;
 import org.oes.beans.TeacherEJB;
 import org.oes.beans.AdminEJB;
@@ -21,7 +21,7 @@ import org.oes.model.UserAccount;
  *
  * @author Mingso
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class UserAccountController {
     
@@ -29,9 +29,13 @@ public class UserAccountController {
     @EJB TeacherEJB teacherEJB;
     @EJB AdminEJB adminEJB;
     
-    private UserAccount userAccount=new UserAccount();
-    private UICommand btnCreateProfile;
+    private UserAccount userAccount;
    
+    @PostConstruct
+    public void init()
+    {
+        userAccount=new UserAccount();
+    }
     
     public void createUser()
     {
@@ -85,12 +89,5 @@ public class UserAccountController {
     {
         this.userAccount=uAccount;
     }
-    public UICommand getBtnCreateProfile()
-    {
-        return this.btnCreateProfile;
-    }
-    public void setBtnCreateProfile(UICommand uCommand)
-    {
-        this.btnCreateProfile=uCommand;
-    }
+    
 }

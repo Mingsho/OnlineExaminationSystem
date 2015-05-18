@@ -6,10 +6,43 @@
     xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
-        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="authentication.css" />
+        <h:outputScript library="js" name="jquery-1.11.2.min.js" target="body"/>
     </h:head>
     <h:body>
         <f:view>
+            <div id="fullscreen_bg" class="fullscreen_bg">
+
+                <div class="container">
+
+                    <h:form id="frmLogin" class="form-signin">
+                        <h1 class="form-signin-heading text-muted">Sign In</h1>
+                        <h:inputText id="txtUserName"
+                             a:placeholder="Username"
+                             required="true"
+                             requiredMessage="*Please fill in the required field!"
+                             value="#{loginController.userName}"
+                             class="form-control">
+                            <f:validateRequired/>
+                        </h:inputText><h:message for="txtUserName" style="color: red"/>
+                        <h:inputSecret id="txtPassword"
+                               a:placeholder="Password"
+                               required="true"
+                               requiredMessage="*Please key in your password!"
+                               value="#{loginController.password}"
+                               class="form-control">
+                            <f:validateRequired/>
+                        </h:inputSecret>&nbsp;<h:message for="txtPassword" style="color: red" />
+                        <h:commandButton id="btnLogin"
+                                 value="Login"
+                                 action="#{loginController.login()}"
+                                 class="btn btn-lg btn-primary btn-block">
+                        </h:commandButton>
+                    </h:form>
+                </div>
+            </div>
+            <!--
             <h:form id="frmLogin">
                 <h:outputLabel id="lblUserName" for="txtUserName"
                                value="Username: " />
@@ -33,7 +66,7 @@
                                  value="Login"
                                  action="#{loginController.login()}">
                 </h:commandButton>
-            </h:form>
+            </h:form>-->
         </f:view>
     </h:body>
 </html>

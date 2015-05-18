@@ -30,6 +30,8 @@ import javax.persistence.CascadeType;
 @Table(name = "UserProfile")
 @NamedQueries({
     
+    @NamedQuery(name="User.GetAllUser",
+            query="SELECT U FROM User U"),
     @NamedQuery(name = "User.GetByUnamePwd",
             query = "SELECT U FROM User U WHERE U.userAccount.username= :uName"
                     + " AND U.userAccount.password= :pWd"),

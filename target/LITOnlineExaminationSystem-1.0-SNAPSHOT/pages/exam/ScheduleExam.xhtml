@@ -1,14 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
 <ui:composition template="/templates/MainLayout.xhtml"
             xmlns="http://www.w3.org/1999/xhtml"
             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -20,74 +9,150 @@
     <ui:define name="mainContent">
         <f:view>
             <fieldset>
-                <legend></legend>
+                <legend>Schedule an Exam</legend>
             </fieldset>
             <h:form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <h:outputLabel id="lblSelectCourse"
+                                   for="dListCourse"
+                                   class="col-sm-2 control-label"
+                                   value="Select Course: " />
+                    <div class="col-sm-6">
+                        <h:selectOneMenu id="dListCourse"
+                                         class="form-control"
+                                         value="#{examController.selectedCourseId}">
+                            
+                            <f:selectItem itemLabel="---Select a course---" />
+                            <f:selectItems value="#{examController.listOfCourses}"
+                                           var="course"
+                                           itemLabel="#{course.courseName}"
+                                           itemValue="#{course.courseID}" />
+                        </h:selectOneMenu>
+                                         
+                    </div>
+                    <div class="col-sm-4">
+                        
+                    </div>
+                </div>
                 <div class="form-group">
                     <h:outputLabel id="lblExamTitle"
                                    for="txtExamTitle"
                                    class="col-sm-2 control-label"
                                    value="Exam Title: "/>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <h:inputText id="txtExamTitle"
                                      class="form-control"
                                      a:placeholder="e.g. Term 1 Examination"
-                                     value=""/>
+                                     value="#{examController.exam.examTitle}"
+                                     required="true"
+                                     requiredMessage="*Exam Title cannot be blank">
+                            <f:validateRequired/>
+                        </h:inputText>
+                    </div>
+                    <div class="col-sm-4">
+                        <h:message for="txtExamTitle" style="color: red" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel id="" value=""
-                                   class=""
-                                   for=""/>
-                    <div class="col-sm-10">
-                        <h:inputText id="" class=""
-                                     value=""
-                                     a:placeholder=""
+                    <h:outputLabel id="lblStartDate" value="Start Date: "
+                                   class="col-sm-2 control-label"
+                                   for="txtStartDate"/>
+                    <div class="col-sm-6">
+                        <h:inputText id="txtStartDate"
+                                     class="form-control"
+                                     value="#{examController.exam.examStartDate}"
+                                     a:placeholder="dd/mm/yyyy"
+                                     required="true"
+                                     requiredMessage="*Start Date cannot be blank!">
+                            <f:validateRequired/>
+                        </h:inputText>
+                    </div>
+                    <div class="col-sm-4">
+                        <h:message for="txtStartDate" style="color: red" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel id="" value=""
-                                   class=""
-                                   for=""/>
-                    <div class="col-sm-10">
-                        <h:inputText id="" class=""
-                                     value=""
-                                     a:placeholder=""
+                    <h:outputLabel id="lblEndDate" value="End Date: "
+                                   class="col-sm-2 control-label"
+                                   for="txtEndDate"/>
+                    <div class="col-sm-6">
+                        <h:inputText id="txtEndDate"
+                                     class="form-control"
+                                     value="#{examController.exam.examEndDate}"
+                                     a:placeholder="dd/mm/yyyy"
+                                     required="true"
+                                     requiredMessage="*End Date cannot be blank!">
+                            <f:validateRequired/>
+                        
+                        </h:inputText>
+                    </div>
+                    <div class="col-sm-4">
+                        <h:message for="txtEndDate" style="color: red" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel id="" value=""
-                                   class=""
-                                   for=""/>
-                    <div class="col-sm-10">
-                        <h:inputText id="" class=""
-                                     value=""
-                                     a:placeholder=""
+                    <h:outputLabel id="lblDuration" value="Exam Duration: "
+                                   class="col-sm-2 control-label"
+                                   for="txtDuration"/>
+                    <div class="col-sm-6">
+                        <h:inputText id="txtDuration"
+                                     class="form-control"
+                                     value="#{examController.exam.examDuration}"
+                                     a:placeholder="e.g. 120"
+                                     required="true"
+                                     requiredMessage="*Exam duration cannot be empty!">
+                            <f:validateRequired/>
+                        </h:inputText>
+                    </div>
+                    <div class="col-sm-4">
+                        <h:message for="txtDuration" style="color: red" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel id="" value=""
-                                   class=""
-                                   for=""/>
-                    <div class="col-sm-10">
-                        <h:inputText id="" class=""
-                                     value=""
-                                     a:placeholder=""
+                    <h:outputLabel id="lblTotalQuestion" value="Total Questions: "
+                                   class="col-sm-2 control-label"
+                                   for="txtTotalQuestions"/>
+                    <div class="col-sm-6">
+                        <h:inputText id="txtTotalQuestions"
+                                     class="form-control"
+                                     value="#{examController.exam.totlQuestions}"
+                                     a:placeholder="e.g. 10"
+                                     required="true"
+                                     requiredMessage="*Total Questions cannot be blank!">
+                            <f:validateRequired/>
+                        </h:inputText>
+                    </div>
+                    <div class="col-sm-4">
+                        <h:message for="txtTotalQuestions" style="color: red" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel id="" value=""
-                                   class=""
-                                   for=""/>
-                    <div class="col-sm-10">
-                        <h:inputText id="" class=""
-                                     value=""
-                                     a:placeholder=""
+                    <h:outputLabel id="lblPassPercentage" value="Pass percentage: "
+                                   class="col-sm-2 control-label"
+                                   for="txtPassPercentage"/>
+                    <div class="col-sm-6">
+                        <h:inputText id="txtPassPercentage"
+                                     class="form-control"
+                                     value="#{examController.exam.passPercentage}"
+                                     a:placeholder="e.g. 60"
+                                     required="true"
+                                     requiredMessage="*Pass Percentage cannot be blank!">
+                            <f:validateRequired/>
+                        </h:inputText>
                     </div>
+                    <div class="col-sm-4">
+                        <h:message for="txtPassPercentage" style="color: red" />
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <h:commandButton id="btnScheduleExam"
+                                     value="Schedule exam"
+                                     class="btn btn-primary btn-md pull-right"
+                                     action="#{examController.scheduleExam()}">
+                    </h:commandButton>
+
                 </div>
             </h:form>
         </f:view>
     </ui:define>
-                
-    
 </ui:composition>

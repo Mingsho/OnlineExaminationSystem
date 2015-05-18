@@ -8,7 +8,33 @@
     <ui:define name="mainContent">
         <f:view>
             <h:form id="frmEnrollStudents">
-                
+                <h:selectOneMenu id="dListCourses"
+                                 value="#{studentController.selectedCourseId}">
+                    <f:selectItems value="#{studentController.lstCourses}"
+                                   var="course"
+                                   itemLabel="#{course.courseName}"
+                                   itemValue="#{course.courseID}" />
+                </h:selectOneMenu>
+                <h:dataTable id="tblStudents"
+                             value="#{studentController.lstStudents}"
+                             var="s">
+                    <h:column>
+                        <f:facet name="header">Student ID</f:facet>
+                        <h:outputText value="#{s.userID}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">First Name</f:facet>
+                        <h:outputLabel value="#{s.firstName}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Last Name</f:facet>
+                        <h:outputLabel value="#{s.lastName}" />
+                    </h:column>
+                    <h:column>
+                        <h:selectManyCheckbox id="chkStudent" />
+                    </h:column>
+                    
+                </h:dataTable>
             </h:form>
         </f:view>
     </ui:define>

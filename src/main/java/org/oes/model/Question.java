@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.io.Serializable;
 
 /**
@@ -19,6 +21,10 @@ import java.io.Serializable;
  * @author Mingso
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Question.GetAllQuestions",
+            query="SELECT Q FROM Question Q")
+})
 public class Question implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
