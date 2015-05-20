@@ -27,4 +27,15 @@
             <to-view-id>/pages/StudentWelcomePage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/StudentWelcomePage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>start</from-outcome>
+            <to-view-id>/pages/ExaminationPage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failed</from-outcome>
+            <to-view-id>/pages/ErrorPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

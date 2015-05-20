@@ -26,7 +26,7 @@ import org.oes.utilities.SessionHandler;
  */
 @Named
 @SessionScoped
-public class LoginController implements Serializable {
+public class LoginManager implements Serializable {
     
     
     @EJB UserEJB userEJB;

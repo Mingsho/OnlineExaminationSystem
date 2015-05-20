@@ -18,7 +18,7 @@
                                        for="txtUsername" />
                         <div class="col-sm-10">
                             <h:inputText id="txtUsername" class="form-control"
-                                         value="#{userAccountController.userAccount.userName}"
+                                         value="#{userAccountEntry.userAccount.userName}"
                                          a:placeholder="e.g Hamilton123" /><br/>
                         </div>
 
@@ -28,7 +28,7 @@
                                        for="txtPassword" />
                         <div class="col-sm-10">
                             <h:inputSecret id="txtPassword" class="form-control"
-                                           value="#{userAccountController.userAccount.password}"
+                                           value="#{userAccountEntry.userAccount.password}"
                                            a:placeholder="Type in a secure password..."/><br/>
                         </div>
 
@@ -38,7 +38,7 @@
                         <h:commandButton id="btnCreateAccount"
                                          class="btn btn-primary btn-md"
                                          value="Create Account" 
-                                         action="#{userAccountController.createUser()}"/>
+                                         action="#{userAccountEntry.createUser()}"/>
                     </div>
 
                 </h:form>

@@ -44,7 +44,6 @@ public class CourseController implements Serializable {
         
         try {
             
-            
             course=courseEJB.createCourse(course);
             
             fContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,

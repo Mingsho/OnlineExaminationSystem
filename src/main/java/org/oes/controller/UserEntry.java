@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.ejb.EJB;
 import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.Map;
 import org.oes.model.User;
@@ -26,16 +27,19 @@ import org.oes.model.UserType;
  */
 @Named
 @RequestScoped
-public class UserController {
+public class UserEntry {
     
-    //@EJB private UserEJB userEJB;
-    //@EJB private StudentEJB studentEJB;
     
-    //private UICommand btnCreateProfile;
-    private User user=new User();
+    private User user;
     private UserType selectedUserType;
     
-    public UserController(){}
+    public UserEntry(){}
+    
+    @PostConstruct
+    public void init()
+    {
+        user=new User();
+    }
     
     public String createUser()
     {

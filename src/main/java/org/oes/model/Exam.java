@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import javax.persistence.Temporal;
+import javax.persistence.NamedQuery;
 import java.util.Date;
 import java.util.List;
 import java.io.Serializable;

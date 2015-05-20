@@ -6,6 +6,7 @@
 package org.oes.beans;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
 import org.oes.utilities.Constants;

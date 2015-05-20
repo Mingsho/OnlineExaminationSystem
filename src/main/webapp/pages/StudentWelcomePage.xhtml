@@ -19,11 +19,13 @@
                                    class="col-sm-2"/>
                     <div class="col-sm-6">
                         <h:selectOneMenu id="dListEnrolledCourses"
-                                         value="#{examinationController.selectedCourseId}"
-                                         class="form-control">
+                                         value="#{examDetail.selectedCourseId}"
+                                         class="form-control"
+                                         valueChangeListener="#{examDetail.dListEnrolledCourses_SelectedIndexChanged}"
+                                         onchange="submit()">
                                         
                             <f:selectItem itemLabel="---Select your course---" />
-                            <f:selectItems value="#{examinationController.lstEnrolledCourses}"
+                            <f:selectItems value="#{examDetail.lstEnrolledCourses}"
                                            var="course"
                                            itemLabel="#{course.courseName}"
                                            itemValue="#{course.courseID}" />
@@ -31,7 +33,39 @@
                     </div>
                     <div>
                         <h:outputLabel id="lblUserName"
-                                       value="#{examinationController.loggedInUser.firstName}" />
+                                       value="#{examDetail.loggedInUser.firstName}" />
+                    </div>
+                    <div>
+                        <h:dataTable id="tblExams"
+                                     value="#{examDetail.lstScheduledExams}"
+                                     var="exam"
+                                     binding="#{examDetail.tblScheduledExam}">
+                            
+                            <h:column>
+                                <f:facet name="header">Exam ID</f:facet>
+                                <h:outputLabel value="#{exam.examID}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Exam Title</f:facet>
+                                <h:outputLabel value="#{exam.examTitle}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Exam Duration</f:facet>
+                                <h:outputLabel value="#{exam.examDuration}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Exam Start Date</f:facet>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandLink value="Take Exam"
+                                               action="#{examDetail.startExam()}">
+                                </h:commandLink>
+                            </h:column>
+                            
+                        </h:dataTable>
+                                     
+                                     
                     </div>
                     
                 </div>

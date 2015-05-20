@@ -20,10 +20,10 @@
                     <div class="col-sm-6">
                         <h:selectOneMenu id="dListCourse"
                                          class="form-control"
-                                         value="#{examController.selectedCourseId}">
+                                         value="#{examDetail.selectedCourseId}">
                             
                             <f:selectItem itemLabel="---Select a course---" />
-                            <f:selectItems value="#{examController.listOfCourses}"
+                            <f:selectItems value="#{examDetail.listOfCourses}"
                                            var="course"
                                            itemLabel="#{course.courseName}"
                                            itemValue="#{course.courseID}" />
@@ -43,7 +43,7 @@
                         <h:inputText id="txtExamTitle"
                                      class="form-control"
                                      a:placeholder="e.g. Term 1 Examination"
-                                     value="#{examController.exam.examTitle}"
+                                     value="#{examDetail.exam.examTitle}"
                                      required="true"
                                      requiredMessage="*Exam Title cannot be blank">
                             <f:validateRequired/>
@@ -60,7 +60,7 @@
                     <div class="col-sm-6">
                         <h:inputText id="txtStartDate"
                                      class="form-control"
-                                     value="#{examController.exam.examStartDate}"
+                                     value="#{examDetail.exam.examStartDate}"
                                      a:placeholder="dd/mm/yyyy"
                                      required="true"
                                      requiredMessage="*Start Date cannot be blank!">
@@ -78,7 +78,7 @@
                     <div class="col-sm-6">
                         <h:inputText id="txtEndDate"
                                      class="form-control"
-                                     value="#{examController.exam.examEndDate}"
+                                     value="#{examDetail.exam.examEndDate}"
                                      a:placeholder="dd/mm/yyyy"
                                      required="true"
                                      requiredMessage="*End Date cannot be blank!">
@@ -97,7 +97,7 @@
                     <div class="col-sm-6">
                         <h:inputText id="txtDuration"
                                      class="form-control"
-                                     value="#{examController.exam.examDuration}"
+                                     value="#{examDetail.exam.examDuration}"
                                      a:placeholder="e.g. 120"
                                      required="true"
                                      requiredMessage="*Exam duration cannot be empty!">
@@ -115,7 +115,7 @@
                     <div class="col-sm-6">
                         <h:inputText id="txtTotalQuestions"
                                      class="form-control"
-                                     value="#{examController.exam.totlQuestions}"
+                                     value="#{examDetail.exam.totlQuestions}"
                                      a:placeholder="e.g. 10"
                                      required="true"
                                      requiredMessage="*Total Questions cannot be blank!">
@@ -133,7 +133,7 @@
                     <div class="col-sm-6">
                         <h:inputText id="txtPassPercentage"
                                      class="form-control"
-                                     value="#{examController.exam.passPercentage}"
+                                     value="#{examDetail.exam.passPercentage}"
                                      a:placeholder="e.g. 60"
                                      required="true"
                                      requiredMessage="*Pass Percentage cannot be blank!">
@@ -148,7 +148,7 @@
                     <h:commandButton id="btnScheduleExam"
                                      value="Schedule exam"
                                      class="btn btn-primary btn-md pull-right"
-                                     action="#{examController.scheduleExam()}">
+                                     action="#{examDetail.scheduleExam()}">
                     </h:commandButton>
 
                 </div>

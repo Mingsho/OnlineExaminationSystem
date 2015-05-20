@@ -22,7 +22,7 @@ import org.oes.beans.CourseEJB;
 import org.oes.model.User;
 import org.oes.beans.UserEJB;
 import org.oes.model.UserType;
-import org.oes.controller.LoginController;
+import org.oes.controller.LoginManager;
 
 
 /**

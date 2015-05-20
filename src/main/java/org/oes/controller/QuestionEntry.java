@@ -24,7 +24,7 @@ import org.oes.beans.CourseEJB;
  */
 @Named
 @RequestScoped
-public class QuestionController {
+public class QuestionEntry {
     
     
     @EJB QuestionEJB questionEJB;

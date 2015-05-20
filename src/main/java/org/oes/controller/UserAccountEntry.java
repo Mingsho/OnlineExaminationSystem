@@ -23,7 +23,7 @@ import org.oes.model.UserAccount;
  */
 @Named
 @RequestScoped
-public class UserAccountController {
+public class UserAccountEntry {
     
     @EJB StudentEJB studentEJB;
     @EJB TeacherEJB teacherEJB;

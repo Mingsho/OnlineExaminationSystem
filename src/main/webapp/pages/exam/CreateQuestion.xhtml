@@ -19,10 +19,10 @@
                                        for="dListCourse"/>
                         <div class="col-sm-6">
                             <h:selectOneMenu id="dListCourse"
-                                             value="#{questionController.selectedCourseId}"
+                                             value="#{questionEntry.selectedCourseId}"
                                              class="form-control">
                                 <f:selectItem itemLabel="---Select a Course---"/>
-                                <f:selectItems value="#{questionController.courseList}"
+                                <f:selectItems value="#{questionEntry.courseList}"
                                                var="course"
                                                itemLabel="#{course.courseName}"
                                                itemValue="#{course.courseID}" />
@@ -38,7 +38,7 @@
                         <div class="col-sm-6">
                             <h:inputTextarea id="txtQuestion"
                                              a:placeholder="Type question..."
-                                             value="#{questionController.question.question}"
+                                             value="#{questionEntry.question.question}"
                                              class="form-control"
                                              required="true"
                                              requiredMessage="*Question Cannot be blank!">
@@ -57,7 +57,7 @@
                         <div class="col-sm-6">
                             <h:inputText id="txtOption1"
                                          a:placeholder="Type option1..."
-                                         value="#{questionController.question.option1}"
+                                         value="#{questionEntry.question.option1}"
                                          class="form-control"
                                          required="true"
                                          requiredMessage="*Option1 cannot be blank!">
@@ -76,7 +76,7 @@
                         <div class="col-sm-6">
                             <h:inputText id="txtOption2"
                                          a:placeholder="Type option2..."
-                                         value="#{questionController.question.option2}"
+                                         value="#{questionEntry.question.option2}"
                                          class="form-control"
                                          required="true"
                                          requiredMessage="*Option2 cannot be blank!">
@@ -95,7 +95,7 @@
                         <div class="col-sm-6">
                             <h:inputText id="txtOption3"
                                          a:placeholder="Type option3..."
-                                         value="#{questionController.question.option3}"
+                                         value="#{questionEntry.question.option3}"
                                          class="form-control"
                                          required="true"
                                          requiredMessage="*Option3 cannot be blank!">
@@ -114,7 +114,7 @@
                         <div class="col-sm-6">
                             <h:inputText id="txtOption4"
                                          a:placeholder="Type option4..."
-                                         value="#{questionController.question.option4}"
+                                         value="#{questionEntry.question.option4}"
                                          class="form-control"
                                          required="true"
                                          requiredMessage="*Option4 cannot be blank!">
@@ -131,10 +131,10 @@
                                        value="Select Correct Option: "/>
                         <div class="col-sm-6">
                             <h:selectOneRadio id="rdBtnCorrectOption"
-                                              value="#{questionController.question.correctOption}"
+                                              value="#{questionEntry.question.correctOption}"
                                               class="form-control">
                                 
-                                <f:selectItems value="#{questionController.optionNumbers}"
+                                <f:selectItems value="#{questionEntry.optionNumbers}"
                                                var="optNos"
                                                itemLabel="#{optNos.label}"
                                                itemValue="#{optNos}"/>
@@ -145,7 +145,7 @@
                     <div class="col-sm-8">
                         <h:commandButton id="btnCreateQuestion"
                                          value="Create Question"
-                                         action="#{questionController.createQuestion()}"
+                                         action="#{questionEntry.createQuestion()}"
                                          class="btn btn-primary btn-md" >
                         </h:commandButton>
                     </div>

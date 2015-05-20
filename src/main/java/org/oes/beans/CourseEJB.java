@@ -106,10 +106,21 @@ public class CourseEJB {
     public List<Exam> getScheduledExam(long courseId)
             throws IllegalArgumentException
     {
-        TypedQuery<Exam> lstScheduledExams=eManager.
-                createNamedQuery("Course.ScheduledExam", Exam.class);
+        List<Exam> lstScheduledExams=new ArrayList<>();
+        Course course=getCourseById(courseId);
         
-        return lstScheduledExams.getResultList();
+        return lstScheduledExams=course.getScheduledExams();
+        
+    }
+    
+    public Course getCourseByExamId(long examId)
+            throws IllegalArgumentException
+    {
+        Query query=eManager.createNamedQuery("Course.GetByExamId", Course.class);
+        query.setParameter("Id", examId);
+        
+        return (Course)query.getSingleResult();
+        
         
     }
 }

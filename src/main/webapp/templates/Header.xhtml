@@ -26,7 +26,7 @@
                                         </span>
                                         <div class="media-body">
                                             <h5 class="media-heading">
-                                                <strong>#{loginController.userName}</strong>
+                                                <strong>#{loginManager.userName}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -42,7 +42,7 @@
                                         </span>
                                         <div class="media-body">
                                             <h5 class="media-heading">
-                                                <strong>#{loginController.userName}</strong>
+                                                <strong>#{loginManager.userName}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -58,7 +58,7 @@
                                         </span>
                                         <div class="media-body">
                                             <h5 class="media-heading">
-                                                <strong>#{loginController.userName}</strong>
+                                                <strong>#{loginManager.userName}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -101,7 +101,7 @@
                     <li class="dropdown">
 
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-user"></i> #{loginController.userName} <b class="caret"></b>
+                            <i class="fa fa-user"></i> #{loginManager.userName} <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -110,7 +110,7 @@
                                 <li class="divider"></li>
                                 <li>
                                     <!--<a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>-->
-                                    <h:commandLink action="#{loginController.logout()}"
+                                    <h:commandLink action="#{loginManager.logout()}"
                                                    value="Log Out"
                                                    class="fa fa-fw fa-power-off" />
 
