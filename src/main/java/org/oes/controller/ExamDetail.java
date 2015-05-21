@@ -25,7 +25,6 @@ import org.oes.beans.CourseEJB;
 import org.oes.model.Student;
 import org.oes.beans.StudentEJB;
 import org.oes.model.User;
-
 /**
  *
  * @author Mingso
@@ -55,6 +54,13 @@ public class ExamDetail implements Serializable {
         loggedInUser=loginController.getUser();
         lstEnrolledCourses=studentEJB.getEnrolledCourses(loggedInUser.getUserID());
         
+        /*sessionMap=fContext.getExternalContext().getSessionMap();
+        
+        if(sessionMap.get("scheduledExam")!=null)
+        lstScheduledExams=(List<Exam>)sessionMap.get("scheduledExam");*/
+        
+        
+        
     }
     /**
      * action listener for the drop-down list
@@ -62,11 +68,14 @@ public class ExamDetail implements Serializable {
      */
      public void dListEnrolledCourses_SelectedIndexChanged(ValueChangeEvent e)
     {
-        FacesContext fContext= FacesContext.getCurrentInstance();
+        //sessionMap= fContext.getExternalContext().getSessionMap();
+        FacesContext fContext=FacesContext.getCurrentInstance();
+        
         try {
            
             selectedCourseId= (long)e.getNewValue();
             lstScheduledExams=courseEJB.getScheduledExam(selectedCourseId);
+            /* sessionMap.put("scheduledExam", lstScheduledExams);*/
             
         } catch (NullPointerException nEx) {
             
@@ -83,22 +92,21 @@ public class ExamDetail implements Serializable {
       */
     public String startExam()
     {
-        String strOutcome="start";
+        FacesContext fContext=FacesContext.getCurrentInstance();
+        Map<String,Object> sessionMap= fContext.getExternalContext().getSessionMap();
+        
         try {
-            FacesContext fContext=FacesContext.getCurrentInstance();
-            Map<String,Object> sessionMap= fContext.getExternalContext().getSessionMap();
-
+            
             exam= (Exam)tblScheduledExam.getRowData();
 
             sessionMap.put("selectedExam", exam);
             
         } catch (Exception e) {
             
-            strOutcome="failed";
+            fContext.addMessage(null, new FacesMessage(e.getMessage()));
         }
         
-        
-        return strOutcome;
+        return "ExaminationPage?faces-redirect=true";
     }
     /**
      * Schedules a new exam for a course.

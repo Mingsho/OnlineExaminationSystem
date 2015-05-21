@@ -16,56 +16,48 @@
         <h3>Example 2 - Countdown Timer</h3>
     <span id="countdown">05:00:00</span>
     <h:form id="example2form" class="form-horizontal">
-        <input type='button' value='Play/Pause' onclick='Example2.Timer.toggle();' />
+        <!--<input type='button' value='Play/Pause' onclick='Example2.Timer.toggle();' />
         <input type='button' value='Stop/Reset' onclick='Example2.resetCountdown();' />
-        <input type='text' name='startTime' value='300' style='width:30px;' />
+        <input type='text' name='startTime' value='300' style='width:30px;' />-->
+        
         <h:outputLabel id="lblTest" value="#{examinationManager.exam.examTitle}" />
         <br/>
         
-        <!--<h:dataTable id="tblQAndA"
-                     value="#{examinationManager.lstQuestion}"
-                     var="questions">
         
-            <h:column>
-                <h:outputLabel value="#{questions.question}" /><br/>
-                <h:selectOneRadio id="rdBtnOptions"
-                                  value="#{examinationManager.selectedOption}"
-                                  layout="pageDirection">
-                    
-                    <f:selectItem itemLabel="#{questions.option1}"
-                                  itemValue="#{questions}"/>
-                    <f:selectItem itemLabel="#{questions.option2}"
-                                  itemValue="#{questions}"/>
-                    <f:selectItem itemLabel="#{questions.option3}"
-                                  itemValue="#{questions}"/>
-                    <f:selectItem itemLabel="#{questions.option4}"
-                                  itemValue="#{questions}"/>
-                
-                </h:selectOneRadio>
-                                  
-            </h:column>
-        </h:dataTable>-->
+        <h:outputLabel id="lblQuestion"
+                       value="#{examinationManager.currentQuestion.question}" />
         
-        <h:outputLabel id="lblQuestion" value="#{examinationManager.currentQuestion.question}" />
         <h:selectOneRadio id="rdBtnOptions"
-                            value="#{examinationManager.selectedOption}"
-                            layout="pageDirection">
+                            value="#{examinationManager.optionSelected}"
+                            layout="pageDirection"
+                            class="radio">
                     
-            <f:selectItem itemLabel="#{examinationManager.currentQuestion.option1}"
-                                  itemValue="#{examinationManager.currentQuestion}"/>
+                    <f:selectItem itemLabel="#{examinationManager.currentQuestion.option1}"
+                                  itemValue="1"/>
                     <f:selectItem itemLabel="#{examinationManager.currentQuestion.option2}"
-                                  itemValue="#{examinationManager.currentQuestion}"/>
+                                  itemValue="2"/>
                     <f:selectItem itemLabel="#{examinationManager.currentQuestion.option3}"
-                                  itemValue="#{examinationManager.currentQuestion}"/>
+                                  itemValue="3"/>
                     <f:selectItem itemLabel="#{examinationManager.currentQuestion.option4}"
-                                  itemValue="#{examinationManager.currentQuestion}"/>
+                                  itemValue="4"/>
                 
-                </h:selectOneRadio>
+        </h:selectOneRadio>
         <hr/>
-        <h:commandButton id="btnNext"
-            value="Next">
-                             
-        </h:commandButton>
+        
+        <h:commandLink id="cmdTest"
+                       value="Next"
+                       action="#{examinationManager.nextQuestion}">
+            <f:ajax execute="example2form" render="example2form" />
+            
+        </h:commandLink>
+        
+        
+        <h:outputLabel id="lblTest1"
+                       value="#{examinationManager.testString}" />
+        
+        <div>
+            <h:messages globalOnly="true" />
+        </div>
         
     </h:form>
 

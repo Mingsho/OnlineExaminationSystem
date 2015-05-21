@@ -4,13 +4,16 @@ org\oes\model\Teacher.class
 org\oes\beans\UserEJB.class
 org\oes\beans\CourseEJB.class
 org\oes\model\PassStatus.class
+org\oes\controller\LoginManager.class
 org\oes\model\Course.class
 org\oes\controller\CourseController.class
 org\oes\model\Teacher_.class
 org\oes\model\Student_.class
 org\oes\model\UserType.class
 org\oes\model\User_.class
+org\oes\controller\UserAccountEntry.class
 org\oes\utilities\Constants.class
+org\oes\controller\UserEntry$1.class
 org\oes\model\Student.class
 org\oes\model\Result_.class
 org\oes\beans\StudentEJB.class
@@ -19,7 +22,10 @@ org\oes\utilities\SessionHandler.class
 org\oes\beans\ExamEJB.class
 org\oes\model\UserAccount_.class
 org\oes\model\Result.class
+org\oes\controller\QuestionEntry.class
 org\oes\model\Admin_.class
+org\oes\controller\UserEntry.class
+org\oes\controller\ExaminationManager.class
 org\oes\beans\TeacherEJB.class
 org\oes\model\Exam.class
 org\oes\controller\StudentController.class
@@ -31,3 +37,4 @@ org\oes\utilities\AuthFilter.class
 org\oes\model\Question.class
 org\oes\model\User.class
 org\oes\model\Admin.class
+org\oes\controller\ExamDetail.class

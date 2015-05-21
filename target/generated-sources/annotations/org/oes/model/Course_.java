@@ -8,7 +8,7 @@ import org.oes.model.Exam;
 import org.oes.model.Question;
 import org.oes.model.Student;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-05-20T17:41:37")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-05-21T12:41:47")
 @StaticMetamodel(Course.class)
 public class Course_ { 
 
