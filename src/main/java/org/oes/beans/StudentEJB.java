@@ -28,13 +28,22 @@ public class StudentEJB {
     EntityManager eManager;
     
     
-    public Student createStudent(Student std)
+    /**
+     * persist new student instance to the database.
+     * @param std
+     */
+    public void createStudent(Student std)
     {
         eManager.persist(std);
         eManager.flush();
-        return std;
+        //return std;
     }
     
+    /**
+     * Check to see if student exists
+     * @param std
+     * @return boolean
+     */
     public boolean isStudentExist(Student std)
     {
         boolean bRetVal=false;
@@ -44,12 +53,23 @@ public class StudentEJB {
         return bRetVal;
         
     }
+    
+    /**
+     * get list of all students in the database.
+     * @return List Student.
+     */
     public List<Student> getAllStudents()
     {
         TypedQuery<Student> lstStudents=eManager.createNamedQuery("Student.GetAll", Student.class);
         
         return lstStudents.getResultList();
     }
+    
+    /**
+     * return a student instance by Id.
+     * @param studentId
+     * @return Student
+     */
     public Student getStudentById(long studentId)
             throws IllegalArgumentException
     {
@@ -63,8 +83,14 @@ public class StudentEJB {
                 student=std;
             }
         }
+        
         return student;
     }
+    /**
+     * get list of courses that student is enrolled into.
+     * @param studentId
+     * @return List Course.
+     */
     public List<Course> getEnrolledCourses(long studentId)
     {
         Student std=getStudentById(studentId);
@@ -78,9 +104,28 @@ public class StudentEJB {
         return lstEnrolledCourses;
         
     }
-    public void enrollStudent(List<Course> courses)
+    
+    /**
+     * check if student is enrolled in the particular course.
+     * @param courseId
+     * @param studentId
+     * @return boolean
+     */
+    public boolean isStudentEnrolled(long courseId, long studentId)
     {
+        List<Course> lstCourse= getEnrolledCourses(studentId);
+        boolean bRetVal=false;
         
+        if(!lstCourse.isEmpty())
+        {
+            for(Course course: lstCourse)
+            {
+                if(course.getCourseID()==courseId)
+                    bRetVal=true;
+            }
+        }
+        return bRetVal;
     }
+    
     
 }

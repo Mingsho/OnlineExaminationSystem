@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 import javax.ejb.EJB;
 import javax.annotation.PostConstruct;
 import org.oes.beans.StudentEJB;
@@ -39,8 +40,8 @@ public class UserAccountEntry {
     
     public void createUser()
     {
-        Map<String, Object> sMap=FacesContext.getCurrentInstance().
-                getExternalContext().getSessionMap();
+        FacesContext fContext=FacesContext.getCurrentInstance();
+        Map<String, Object> sMap=fContext.getExternalContext().getSessionMap();
         Object obj=sMap.get("objUser");
         
         
@@ -54,7 +55,7 @@ public class UserAccountEntry {
                     Student student = (Student) obj;
                     student.setUserAccount(userAccount);
                     userAccount.setUser(student);
-                    student=studentEJB.createStudent(student);
+                    studentEJB.createStudent(student);
                 
                 }
                 else if(obj instanceof Teacher)
@@ -62,7 +63,7 @@ public class UserAccountEntry {
                     Teacher teacher= (Teacher)obj;
                     teacher.setUserAccount(userAccount);
                     userAccount.setUser(teacher);
-                    teacher= teacherEJB.createTeacher(teacher);
+                    teacherEJB.createTeacher(teacher);
                     
                 }
                 else
@@ -70,8 +71,11 @@ public class UserAccountEntry {
                     Admin admin=(Admin)obj;
                     admin.setUserAccount(userAccount);
                     userAccount.setUser(admin);
-                    admin=adminEJB.createAdmin(admin);
+                    adminEJB.createAdmin(admin);
                 }
+                
+                fContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                        "New user created!", "New user profile and user account created!"));
                 
             }
            

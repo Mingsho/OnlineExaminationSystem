@@ -7,34 +7,63 @@
     
     <ui:define name="mainContent">
         <f:view>
-            <h:form id="frmEnrollStudents">
-                <h:selectOneMenu id="dListCourses"
-                                 value="#{studentController.selectedCourseId}">
-                    <f:selectItems value="#{studentController.lstCourses}"
-                                   var="course"
-                                   itemLabel="#{course.courseName}"
-                                   itemValue="#{course.courseID}" />
-                </h:selectOneMenu>
-                <h:dataTable id="tblStudents"
-                             value="#{studentController.lstStudents}"
-                             var="s">
-                    <h:column>
-                        <f:facet name="header">Student ID</f:facet>
-                        <h:outputText value="#{s.userID}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">First Name</f:facet>
-                        <h:outputLabel value="#{s.firstName}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Last Name</f:facet>
-                        <h:outputLabel value="#{s.lastName}" />
-                    </h:column>
-                    <h:column>
-                        <h:selectManyCheckbox id="chkStudent" />
-                    </h:column>
-                    
-                </h:dataTable>
+            <h:form id="frmEnrollStudents" class="form-horizontal" role="form">
+                
+                <fieldset>
+                    <legend>Enrol Student</legend>
+                    <div class="form-group">
+                        <h:outputLabel id="lblSelectCourse"
+                                   for="dListCourses"
+                                   value="Select Course: "
+                                   class="col-sm-2 control-label"/>
+
+                        <div class="col-sm-6">
+                            <h:selectOneMenu id="dListCourses"
+                                            value="#{courseManager.selectedCourseId}"
+                                            class="form-control"
+                                            valueChangeListener="#{courseManager.dListCourses_SelectedIndexChanged}">
+                                
+                                <f:selectItems value="#{courseManager.lstCourse}"
+                                           var="course"
+                                           itemLabel="#{course.courseName}"
+                                           itemValue="#{course.courseID}" />
+                                
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblSelectStudent"
+                                       for="dListStudents"
+                                       value="Select Student: "
+                                       class="col-sm-2 control-label" />
+                        <div class="col-sm-6">
+                            <h:selectOneMenu id="dListStudents"
+                                             value="#{courseManager.selectedStudentId}"
+                                             class="form-control"
+                                             valueChangeListener="#{courseManager.dListStudents_SelectedIndexChanged}">
+                                <f:selectItems value="#{courseManager.lstStudent}"
+                                               var="student"
+                                               itemLabel="#{student.firstName }#{student.lastName}"
+                                               itemValue="#{student.userID}" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h:commandButton id="btnEnrolStudent"
+                                         value="Enrol Student"
+                                         class="btn btn-primary btn-md pull-right"
+                                         action="#{courseManager.enrolStudent()}">
+                                             
+                        </h:commandButton>
+                    </div>
+                </fieldset>
+                <div class="messageStyle1">
+                    <h:outputLabel id="lblTestString"
+                                   value="#{courseManager.testString}" />
+                    <h:messages globalOnly="true" class="fa fa-info-circle messageStyle1"/>
+                </div>
+                
+                
             </h:form>
         </f:view>
     </ui:define>

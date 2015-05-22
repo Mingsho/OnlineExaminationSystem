@@ -27,10 +27,11 @@
         <h:outputLabel id="lblQuestion"
                        value="#{examinationManager.currentQuestion.question}" />
         
-        <h:selectOneRadio id="rdBtnOptions"
+       <h:selectOneRadio id="rdBtnOptions"
                             value="#{examinationManager.optionSelected}"
                             layout="pageDirection"
                             class="radio">
+                            
                     
                     <f:selectItem itemLabel="#{examinationManager.currentQuestion.option1}"
                                   itemValue="1"/>
@@ -40,14 +41,16 @@
                                   itemValue="3"/>
                     <f:selectItem itemLabel="#{examinationManager.currentQuestion.option4}"
                                   itemValue="4"/>
+                    <f:selectItem itemLabel="Pass"
+                                  itemValue="5"/>
                 
         </h:selectOneRadio>
-        <hr/>
+       <hr/>
         
         <h:commandLink id="cmdTest"
                        value="Next"
                        action="#{examinationManager.nextQuestion}">
-            <f:ajax execute="example2form" render="example2form" />
+            <f:ajax execute="example2form" render="example2form" /> 
             
         </h:commandLink>
         

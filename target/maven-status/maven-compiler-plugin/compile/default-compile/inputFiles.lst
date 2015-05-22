@@ -9,6 +9,7 @@ C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\j
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\model\Teacher.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\utilities\SessionHandler.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\model\PassStatus.java
+C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\beans\ResultEJB.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\controller\ExamDetail.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\controller\QuestionEntry.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\beans\QuestionEJB.java
@@ -21,10 +22,10 @@ C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\j
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\model\User.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\model\UserType.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\controller\ExaminationManager.java
-C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\controller\CourseController.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\beans\UserEJB.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\beans\ExamEJB.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\model\Result.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\model\Exam.java
+C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\controller\CourseManager.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\utilities\Constants.java
 C:\Users\Mingso\Documents\NetBeansProjects\LITOnlineExaminationSystem\src\main\java\org\oes\controller\UserEntry.java

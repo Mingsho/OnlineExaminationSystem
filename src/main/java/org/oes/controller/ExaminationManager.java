@@ -10,16 +10,21 @@ import javax.enterprise.context.SessionScoped;
 import javax.ejb.EJB;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
-import javax.faces.application.FacesMessage;
+import java.util.Date;
 import org.oes.model.Exam;
 import org.oes.model.Course;
 import org.oes.model.Question;
-import org.oes.beans.CourseEJB;
+import org.oes.model.Result;
 import org.oes.model.OptionNumber;
+import org.oes.model.PassStatus;
+import org.oes.beans.CourseEJB;
+import org.oes.beans.ResultEJB;
+
 
 /**
  *
@@ -31,19 +36,27 @@ public class ExaminationManager implements Serializable {
     
     
     @EJB private CourseEJB courseEJB;
+    @EJB private ResultEJB resultEJB;
     private Exam exam;
     private Course course;
     private Question currentQuestion;
-    private OptionNumber selectedOption;
-    private OptionNumber availableOptions;
     private String nSelectedOption;
-    private int nCurrentIndex=0;
+    private int nCurrentIndex;
     private String strTest;
     
     private List<Question> lstQuestion;
     private Map<Long,Integer> userAttempt;
     
+    public ExaminationManager()
+    {
+        nCurrentIndex=0;
+        
+    }
     
+    /**
+     * initialize variable after the full instantiation
+     * of the bean.
+     */
     @PostConstruct
     public void init()
     {
@@ -57,16 +70,12 @@ public class ExaminationManager implements Serializable {
         course=courseEJB.getCourseByExamId(exam.getExamID());
         lstQuestion=course.getQuestionList();
         
-        if(lstQuestion!=null)
-            currentQuestion=lstQuestion.get(nCurrentIndex);
-        
-        strTest="Starting";
     }
-    public String test()
-    {
-        strTest="Testing";
-        return null;
-    }
+   
+    /**
+     * action method to retrieve next question.
+     * @return String
+     */
     public String nextQuestion()
     {
         FacesContext fContext= FacesContext.getCurrentInstance();
@@ -75,33 +84,57 @@ public class ExaminationManager implements Serializable {
             
             strTest="Button entered";
             //if(selectedOption!=null)
-            if(null!=nSelectedOption)
+            if(nCurrentIndex<=(lstQuestion.size()-0x1)) //is counter less than no of questions?
             {
-                switch(nSelectedOption)
+                if(null!=nSelectedOption)
                 {
-                    case "1":
-                        userAttempt.put(currentQuestion.getQuestionID(),1);
-                        break;
-                    case "2":
-                        userAttempt.put(currentQuestion.getQuestionID(),2);
-                        break;
-                    case "3":
-                        userAttempt.put(currentQuestion.getQuestionID(),3);
-                        break;
-                    case "4":
-                        userAttempt.put(currentQuestion.getQuestionID(),4);
-                        break;
+                    switch(nSelectedOption)
+                    {
+                        //assign integer values representing options selected.
+                        case "1":
+                            userAttempt.put(currentQuestion.getQuestionID(),1);
+                            break;
+                        case "2":
+                            userAttempt.put(currentQuestion.getQuestionID(),2);
+                            break;
+                        case "3":
+                            userAttempt.put(currentQuestion.getQuestionID(),3);
+                            break;
+                        case "4":
+                            userAttempt.put(currentQuestion.getQuestionID(),4);
+                            break;
+                        case "5":
+                            userAttempt.put(currentQuestion.getQuestionID(),5);
+                            break;
+                    }
                 }
+                else
+                {
+                    userAttempt.put(currentQuestion.getQuestionID(),0);
+                }
+                
+                nCurrentIndex++; //counter increment
+                
+                if(nCurrentIndex<=(lstQuestion.size()-0x1)) //to prevent index out of range 
+                    currentQuestion=lstQuestion.get(nCurrentIndex);
             }
             else
             {
-                userAttempt.put(currentQuestion.getQuestionID(),0);
-            }
+                strTest="Questions finished";
+                Map<String, Object> sObjectMap=fContext.getExternalContext().getSessionMap();
                 
-            nCurrentIndex++;
-            currentQuestion=lstQuestion.get(nCurrentIndex);
-            
+                Result result=resultEJB.persistResult(calculateResult());//persist the calculated result.
+                
+                
+                
+                sObjectMap.put("studentResult", result); //store user result in session.
+                
+            }
         } 
+        catch(NullPointerException nEx)
+        {
+            fContext.addMessage(null, new FacesMessage(nEx.getMessage()));
+        }
         catch (Exception e) 
         {
             strTest="Exception occured";
@@ -113,7 +146,45 @@ public class ExaminationManager implements Serializable {
         return null;
         
     }
-    
+    /**
+     * Calculate students result
+     */
+    private Result calculateResult()
+            throws NullPointerException
+    {
+        int nTotalCorrect=0;
+        int nTotalPassed=0;
+        int nTotalIncorrect=0;
+        int nTotalAttempted=0;
+        
+        Result result=new Result();
+        
+        for(Question question: lstQuestion)
+        {
+            OptionNumber opt=question.getCorrectOption();
+            Integer nUserSelection=userAttempt.get(question.getQuestionID());
+            int n=opt.ordinal();
+            
+            if(nUserSelection.equals(opt.ordinal()+1))//as enums have indices starting from 0.
+                nTotalCorrect++;
+            else if(nUserSelection.equals(5)) //passed question are 5
+                nTotalPassed++;
+            else
+                nTotalIncorrect++;
+                
+        }
+        
+        nTotalAttempted=lstQuestion.size()-nTotalPassed;
+        
+        result.setExamAttemptedDate(new Date());
+        result.setTotalQuestionsAttempted(nTotalAttempted);
+        result.setTotalPassedQuestions(nTotalPassed);
+        result.setTotalCorrectAnswers(nTotalCorrect);
+        result.setPassedStatus(PassStatus.PASSED);
+        
+        return result;
+        
+    }
     public Exam getExam()
     {
         return this.exam;
@@ -121,14 +192,6 @@ public class ExaminationManager implements Serializable {
     public List<Question> getLstQuestion()
     {
         return this.lstQuestion;
-    }
-    public OptionNumber getSelectedOption()
-    {
-        return this.selectedOption;
-    }
-    public void setSelectedOption(OptionNumber optNumber)
-    {
-        this.selectedOption=optNumber;
     }
     public Question getCurrentQuestion()
     {
@@ -142,10 +205,7 @@ public class ExaminationManager implements Serializable {
     {
         this.strTest= testString;
     }
-    public OptionNumber getAvailableOptions()
-    {
-        return this.availableOptions;
-    }
+    
     public String getOptionSelected()
     {
         return this.nSelectedOption;

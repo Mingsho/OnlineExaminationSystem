@@ -22,11 +22,10 @@ public class TeacherEJB {
     @PersistenceContext(name= Constants.PersistenceName)
     EntityManager eManager;
     
-    public Teacher createTeacher(Teacher teacher)
+    public void createTeacher(Teacher teacher)
     {
         eManager.persist(teacher);
         eManager.flush();
-        return teacher;
     }
     
 }

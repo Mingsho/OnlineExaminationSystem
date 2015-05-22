@@ -94,7 +94,7 @@ public class Exam implements Serializable {
     {
         this.examDuration=eDuration;
     }
-    public int getTotlQuestions()
+    public int getTotalQuestions()
     {
         return this.totalQuestions;
     }

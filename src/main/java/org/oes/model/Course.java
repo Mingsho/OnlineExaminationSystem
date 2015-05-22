@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 
@@ -44,7 +45,8 @@ public class Course implements Serializable {
     private String courseDescription;
     
     @ManyToMany(fetch = FetchType.LAZY,
-            mappedBy = "enrolledCourses")
+            mappedBy = "enrolledCourses",
+            cascade = CascadeType.PERSIST)
     private List<Student> enrolledStudents;
     
     @OneToMany(fetch=FetchType.LAZY)
@@ -99,6 +101,7 @@ public class Course implements Serializable {
     {
         this.enrolledStudents=lstStudents;
     }
+    
     public List<Exam> getScheduledExams()
     {
         return this.scheduledExams;
@@ -116,6 +119,7 @@ public class Course implements Serializable {
         this.questionList=lstQuestions;
         
     }
+    
             
             
     //</editor-fold>

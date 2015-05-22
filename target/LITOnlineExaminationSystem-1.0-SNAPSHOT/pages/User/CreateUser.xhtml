@@ -107,7 +107,7 @@
                                          class="form-control"
                                          value="#{userEntry.user.emailAddress}"
                                          validatorMessage="*Email format must be correct!">
-                                <f:validateRegex pattern="[-0-9a-zA-Z.+_]" />
+                                <f:validateRegex pattern=".+\@.+\..+" />
                             </h:inputText><br/>
                         </div>
                         <div class="col-sm-4">

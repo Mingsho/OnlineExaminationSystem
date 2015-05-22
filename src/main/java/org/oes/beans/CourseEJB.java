@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import org.oes.model.Course;
 import org.oes.model.Question;
 import org.oes.model.Exam;
+import org.oes.model.Student;
 import org.oes.utilities.Constants;
 
 
@@ -82,6 +83,25 @@ public class CourseEJB {
     }
     
     /**
+     * Check if course code already exists.
+     * @param course
+     * @return boolean
+     */
+    public boolean isCourseCodeExists(Course course)
+    {
+        List<Course> lstCourse=getAllCourse();
+        boolean bRetVal=false;
+        
+        for(Course c: lstCourse)
+        {
+            if(c.getCourseCode().equalsIgnoreCase(course.getCourseCode()))
+                bRetVal=true;
+           
+        }
+        return bRetVal;
+    }
+    
+    /**
      * Retrieve all questions related to the course.
      * @param courseId
      * @return List Question
@@ -123,4 +143,6 @@ public class CourseEJB {
         
         
     }
+    
+    
 }

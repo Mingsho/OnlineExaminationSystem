@@ -6,7 +6,6 @@ org\oes\beans\CourseEJB.class
 org\oes\model\PassStatus.class
 org\oes\controller\LoginManager.class
 org\oes\model\Course.class
-org\oes\controller\CourseController.class
 org\oes\model\Teacher_.class
 org\oes\model\Student_.class
 org\oes\model\UserType.class

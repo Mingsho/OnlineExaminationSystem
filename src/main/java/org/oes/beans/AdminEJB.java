@@ -23,11 +23,10 @@ public class AdminEJB {
     @PersistenceContext(name= Constants.PersistenceName)
     EntityManager eManager;
     
-    public Admin createAdmin(Admin admin)
+    public void createAdmin(Admin admin)
     {
         eManager.persist(admin);
         eManager.flush();
-        return admin;
     }
     
     

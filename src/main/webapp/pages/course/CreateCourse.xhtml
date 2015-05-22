@@ -19,7 +19,7 @@
                                              class="form-control"
                                              required="true"
                                              requiredMessage="*Course code cannot be blank!"
-                                             value="#{courseController.course.courseCode}" >
+                                             value="#{courseManager.course.courseCode}" >
                                     <f:validateRequired/>
                                 </h:inputText><br/>
                             </div>
@@ -34,7 +34,7 @@
                                 <h:inputText id="txtCourseName"
                                              a:placeholder="Course Name"
                                              class="form-control"
-                                             value="#{courseController.course.courseName}"
+                                             value="#{courseManager.course.courseName}"
                                              required="true"
                                              requiredMessage="*Course name cannot be blank!">
                                     <f:validateRequired/>
@@ -50,7 +50,7 @@
                             <div class="col-sm-6">
                                 <h:inputTextarea id="txtCourseDescription"
                                                  class="form-control"
-                                                 value="#{courseController.course.courseDescription}">
+                                                 value="#{courseManager.course.courseDescription}">
                                     <f:validateLength maximum="150" />
                                 </h:inputTextarea><br/>
                             </div>
@@ -63,7 +63,7 @@
                             <h:commandButton id="btnCreateCourse"
                                              value="Create Course"
                                              class="btn btn-primary btn-md pull-right"
-                                             action="#{courseController.createCourse()}">
+                                             action="#{courseManager.createCourse()}">
                             </h:commandButton>
                         </div>
                         <div class="col-sm-12">
@@ -71,8 +71,8 @@
                         </div>
                 </h:form>
             </fieldset>
-                <div id="message1">
-                    <h:messages globalOnly="true" class="fa fa-fw fa-check" />
+                <div class="col-sm-12">
+                    <h:messages globalOnly="true" class="fa fa-info-circle messageStyle1" />
                 </div>
                 
             </f:view>
