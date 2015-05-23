@@ -70,6 +70,9 @@ public class ExaminationManager implements Serializable {
         course=courseEJB.getCourseByExamId(exam.getExamID());
         lstQuestion=course.getQuestionList();
         
+        if(lstQuestion!=null)
+            currentQuestion=lstQuestion.get(nCurrentIndex);
+        
     }
    
     /**
@@ -142,9 +145,7 @@ public class ExaminationManager implements Serializable {
             
         }
         
-        
         return null;
-        
     }
     /**
      * Calculate students result

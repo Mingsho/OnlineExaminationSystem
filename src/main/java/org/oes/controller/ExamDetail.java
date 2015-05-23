@@ -33,7 +33,6 @@ import org.oes.model.User;
 @SessionScoped
 public class ExamDetail implements Serializable {
     
-    @EJB private ExamEJB examEJB;
     @EJB private CourseEJB courseEJB;
     @EJB private StudentEJB studentEJB;
     @Inject LoginManager loginController; //Inject LoginManager 
@@ -53,14 +52,6 @@ public class ExamDetail implements Serializable {
         lstCourses=courseEJB.getAllCourse();
         loggedInUser=loginController.getUser();
         lstEnrolledCourses=studentEJB.getEnrolledCourses(loggedInUser.getUserID());
-        
-        /*sessionMap=fContext.getExternalContext().getSessionMap();
-        
-        if(sessionMap.get("scheduledExam")!=null)
-        lstScheduledExams=(List<Exam>)sessionMap.get("scheduledExam");*/
-        
-        
-        
     }
     /**
      * action listener for the drop-down list
@@ -68,14 +59,12 @@ public class ExamDetail implements Serializable {
      */
      public void dListEnrolledCourses_SelectedIndexChanged(ValueChangeEvent e)
     {
-        //sessionMap= fContext.getExternalContext().getSessionMap();
         FacesContext fContext=FacesContext.getCurrentInstance();
         
         try {
            
             selectedCourseId= (long)e.getNewValue();
             lstScheduledExams=courseEJB.getScheduledExam(selectedCourseId);
-            /* sessionMap.put("scheduledExam", lstScheduledExams);*/
             
         } catch (NullPointerException nEx) {
             

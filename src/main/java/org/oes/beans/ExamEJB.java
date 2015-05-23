@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.ejb.Stateless;
-import javax.persistence.EntityExistsException;
 import org.oes.utilities.Constants;
 import org.oes.model.Exam;
 
@@ -22,7 +21,8 @@ public class ExamEJB {
     @PersistenceContext(name=Constants.PersistenceName)
     EntityManager eManager;
     
-    public Exam scheduleExam(Exam exam) throws EntityExistsException
+    public Exam scheduleExam(Exam exam)
+            throws IllegalArgumentException
     {
         eManager.persist(exam);
         eManager.flush();

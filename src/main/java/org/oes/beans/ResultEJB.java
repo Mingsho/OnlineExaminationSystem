@@ -7,12 +7,14 @@ package org.oes.beans;
 
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
+import javax.ejb.Stateless;
 import org.oes.model.Result;
 import org.oes.utilities.Constants;
 /**
  *
  * @author Mingso
  */
+@Stateless
 public class ResultEJB {
     
     @PersistenceContext(name=Constants.PersistenceName)
