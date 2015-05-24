@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 /**
  *
  * @author Mingso
@@ -35,7 +36,8 @@ public class Student extends User implements Serializable {
            inverseJoinColumns = @JoinColumn(name= "Course_FK"))
    private List<Course> enrolledCourses;
    
-   @OneToMany(fetch = FetchType.LAZY)
+   @OneToMany(fetch = FetchType.LAZY,
+           cascade = CascadeType.PERSIST)
    @JoinColumn(name="Student_Result_FK")
    private List<Result> examResults;
    
@@ -47,7 +49,7 @@ public class Student extends User implements Serializable {
        Student std=new Student();
        if(user!=null)
        {
-           
+           std.setUserID(user.getUserID());
            std.setFirstName(user.getFirstName());
            std.setMiddleName(user.getMiddleName());
            std.setLastName(user.getLastName());

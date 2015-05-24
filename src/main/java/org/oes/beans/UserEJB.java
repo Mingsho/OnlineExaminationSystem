@@ -28,7 +28,8 @@ public class UserEJB {
     EntityManager eManager;
     
     /**
-     * Create basic user profile
+     * <p>Persist user entity to
+     * the database</P>
      * @param user
      * @return User
      */
@@ -39,8 +40,24 @@ public class UserEJB {
         eManager.flush();
         return user;
     }
+    
     /**
-     * Return all users from the db
+     * <p>Merge state of entity into 
+     * current persistence context</p>
+     * @param user
+     * @return User
+     * @exception IllegalArgumentException
+     */
+    public User updateUserProfile(User user)
+            throws IllegalArgumentException
+    {
+        eManager.merge(user);
+        eManager.flush();
+        return user;
+    }
+    /**
+     * <p> Method to return all 
+     * users from the database</p>
      * @return List User
      */
     public List<User> getAllUser()
@@ -53,7 +70,8 @@ public class UserEJB {
     }
     
     /**
-     * Simple check of username and password
+     * <p>Method for simple check of
+     * username and password</p>
      * @param uName
      * @param pWd
      * @return boolean
@@ -94,8 +112,8 @@ public class UserEJB {
         return user;
     }
     /**
-     * Get all users who are students.
-     * 
+     * <p>Get all users who are students.</p>
+     * @return List User
      */
     public List<User> getAllStudents()
     {

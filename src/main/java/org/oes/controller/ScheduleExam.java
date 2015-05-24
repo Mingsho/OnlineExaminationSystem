@@ -38,10 +38,14 @@ public class ScheduleExam implements Serializable {
         lstCourses=courseEJB.getAllCourse();
     }
     
-    
+    /**
+     * schedule a new exam
+     * @return String
+     */
     public String scheduleExam()
     {
         FacesContext fContext=FacesContext.getCurrentInstance();
+        
         try {
             
             exam=examEJB.scheduleExam(exam);
@@ -58,6 +62,7 @@ public class ScheduleExam implements Serializable {
         }
         catch (Exception e)
         {
+            //do nothing.
         }
         return null;
     }

@@ -20,6 +20,12 @@ public class ResultEJB {
     @PersistenceContext(name=Constants.PersistenceName)
     EntityManager eManager;
     
+    /**
+     * <p>Persist the result 
+     * into the database</p>
+     * @param result entity
+     * @return Result persisted entity.
+     */
     public Result persistResult(Result result)
     {
         eManager.persist(result);

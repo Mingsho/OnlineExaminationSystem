@@ -5,14 +5,12 @@
  */
 package org.oes.model;
 
-import java.io.Serializable;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
-import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.NamedQuery;
@@ -28,6 +26,8 @@ import javax.persistence.TemporalType;
  * @author Mingso
  */
 @Entity
+@NamedQuery( name="Exam.GetAll",
+        query="SELECT E FROM Exam E ORDER BY E.examID")
 public class Exam implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

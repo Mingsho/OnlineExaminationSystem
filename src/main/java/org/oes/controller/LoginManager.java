@@ -59,7 +59,11 @@ public class LoginManager implements Serializable {
                 return "administrators";
             }
             
-            
+            FacesContext.getCurrentInstance().addMessage(
+                        null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Invalid Login!",
+                        "Please try again!"));
         }
         
         catch(NoResultException nEx)
@@ -74,11 +78,12 @@ public class LoginManager implements Serializable {
         }
         return null;
     }
+    
     public String logout()  
     {
         HttpSession session=SessionHandler.getSession();
         session.invalidate();
-        return "Authentication";
+        return "/pages/Authentication.xhtml";
     }
     
     public String getUserName()

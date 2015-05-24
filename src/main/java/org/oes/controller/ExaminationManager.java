@@ -6,6 +6,7 @@
 package org.oes.controller;
 
 import javax.inject.Named;
+import javax.inject.Inject;
 import javax.enterprise.context.SessionScoped;
 import javax.ejb.EJB;
 import javax.annotation.PostConstruct;
@@ -20,10 +21,12 @@ import org.oes.model.Exam;
 import org.oes.model.Course;
 import org.oes.model.Question;
 import org.oes.model.Result;
+import org.oes.model.Student;
 import org.oes.model.OptionNumber;
 import org.oes.model.PassStatus;
 import org.oes.beans.CourseEJB;
 import org.oes.beans.ResultEJB;
+import org.oes.beans.StudentEJB;
 
 
 /**
@@ -37,6 +40,10 @@ public class ExaminationManager implements Serializable {
     
     @EJB private CourseEJB courseEJB;
     @EJB private ResultEJB resultEJB;
+    @EJB private StudentEJB studentEJB;
+    @Inject LoginManager loginManager;
+    
+    private Student student;
     private Exam exam;
     private Course course;
     private Question currentQuestion;
@@ -54,8 +61,9 @@ public class ExaminationManager implements Serializable {
     }
     
     /**
-     * initialize variable after the full instantiation
-     * of the bean.
+     * <p>initialize variable after 
+     * the full instantiation
+     * of the bean.</p>
      */
     @PostConstruct
     public void init()
@@ -67,6 +75,8 @@ public class ExaminationManager implements Serializable {
         Object objExam=sMap.get("selectedExam");
         exam=(Exam)objExam;
         
+        student=studentEJB.getStudentFromBaseInstance(loginManager.getUser());
+        
         course=courseEJB.getCourseByExamId(exam.getExamID());
         lstQuestion=course.getQuestionList();
         
@@ -76,8 +86,9 @@ public class ExaminationManager implements Serializable {
     }
    
     /**
-     * action method to retrieve next question.
-     * @return String
+     * <p>action method to
+     * retrieve next question.</p>
+     * @return String the outcome of the action method.
      */
     public String nextQuestion()
     {
@@ -126,11 +137,13 @@ public class ExaminationManager implements Serializable {
                 strTest="Questions finished";
                 Map<String, Object> sObjectMap=fContext.getExternalContext().getSessionMap();
                 
-                Result result=resultEJB.persistResult(calculateResult());//persist the calculated result.
-                
-                
+                //persist the calcuated result.
+                Result result=calculateResult();
+                result=studentEJB.insertResult(result, student.getUserID());
                 
                 sObjectMap.put("studentResult", result); //store user result in session.
+                
+                return "/pages/MyResult.xhtml?faces-redirect=true";
                 
             }
         } 
@@ -176,7 +189,6 @@ public class ExaminationManager implements Serializable {
         }
         
         nTotalAttempted=lstQuestion.size()-nTotalPassed;
-        
         result.setExamAttemptedDate(new Date());
         result.setTotalQuestionsAttempted(nTotalAttempted);
         result.setTotalPassedQuestions(nTotalPassed);

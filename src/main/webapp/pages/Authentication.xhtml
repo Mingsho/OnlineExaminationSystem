@@ -25,7 +25,7 @@
                              value="#{loginManager.userName}"
                              class="form-control">
                             <f:validateRequired/>
-                        </h:inputText><h:message for="txtUserName" style="color: red"/>
+                        </h:inputText>
                         <h:inputSecret id="txtPassword"
                                a:placeholder="Password"
                                required="true"
@@ -33,40 +33,21 @@
                                value="#{loginManager.password}"
                                class="form-control">
                             <f:validateRequired/>
-                        </h:inputSecret>&nbsp;<h:message for="txtPassword" style="color: red" />
+                        </h:inputSecret>
                         <h:commandButton id="btnLogin"
                                  value="Login"
                                  action="#{loginManager.login()}"
                                  class="btn btn-lg btn-primary btn-block">
                         </h:commandButton>
                     </h:form>
+                    
+                    <div class="col-sm-12 messageStyle1">
+                        <h:message for="txtUserName" style="color: red"/><br/>
+                        <h:message for="txtPassword" style="color: red" /><br/>
+                        <h:messages globalOnly="true" class="fa fa-info-circle" />
+                    </div>
                 </div>
             </div>
-            <!--
-            <h:form id="frmLogin">
-                <h:outputLabel id="lblUserName" for="txtUserName"
-                               value="Username: " />
-                <h:inputText id="txtUserName"
-                             a:placeholder="Username"
-                             required="true"
-                             requiredMessage="Please fill in the required field!"
-                             value="#{loginManager.userName}">
-                    <f:validateRequired/>
-                </h:inputText><h:message for="txtUserName" style="color: red"/><br/>
-                <h:outputLabel id="lblPassword" for="txtPassword"
-                               value="Password: " />
-                <h:inputSecret id="txtPassword"
-                               a:placeholder="Password"
-                               required="true"
-                               requiredMessage="Please key in your password!"
-                               value="#{loginManager.password}">
-                    <f:validateRequired/>
-                </h:inputSecret><h:message for="txtPassword" style="color: red" /><br/>
-                <h:commandButton id="btnLogin"
-                                 value="Login"
-                                 action="#{loginManager.login()}">
-                </h:commandButton>
-            </h:form>-->
         </f:view>
     </h:body>
 </html>

@@ -5,6 +5,7 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
     
+    <!--Create User rules-->
     <navigation-rule>
         <from-view-id>/pages/user/CreateUser.xhtml</from-view-id>
         <navigation-case>
@@ -16,6 +17,8 @@
             <to-view-id>/pages/ErrorPage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <!--Authentication page rules-->
     <navigation-rule>
         <from-view-id>/pages/Authentication.xhtml</from-view-id>
         <navigation-case>
@@ -27,6 +30,8 @@
             <to-view-id>/pages/StudentWelcomePage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <!--Student Examination page rules-->
     <navigation-rule>
         <from-view-id>/pages/StudentWelcomePage.xhtml</from-view-id>
         <navigation-case>
@@ -38,6 +43,8 @@
             <to-view-id>/pages/ErrorPage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <!--Enrolling students page rules-->
     <navigation-rule>
         <from-view-id>/pages/course/EnrolStudents.xhtml</from-view-id>
         <navigation-case>

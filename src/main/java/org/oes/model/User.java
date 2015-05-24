@@ -31,7 +31,7 @@ import javax.persistence.CascadeType;
 @NamedQueries({
     
     @NamedQuery(name="User.GetAllUser",
-            query="SELECT U FROM User U"),
+            query="SELECT U FROM User U ORDER BY U.userId"),
     @NamedQuery(name = "User.GetByUnamePwd",
             query = "SELECT U FROM User U WHERE U.userAccount.username= :uName"
                     + " AND U.userAccount.password= :pWd"),

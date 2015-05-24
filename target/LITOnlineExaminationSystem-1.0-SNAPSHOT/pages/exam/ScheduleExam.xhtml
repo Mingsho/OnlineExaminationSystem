@@ -11,7 +11,7 @@
             <fieldset>
                 <legend>Schedule an Exam</legend>
             </fieldset>
-            <h:form class="form-horizontal" role="form">
+            <h:form id="frmScheduleExam" class="form-horizontal" role="form">
                 <div class="form-group">
                     <h:outputLabel id="lblSelectCourse"
                                    for="dListCourse"
@@ -152,7 +152,6 @@
                                      class="btn btn-primary btn-md pull-right"
                                      action="#{scheduleExam.scheduleExam()}">
                     </h:commandButton>
-
                 </div>
                 <div class="col-sm-12">
                     <h:messages globalOnly="true" class="fa fa-info-circle messageStyle1" />

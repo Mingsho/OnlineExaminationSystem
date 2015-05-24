@@ -12,8 +12,10 @@ import javax.persistence.Query;
 import javax.ejb.Stateless;
 import java.util.List;
 import java.util.ArrayList;
+import org.oes.model.User;
 import org.oes.model.Student;
 import org.oes.model.Course;
+import org.oes.model.Result;
 import org.oes.utilities.Constants;
 
 /**
@@ -29,8 +31,9 @@ public class StudentEJB {
     
     
     /**
-     * persist new student instance to the database.
-     * @param std
+     * <p>persist new student instance
+     * to the database.</p>
+     * @param std entity to be persisted.
      */
     public void createStudent(Student std)
     {
@@ -40,9 +43,9 @@ public class StudentEJB {
     }
     
     /**
-     * Check to see if student exists
-     * @param std
-     * @return boolean
+     * <p>Check to see if student exists</p>
+     * @param std Entity to check
+     * @return boolean true or false.
      */
     public boolean isStudentExist(Student std)
     {
@@ -54,9 +57,28 @@ public class StudentEJB {
         
     }
     
+    public Student updateStudent(Student std)
+    {
+        eManager.merge(std);
+        eManager.flush();
+        return std;
+    }
     /**
-     * get list of all students in the database.
-     * @return List Student.
+     * <p>Get derived from base instance</p>
+     * @param user The base User instance
+     * @return Student The derived Student instance.
+     */
+    public Student getStudentFromBaseInstance(User user)
+    {
+        Student stdTemp=new Student();
+        stdTemp=stdTemp.getStudentFromBaseInstance(user);
+        
+        return stdTemp;
+    }
+    /**
+     * <p>get list of all
+     * students in the database.</p>
+     * @return List Student's list.
      */
     public List<Student> getAllStudents()
     {
@@ -66,9 +88,9 @@ public class StudentEJB {
     }
     
     /**
-     * return a student instance by Id.
-     * @param studentId
-     * @return Student
+     * <p>return a student instance by Id.</p>
+     * @param studentId Student's Id.
+     * @return Student required student instance.
      */
     public Student getStudentById(long studentId)
             throws IllegalArgumentException
@@ -87,9 +109,10 @@ public class StudentEJB {
         return student;
     }
     /**
-     * get list of courses that student is enrolled into.
-     * @param studentId
-     * @return List Course.
+     * <p>get list of courses that
+     * student is enrolled into.</p>
+     * @param studentId Student's Id
+     * @return List List of all enrolled courses.
      */
     public List<Course> getEnrolledCourses(long studentId)
     {
@@ -106,10 +129,11 @@ public class StudentEJB {
     }
     
     /**
-     * check if student is enrolled in the particular course.
-     * @param courseId
-     * @param studentId
-     * @return boolean
+     * <p>check if student is enrolled
+     * in the particular course.</p>
+     * @param courseId Enrolled course id.
+     * @param studentId student's Id.
+     * @return boolean true or false.
      */
     public boolean isStudentEnrolled(long courseId, long studentId)
     {
@@ -127,5 +151,16 @@ public class StudentEJB {
         return bRetVal;
     }
     
+    public Result insertResult(Result result, long studentId)
+    {
+        Student student=eManager.find(Student.class, studentId);
+        
+        student.getExamResults().add(result);
+        
+        updateStudent(student);
+        
+        return result;
+        
+    }
     
 }
