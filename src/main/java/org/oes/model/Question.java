@@ -14,6 +14,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import java.io.Serializable;
 
 /**
@@ -55,6 +57,10 @@ public class Question implements Serializable {
     
     @Column(nullable=false)
     private float defaultMarks;
+    
+    @ManyToOne
+    @JoinColumn(name="COURSE_QUESTION_FK")
+    private Course course;
     
     @Column(nullable=false)
     @Enumerated(EnumType.STRING)
@@ -123,6 +129,14 @@ public class Question implements Serializable {
     public void setCorrectOption(OptionNumber nCorrectOption)
     {
         this.correctOption=nCorrectOption;
+    }
+    public Course getCourse()
+    {
+        return this.course;
+    }
+    public void setCourse(Course course)
+    {
+        this.course=course;
     }
     
     //</editor-fold>

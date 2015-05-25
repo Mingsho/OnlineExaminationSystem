@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import org.oes.model.Course;
 import org.oes.model.Question;
 import org.oes.model.Exam;
-import org.oes.model.Student;
 import org.oes.utilities.Constants;
 
 
@@ -62,9 +61,9 @@ public class CourseEJB {
         return lstCourses.getResultList();
     }
     /**
-     * Retrieve Course by Id.
-     * @param courseId
-     * @return Course
+     * <p>Retrieve Course by Id.</p>
+     * @param courseId Course Id
+     * @return Course record retrieved from db.
      */
     public Course getCourseById(long courseId) throws IllegalArgumentException
     {
@@ -73,9 +72,9 @@ public class CourseEJB {
         return course;
     }
     /**
-     * Check if the entity already exists.
-     * @param course
-     * @return boolean
+     * <p>Check if the entity already exists.</p>
+     * @param course Course to check
+     * @return boolean true or false.
      */
     public boolean isCourseExists(Course course)
     {
@@ -83,9 +82,9 @@ public class CourseEJB {
     }
     
     /**
-     * Check if course code already exists.
-     * @param course
-     * @return boolean
+     * <p>Check if course code already exists.</p>
+     * @param course course to check
+     * @return boolean true or false.
      */
     public boolean isCourseCodeExists(Course course)
     {
@@ -102,25 +101,22 @@ public class CourseEJB {
     }
     
     /**
-     * Retrieve all questions related to the course.
-     * @param courseId
-     * @return List Question
+     * <p>Retrieve all questions
+     * related to the course.</p>
+     * @param course Course for which questions are to be retrieved.
+     * @return List List of questions for the course.
      */
-    public List<Question> getQuestionsForCourse(long courseId)
+    public List<Question> getQuestionsForCourse(Course course)
             throws IllegalArgumentException
     {
-        List<Question> lstQuestions=new ArrayList<>();
-        Course course=getCourseById(courseId);
-        
-        lstQuestions=course.getQuestionList();
-        
+        List<Question> lstQuestions=course.getQuestionList();
         return lstQuestions;
      
     }
     /**
-     * Get list of Scheduled exam for a course
-     * @param courseId
-     * @return List Exam
+     * <p>Get list of Scheduled exam for a course</p>
+     * @param courseId Course Id
+     * @return List List of scheduled exams
      * @exception IllegalArgumentException
      */
     public List<Exam> getScheduledExam(long courseId)
@@ -133,6 +129,11 @@ public class CourseEJB {
         
     }
     
+    /**
+     * <p>Get course record for an exam</p>
+     * @param examId The exam id
+     * @return Course the required record.
+     */
     public Course getCourseByExamId(long examId)
             throws IllegalArgumentException
     {
@@ -144,5 +145,18 @@ public class CourseEJB {
         
     }
     
+    public void scheduleAnExam(long courseId, Exam exam)
+    {
+        Course course= getCourseById(courseId);
+        
+        List<Exam> examList=course.getScheduledExams();
+        
+        examList.add(exam);
+        
+        course.setScheduledExams(examList);
+        
+        updateCourse(course);
+        
+    }
     
 }

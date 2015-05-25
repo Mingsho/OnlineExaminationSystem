@@ -38,7 +38,7 @@ public class Student extends User implements Serializable {
    
    @OneToMany(fetch = FetchType.LAZY,
            cascade = CascadeType.PERSIST)
-   @JoinColumn(name="Student_Result_FK")
+   @JoinColumn(name="STUDENT_RESULT_FK")
    private List<Result> examResults;
    
    

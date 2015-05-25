@@ -42,6 +42,10 @@ public class CourseManager implements Serializable {
         
     }
     
+    /**
+     * <p>initialization method for vairables after the
+     * bean has been fully initialized</p>
+     */
     @PostConstruct
     public void init()
     {
@@ -54,7 +58,8 @@ public class CourseManager implements Serializable {
     }
     
     /**
-     * persist a new course
+     * <p>persist a new course
+     * to the db.</p>
      */
     public void createCourse()
     {
@@ -82,6 +87,10 @@ public class CourseManager implements Serializable {
         
     }
     
+    /**
+     * <p> action listener for course dropdown list</p>
+     * @param e event variable.
+     */
     public void dListCourses_SelectedIndexChanged(ValueChangeEvent e)
     {
         FacesContext fContext=FacesContext.getCurrentInstance();
@@ -91,6 +100,11 @@ public class CourseManager implements Serializable {
         sObjectId.put("selectedCourseId", selectedCourseId);
         
     }
+    
+    /**
+     * <p> action listener for student dropdown list</p>
+     * @param e event variable.
+     */
     public void dListStudents_SelectedIndexChanged(ValueChangeEvent e)
     {
         FacesContext fContext=FacesContext.getCurrentInstance();
@@ -100,36 +114,48 @@ public class CourseManager implements Serializable {
         sObjectId.put("selectedStudentId", selectedStudentId);
     }
    
+    /**
+     * <p>Enrol student to the selected course</p>
+     * @return String Outcome of the action method.
+     */
     public String enrolStudent()
     {
         FacesContext fContext=FacesContext.getCurrentInstance();
         Map<String,Object> sMap=fContext.getExternalContext().getSessionMap();
        
         try {
-            strTestString="Entered function!";
+            
             Object objSelectedCId=sMap.get("selectedCourseId");
             Object objSelectedSId=sMap.get("selectedStudentId");
 
-            if(objSelectedCId!=null && objSelectedSId!=null)
+            if(objSelectedCId!=null && objSelectedSId!=null) //check to see if session objects are not null
             {
                 long cId=(long)objSelectedCId;
                 long sId=(long)objSelectedSId;
                 
-                if(!studentEJB.isStudentEnrolled(cId,sId))
+                if(!studentEJB.isStudentEnrolled(cId,sId))//check to see if student is already enrolled?
                 {
                     Course tempCourse=courseEJB.getCourseById(cId);
                     Student tempStudent=studentEJB.getStudentById(sId);
                     
                     tempCourse.getEnrolledStudents().add(tempStudent);
+                    tempStudent.getEnrolledCourses().add(tempCourse);
                     
                     courseEJB.updateCourse(tempCourse);
+                    studentEJB.updateStudent(tempStudent);
+                    
+                    fContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Student enrolled into the course!",
+                    "The student has been successfully enrolled!"));
                 }
+                else
+                    fContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Student already enrolled into the selected course",
+                    "Selected student has already been enrolled into the course"));
 
             }
             
-            fContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Student enrolled into the course!",
-                    "The student has been successfully enrolled!"));
+            
         } 
         catch (Exception e) 
         {

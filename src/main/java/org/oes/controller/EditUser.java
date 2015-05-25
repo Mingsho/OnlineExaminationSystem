@@ -90,8 +90,5 @@ public class EditUser {
     {
         this.user=user;
     }
-    
-    
    
-    
 }

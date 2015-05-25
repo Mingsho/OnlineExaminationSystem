@@ -11,12 +11,15 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
 import java.util.Date;
 import java.util.List;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.TemporalType;
 
 
@@ -50,8 +53,14 @@ public class Exam implements Serializable {
     
     private float passPercentage;
     
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Result> results;
+    @OneToMany(fetch = FetchType.LAZY,
+            mappedBy = "exam",
+            cascade = CascadeType.PERSIST)
+    private List<Result> lstResults;
+    
+    @ManyToOne
+    @JoinColumn(name="COURSE_EXAM_FK")
+    private Course course;
     
     public Exam(){}
     
@@ -109,6 +118,22 @@ public class Exam implements Serializable {
     public void setPassPercentage(float ePassPercentage)
     {
         this.passPercentage=ePassPercentage;
+    }
+    public List<Result> getLstResult()
+    {
+        return this.lstResults;
+    }
+    public void setLstResult(List<Result> resultList)
+    {
+        this.lstResults=resultList;
+    }
+    public Course getCourse()
+    {
+        return this.course;
+    }
+    public void setCourse(Course course)
+    {
+        this.course=course;
     }
     
     //</editor-fold>

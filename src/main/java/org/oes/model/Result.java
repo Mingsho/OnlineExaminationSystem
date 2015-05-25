@@ -13,6 +13,8 @@ import javax.persistence.EnumType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Temporal;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.TemporalType;
@@ -36,6 +38,10 @@ public class Result implements Serializable {
     private int totalPassedQuestions;
     
     private int totalCorrectAnswers;
+    
+    @ManyToOne
+    @JoinColumn(name="EXAM_RESULT_FK")
+    private Exam exam;
     
     @Enumerated(EnumType.STRING)
     private PassStatus status;
@@ -88,6 +94,15 @@ public class Result implements Serializable {
     {
         this.status=stat;
     }
+    public Exam getExam()
+    {
+        return this.exam;
+    }
+    public void setExam(Exam exam)
+    {
+        this.exam=exam;
+    }
+    
     
     //</editor-fold>
     

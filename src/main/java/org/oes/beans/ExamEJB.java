@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import java.util.List;
 import org.oes.utilities.Constants;
 import org.oes.model.Exam;
+import org.oes.model.Course;
 
 /**
  *
@@ -24,13 +25,15 @@ public class ExamEJB {
     
     
     /**
-     * Schedule a new exam
-     * @param exam
+     * <p>Schedule a new exam</p>
+     * @param exam Exam to schedule
+     * @param course Course for the exam.
      * @return Exam 
      */
-    public Exam scheduleExam(Exam exam)
+    public Exam scheduleExam(Exam exam, Course course)
             throws IllegalArgumentException
     {
+        exam.setCourse(course);
         eManager.persist(exam);
         eManager.flush();
         return exam;
@@ -38,8 +41,8 @@ public class ExamEJB {
     }
     
     /**
-     * Get a list of all scheduled Exams
-     * @return List Exam
+     * <p>Get a list of all scheduled Exams</p>
+     * @return List List of all scheduled exams.
      */
     public List<Exam> getAllExams()
     {

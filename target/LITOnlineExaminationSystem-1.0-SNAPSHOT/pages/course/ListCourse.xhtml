@@ -1,0 +1,42 @@
+<ui:composition template="/templates/MainLayout.xhtml"
+            xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+            xmlns:h="http://xmlns.jcp.org/jsf/html"
+            xmlns:f="http://xmlns.jcp.org/jsf/core"
+            xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="pageTitle">List Course</ui:define>
+    <ui:define name="mainContent">
+        <f:view>
+            <fieldset>
+                <legend>Course List</legend>
+                <h:form id="frmCourseList" class="form-horizontal" role="form">
+                    <h:dataTable id="tblCourseList"
+                                 value="#{listCourse.lstCourse}"
+                                 binding="#{listCourse.tblCourses}"
+                                 var="course"
+                                 class="gridtable">
+                        
+                        <h:column>
+                            <f:facet name="header">Course ID</f:facet>
+                            <h:outputLabel value="#{course.courseID}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Course Code</f:facet>
+                            <h:outputLabel value="#{course.courseCode}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Course Name</f:facet>
+                            <h:outputLabel value="#{course.courseName}" />
+                        </h:column>
+                        <h:column>
+                            <h:commandLink value="Edit"
+                                           action="#{listCourse.editSelectedCourse()}">
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </fieldset>
+        </f:view>
+    </ui:define>
+</ui:composition>

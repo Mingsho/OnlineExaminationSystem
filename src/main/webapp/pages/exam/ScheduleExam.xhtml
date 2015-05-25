@@ -20,7 +20,8 @@
                     <div class="col-sm-6">
                         <h:selectOneMenu id="dListCourse"
                                          class="form-control"
-                                         value="#{scheduleExam.selectedCourseId}">
+                                         value="#{scheduleExam.selectedCourseId}"
+                                         valueChangeListener="#{scheduleExam.dListCourse_SelectedIndexChanged}">
                             
                             <f:selectItem itemLabel="---Select a course---" />
                             <f:selectItems value="#{scheduleExam.lstCourses}"

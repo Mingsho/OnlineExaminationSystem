@@ -49,11 +49,13 @@ public class ExaminationManager implements Serializable {
     private Question currentQuestion;
     private String nSelectedOption;
     private int nCurrentIndex;
-    private String strTest;
     
     private List<Question> lstQuestion;
     private Map<Long,Integer> userAttempt;
     
+    /**
+     * <p>ExaminationManager constructor</p>
+     */
     public ExaminationManager()
     {
         nCurrentIndex=0;
@@ -78,7 +80,7 @@ public class ExaminationManager implements Serializable {
         student=studentEJB.getStudentFromBaseInstance(loginManager.getUser());
         
         course=courseEJB.getCourseByExamId(exam.getExamID());
-        lstQuestion=course.getQuestionList();
+        lstQuestion=courseEJB.getQuestionsForCourse(course);
         
         if(lstQuestion!=null)
             currentQuestion=lstQuestion.get(nCurrentIndex);
@@ -96,8 +98,6 @@ public class ExaminationManager implements Serializable {
         
         try {
             
-            strTest="Button entered";
-            //if(selectedOption!=null)
             if(nCurrentIndex<=(lstQuestion.size()-0x1)) //is counter less than no of questions?
             {
                 if(null!=nSelectedOption)
@@ -134,11 +134,13 @@ public class ExaminationManager implements Serializable {
             }
             else
             {
-                strTest="Questions finished";
                 Map<String, Object> sObjectMap=fContext.getExternalContext().getSessionMap();
                 
                 //persist the calcuated result.
                 Result result=calculateResult();
+                
+                result=resultEJB.persistResult(result, exam);
+                
                 result=studentEJB.insertResult(result, student.getUserID());
                 
                 sObjectMap.put("studentResult", result); //store user result in session.
@@ -153,7 +155,6 @@ public class ExaminationManager implements Serializable {
         }
         catch (Exception e) 
         {
-            strTest="Exception occured";
             fContext.addMessage(null, new FacesMessage(e.getMessage()));
             
         }
@@ -161,11 +162,13 @@ public class ExaminationManager implements Serializable {
         return null;
     }
     /**
-     * Calculate students result
+     * <p>Calculate students result</p>
+     * @return Result caluclated result object
      */
     private Result calculateResult()
             throws NullPointerException
     {
+        int nTotalQuestions=lstQuestion.size();
         int nTotalCorrect=0;
         int nTotalPassed=0;
         int nTotalIncorrect=0;
@@ -193,10 +196,21 @@ public class ExaminationManager implements Serializable {
         result.setTotalQuestionsAttempted(nTotalAttempted);
         result.setTotalPassedQuestions(nTotalPassed);
         result.setTotalCorrectAnswers(nTotalCorrect);
-        result.setPassedStatus(PassStatus.PASSED);
+        result.setPassedStatus(determinePassStatus(nTotalCorrect,nTotalQuestions));
         
         return result;
         
+    }
+    
+    private PassStatus determinePassStatus(int nTotalQuestions,
+            int nTotalCorrect)
+    {
+        double percentage=(nTotalCorrect/nTotalQuestions)*100;
+        
+        if(percentage>60)
+            return PassStatus.PASSED;
+        else
+            return PassStatus.FAILED;
     }
     public Exam getExam()
     {
@@ -210,15 +224,6 @@ public class ExaminationManager implements Serializable {
     {
         return this.currentQuestion;
     }
-    public String getTestString()
-    {
-        return this.strTest;
-    }
-    public void setTestString(String testString)
-    {
-        this.strTest= testString;
-    }
-    
     public String getOptionSelected()
     {
         return this.nSelectedOption;

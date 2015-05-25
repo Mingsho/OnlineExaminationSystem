@@ -20,7 +20,8 @@
                         <div class="col-sm-6">
                             <h:selectOneMenu id="dListCourse"
                                              value="#{questionEntry.selectedCourseId}"
-                                             class="form-control">
+                                             class="form-control"
+                                             valueChangeListener="#{questionEntry.dListCourse_SelectedIndexChanged}">
                                 <f:selectItem itemLabel="---Select a Course---"/>
                                 <f:selectItems value="#{questionEntry.courseList}"
                                                var="course"
@@ -141,12 +142,33 @@
                             </h:selectOneRadio>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <h:outputLabel id="lblDefaultMarks"
+                                       for="txtDefaultMarks"
+                                       class="col-sm-2 control-label"
+                                       value="Default Marks: " />
+                        <div class="col-sm-6">
+                            <h:inputText id="txtDefaultMarks"
+                                        a:placeholder="e.g. 10"
+                                        value="#{questionEntry.question.defaultMarks}"
+                                        class="form-control"
+                                        required="true"
+                                        requiredMessage="*Default marks cannot be blank">
+                                
+                                <f:validateRequired/>
+                                             
+                            </h:inputText>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:message for="txtDefaultMarks" style="color: red" />
+                        </div>
+                    </div>
                     
                     <div class="col-sm-8">
                         <h:commandButton id="btnCreateQuestion"
                                          value="Create Question"
                                          action="#{questionEntry.createQuestion()}"
-                                         class="btn btn-primary btn-md" >
+                                         class="btn btn-primary btn-md pull-right" >
                         </h:commandButton>
                     </div>
                     <div id="message1">

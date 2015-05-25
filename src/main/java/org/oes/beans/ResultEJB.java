@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import javax.ejb.Stateless;
 import org.oes.model.Result;
+import org.oes.model.Exam;
 import org.oes.utilities.Constants;
 /**
  *
@@ -26,8 +27,9 @@ public class ResultEJB {
      * @param result entity
      * @return Result persisted entity.
      */
-    public Result persistResult(Result result)
+    public Result persistResult(Result result, Exam exam)
     {
+        result.setExam(exam);
         eManager.persist(result);
         eManager.flush();
         return result;

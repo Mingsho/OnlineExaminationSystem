@@ -6,7 +6,27 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        MyResult page!
+        <h:outputLabel id="lblExamTitle"
+                       value="Exam Title: " />
+        <h:outputLabel id="lblExamTitleValue"
+                       value="#{resultManager.result.exam.examTitle}" /><br/>
+        <h:outputLabel id="lblExamDate"
+                       value="Exam taken date: "/>
+        <h:outputLabel id="lblExamDateValue"
+                       value="#{resultManager.result.examAttemptedDate}"/><br/>
+        <h:outputLabel id="lblTotalAttempted"
+                       value="Total Questions Attempted: " />
+        <h:outputLabel id="lblTotalAttemptedValue"
+                       value="#{resultManager.result.totalQuestionsAttempted}" /><br/>
+        <h:outputLabel id="lblTotalPassed"
+                       value="Total Passed: " />
+        <h:outputLabel id="lblTotalPassedValue"
+                       value="#{resultManager.result.totalPassedQuestions}" /><br/>
+        <h:outputLabel id="lblTotalCorrect"
+                       value="Total Correct: " />
+        <h:outputLabel id="lblTotalCorrectValue"
+                       value="#{resultManager.result.totalCorrectAnswers}" />
+        
     </h:body>
 </html>
 

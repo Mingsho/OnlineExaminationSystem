@@ -49,13 +49,14 @@ public class Course implements Serializable {
             cascade = CascadeType.PERSIST)
     private List<Student> enrolledStudents;
     
-    @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name = "Course_Exam_FK")
+    @OneToMany(fetch=FetchType.LAZY,
+            cascade=CascadeType.PERSIST,
+            mappedBy = "course")
     private List<Exam> scheduledExams;
     
     @OneToMany(fetch=FetchType.LAZY,
-            cascade = CascadeType.PERSIST)
-    @JoinColumn(name="Course_Question_FK")
+            cascade = CascadeType.PERSIST,
+            mappedBy = "course")
     private List<Question> questionList;
     
     

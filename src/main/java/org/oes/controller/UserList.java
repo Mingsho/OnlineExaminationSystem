@@ -29,6 +29,10 @@ public class UserList {
     private HtmlDataTable tblUserList;
     private User userToEdit;
     
+    /**
+     * <p>method to initialize vairables
+     * after the bean has been initialized</p>
+     */
     @PostConstruct
     public void init()
     {

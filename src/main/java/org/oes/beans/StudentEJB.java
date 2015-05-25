@@ -57,6 +57,12 @@ public class StudentEJB {
         
     }
     
+    /**
+     * <p>Merge the student entity into the current
+     * persistence context</p>
+     * @param std Student record to merge
+     * @return Student the merged record.
+     */
     public Student updateStudent(Student std)
     {
         eManager.merge(std);
@@ -151,11 +157,21 @@ public class StudentEJB {
         return bRetVal;
     }
     
+    /**
+     * <p>Insert student's result 
+     * into the db</p>
+     * @param result the result object to persist
+     * @param studentId the associated student's id
+     * @return Result the persisted result object.
+     */
     public Result insertResult(Result result, long studentId)
     {
-        Student student=eManager.find(Student.class, studentId);
+        List<Result> stdResultTemp=new ArrayList<>();
         
-        student.getExamResults().add(result);
+        Student student=getStudentById(studentId);
+        stdResultTemp=student.getExamResults();
+        
+        stdResultTemp.add(result);
         
         updateStudent(student);
         

@@ -16,6 +16,8 @@ import javax.persistence.NoResultException;
 import javax.annotation.PostConstruct;
 import org.oes.model.User;
 import org.oes.model.Student;
+import org.oes.model.Teacher;
+import org.oes.model.Admin;
 import org.oes.beans.UserEJB;
 import org.oes.utilities.SessionHandler;
 
@@ -62,7 +64,7 @@ public class LoginManager implements Serializable {
             FacesContext.getCurrentInstance().addMessage(
                         null,
                         new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Invalid Login!",
+                        "Invalid username or password. Please try again.!",
                         "Please try again!"));
         }
         
@@ -104,7 +106,14 @@ public class LoginManager implements Serializable {
     }
     public String getUserType()
     {
-        return this.userType;
+        if(user instanceof Admin)
+            userType="Administrator";
+        else if(user instanceof Teacher)
+            userType="Teacher";
+        else
+            userType="Student";
+        
+        return userType;
     }
     public void setUserType(String strUserType)
     {

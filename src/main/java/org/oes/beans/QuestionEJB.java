@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import org.oes.model.Question;
+import org.oes.model.Course;
 import org.oes.utilities.Constants;
 
 
@@ -29,8 +30,10 @@ public class QuestionEJB {
      * @return Question
      * @exception EntityExistsException.
      */
-    public Question createQuestion(Question question) throws EntityExistsException
+    public Question createQuestion(Question question, Course course)
+            throws EntityExistsException
     {
+        question.setCourse(course);
         eManager.persist(question);
         eManager.flush();
         return question;

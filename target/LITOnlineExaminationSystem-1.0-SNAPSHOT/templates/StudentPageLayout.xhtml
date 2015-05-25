@@ -34,20 +34,26 @@
                     </button>
                     <a class="navbar-brand" href="#">Home</a>
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#">My Profile</a>
-                        </li>
-                        <li>
-                            <a href="#">Exams</a>
-                        </li>
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                    </ul>
-                </div>
+                
+                <h:form id="frmStudentNav">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="#">My Profile</a>
+                            </li>
+                            <li>
+                                <a href="#">Exams</a>
+                            </li>
+                            <li>
+                                <h:commandLink action="#{loginManager.logout()}"
+                                                       value="Logout" />
+                            </li>
+                            <li>
+                                <a href="#">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->

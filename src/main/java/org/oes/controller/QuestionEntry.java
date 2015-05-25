@@ -10,7 +10,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.ejb.EJB;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import org.oes.model.OptionNumber;
 import org.oes.model.Question;
 import org.oes.model.Course;
@@ -35,32 +39,70 @@ public class QuestionEntry {
     private List<Course> courseList;
     private long selectedCourseId;
     
-    public void createQuestion()
-    {
-        try {
-            
-        } catch (Exception e) {
-        }
-        if (selectedCourseId>0) {
-            
-            List<Question> lstQuestion= new ArrayList<>();
-            lstQuestion.add(question);
-            Course course=courseEJB.getCourseById(selectedCourseId);
-            course.setQuestionList(lstQuestion);
-            
-            courseEJB.updateCourse(course);
-            
-            
-        }
-        this.question=new Question();
-    }
     
+    /**
+     * <p>Initialization method after
+     * the bean has been completely
+     * initialized</p>
+     */
     @PostConstruct
     public void init()
     {
         this.question=new Question();
         this.courseList=courseEJB.getAllCourse();
     }
+    
+    /**
+     * <p>Persist new question for
+     * the selected course</p>
+     * @return String Outcome of the action method.
+     */
+    public String createQuestion()
+    {
+        FacesContext fContext=FacesContext.getCurrentInstance();
+        Map<String,Object> sMap= fContext.getExternalContext().getSessionMap();
+        try {
+            
+            Object objSelectedCourseId=sMap.get("selectedCidQuestion");
+            
+            if (objSelectedCourseId!=null)
+            {
+                selectedCourseId=(long)objSelectedCourseId;
+                Course course=courseEJB.getCourseById(selectedCourseId);
+                questionEJB.createQuestion(question, course);
+                
+                fContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                        "New question added for the course!",
+                        "Question added to the selected course"));
+                
+                this.question=new Question();
+            
+            }
+        
+            
+        } 
+        catch (Exception e)
+        {
+            //redirect to error page
+            return "/pages/ErrorPage.xhtml?faces-redirect=true";
+        }
+       return null;
+    }
+    
+    /**
+     * <p>action method for the course dropdown list</p>
+     * @param e variable for the valuechange event.
+     */
+    public void dListCourse_SelectedIndexChanged(ValueChangeEvent e)
+    {
+        FacesContext fContext=FacesContext.getCurrentInstance();
+        Map<String,Object> sObjectId= fContext.getExternalContext().getSessionMap();
+        
+        selectedCourseId=(long)e.getNewValue();//get the new selected value of the drop down.
+        sObjectId.put("selectedCidQuestion", selectedCourseId);
+    }
+    
+    
     
     public OptionNumber[] getOptionNumbers()
     {
