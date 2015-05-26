@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.oes.model.User;
 import org.oes.model.Student;
+import org.oes.model.UserAccount;
 import org.oes.utilities.Constants;
 
 /**
@@ -92,10 +93,10 @@ public class UserEJB {
         return bRetVal;
     }
     /**
-     * Get user by username
-     * @param uName
-     * @param pWd
-     * @return User
+     * <p>Get user by username</p>
+     * @param uName The username
+     * @param pWd The Password
+     * @return User The required user object.
      */
     public User getByUnamePwd(String uName, String pWd) throws NoResultException
     {
@@ -113,7 +114,7 @@ public class UserEJB {
     }
     /**
      * <p>Get all users who are students.</p>
-     * @return List User
+     * @return List List of Student users.
      */
     public List<User> getAllStudents()
     {
@@ -132,7 +133,18 @@ public class UserEJB {
         return lstStudents;
             
     }
-    
+    /**
+     * <p>Get User account of the user</p>
+     * @param user User whose account is required.
+     * @return  UserAccount The required UserAccount.
+     */
+    public UserAccount getUserAccount(User user)
+    {
+        UserAccount uAccount=user.getUserAccount();
+        
+        return uAccount;
+        
+    }
    
     
 }

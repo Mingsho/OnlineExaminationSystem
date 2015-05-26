@@ -32,17 +32,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Home</a>
+                    <h:link class="navbar-brand"
+                            outcome="/pages/StudentWelcomePage.xhtml" value="Home"/>
                 </div>
                 
                 <h:form id="frmStudentNav">
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li>
-                                <a href="#">My Profile</a>
+                                <h:link outcome="/pages/EditProfile" value='My Profile' />
                             </li>
                             <li>
-                                <a href="#">Exams</a>
+                                <h:link outcome="/pages/ChangePassword" value="Change Password" />
+                            </li>
+                            <li>
+                                <h:link outcome="/pages/MyExams" value="Exams" />
                             </li>
                             <li>
                                 <h:commandLink action="#{loginManager.logout()}"
@@ -67,9 +71,9 @@
                     <p>
                         Welcome, <h:outputLabel id="lblCurrentUser"
                                                 value="#{examDetail.loggedInUser.firstName}" />
-                        . Find below a list of your enrolled courses and the exams
-                        scheduled for these courses. When you are ready, click the 'Take Exam' link to start
-                        your exam. Best of Luck!!
+                        . This is your portal to the 'Online Examination System'. Please refer to the
+                        <a href="#">Student's manual</a> to learn more about using this online platform.
+                        Best of Luck for your Exams!!
                     </p>
                     
                     <ui:insert name="mainContent"/>

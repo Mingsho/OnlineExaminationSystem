@@ -4,102 +4,96 @@
  * and open the template in the editor.
  */
 package org.oes.controller;
-
 import javax.inject.Named;
 import javax.inject.Inject;
 import javax.enterprise.context.RequestScoped;
 import javax.ejb.EJB;
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import javax.annotation.PostConstruct;
 import java.util.Map;
+import org.oes.model.UserAccount;
 import org.oes.model.User;
 import org.oes.beans.UserEJB;
-import org.oes.model.Student;
+
 /**
  *
  * @author Mingso
  */
-
 @Named
 @RequestScoped
-public class EditUser {
+public class ChangePassword {
     
-    @EJB private UserEJB userEJB;
+    @EJB UserEJB userEJB;
     @Inject LoginManager loginManager;
     private User user;
+    private UserAccount userAccount;
     
     /**
-     * <p>Initialize essential bean
-     * variables, after all dependencies
-     * are available</P>
+     * <p>Intialization method for
+     * initializing the vairables after
+     * the bean has been initialized</p>
      */
     @PostConstruct
     public void init()
     {
         FacesContext fContext=FacesContext.getCurrentInstance();
-        Map<String, Object> sObj=fContext.getExternalContext().getSessionMap();
+        Map<String, Object> sObjMap= fContext.getExternalContext().getSessionMap();
         
-        user=(User)sObj.get("userToEdit");
-        
-        if(user==null) //if user is null, the view is student's view.
+        if(sObjMap.get("userToEdit")!=null) //check if the session object has the user to edit.
+            user=(User)sObjMap.get("userToEdit");
+        else //else retrieve info of the logged in user.
             user=loginManager.getUser();
+        
+        userAccount= userEJB.getUserAccount(user);
     }
     
     /**
-     * <p>Update new values of
-     * the User entity</p>
-     * @return String
+     * <p>Update the user password</p>
+     * @return String The outcome.
      */
     public String update()
     {
         FacesContext fContext=FacesContext.getCurrentInstance();
         
         try {
+            
             user=userEJB.updateUserProfile(user);
             
             fContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "User profile updated!", "Profile updated for the user profile."));
-        }
-        catch(IllegalArgumentException iEx)
+                    "The password has been changed successfull!", "The user password has been changed!"));
+        } 
+        catch (Exception e)
         {
-            return "/pages/ErrorPage.xhtml?faces-redirect=true";
-        }
-        catch (Exception e) {
-            
             return "/pages/ErrorPage.xhtml?faces-redirect=true";
         }
         return null;
     }
     
     /**
-     * <p>Cancel the current
-     * update, return to the user list</p>
-     * @return String
+     * <p>Cancel action method to redirect
+     * the user</p>
+     * @return String Outcome
      */
     public String cancel()
     {
-        if(!(user instanceof Student))
-            return "ListUsers?faces-redirect=true";
-        else
-            return "/pages/StudentWelcomePage.xhtml?faces-redirect=true";
+        return "StudentWelcomePage?faces-redirect=true";
     }
     
-    /**
-     * <p>Get User instance</P>
-     * @return User
-     */
     public User getUser()
     {
         return this.user;
     }
-    /**
-     * <p>Set current instance to 
-     * user entity</P>
-     */
     public void setUser(User user)
     {
-        this.user=user;
+        this.user= user;
     }
-   
+    public UserAccount getUserAccount()
+    {
+        return this.userAccount;
+    }
+    public void setUserAccount(UserAccount uAccount)
+    {
+        this.userAccount=uAccount;
+    }
 }

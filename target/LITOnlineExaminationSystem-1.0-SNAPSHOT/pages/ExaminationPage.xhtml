@@ -8,61 +8,74 @@
         <script src="../resources/js/jquery-1.11.2.js" type="text/javascript"></script>
         <h:outputScript library="js" name="jquery.timer.js"/>
         <h:outputScript library="js" name="oescountdowntimer.js"/>
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
         <h:outputStylesheet library="css" name="quizStyle.css" />
         
         
     </h:head>
     <h:body>
-        <div class="header">
-            <h3>Example 2 - Countdown Timer</h3>
-            <span id="countdown">05:00:00</span>
-        </div>
-        <div class="cssBody">
-            <h:form id="example2form" class="form-horizontal">
-            <!--<input type='button' value='Play/Pause' onclick='Example2.Timer.toggle();' />
-            <input type='button' value='Stop/Reset' onclick='Example2.resetCountdown();' />
-            <input type='text' name='startTime' value='300' style='width:30px;' />-->
+        <div class="contain">
+            <div class="header">
+                <h3>Example 2 - Countdown Timer</h3>
+                <span id="countdown">05:00:00</span>
+                <h:form id="frmExamHeader">
+                    <div class="page-header text-center">
+                        <h1>
+                            <h:outputLabel id="lblTest"
+                                        value="#{examinationManager.exam.examTitle}" />
+                        </h1>
+                    </div>
+                </h:form>
+            </div>
+            <div class="content">
+                <div class="data">
+                    <h:form id="example2form" class="form-horizontal">
+                <!--<input type='button' value='Play/Pause' onclick='Example2.Timer.toggle();' />
+                <input type='button' value='Stop/Reset' onclick='Example2.resetCountdown();' />
+                <input type='text' name='startTime' value='300' style='width:30px;' />-->
 
-            <h:outputLabel id="lblTest" value="#{examinationManager.exam.examTitle}" />
-            <br/>
+                    <br/>
 
 
-            <h:outputLabel id="lblQuestion"
-                           value="#{examinationManager.currentQuestion.question}" />
+                    <h:outputLabel id="lblQuestion"
+                                   value="#{examinationManager.currentQuestion.question}" />
 
-            <h:selectOneRadio id="rdBtnOptions"
-                                value="#{examinationManager.optionSelected}"
-                                layout="pageDirection"
-                                class="radio">
+                    <h:selectOneRadio id="rdBtnOptions"
+                                        value="#{examinationManager.optionSelected}"
+                                        layout="pageDirection"
+                                        class="radio">
 
 
-                        <f:selectItem itemLabel="#{examinationManager.currentQuestion.option1}"
-                                      itemValue="1"/>
-                        <f:selectItem itemLabel="#{examinationManager.currentQuestion.option2}"
-                                      itemValue="2"/>
-                        <f:selectItem itemLabel="#{examinationManager.currentQuestion.option3}"
-                                      itemValue="3"/>
-                        <f:selectItem itemLabel="#{examinationManager.currentQuestion.option4}"
-                                      itemValue="4"/>
-                        <f:selectItem itemLabel="Pass"
-                                      itemValue="5"/>
+                                <f:selectItem itemLabel="#{examinationManager.currentQuestion.option1}"
+                                              itemValue="1"/>
+                                <f:selectItem itemLabel="#{examinationManager.currentQuestion.option2}"
+                                              itemValue="2"/>
+                                <f:selectItem itemLabel="#{examinationManager.currentQuestion.option3}"
+                                              itemValue="3"/>
+                                <f:selectItem itemLabel="#{examinationManager.currentQuestion.option4}"
+                                              itemValue="4"/>
+                                <f:selectItem itemLabel="Pass"
+                                              itemValue="5"/>
 
-            </h:selectOneRadio>
-            <hr/>
+                    </h:selectOneRadio>
+                <hr/>
 
-            <h:commandLink id="cmdTest"
-                           value="Next"
-                           action="#{examinationManager.nextQuestion}">
-                <f:ajax execute="example2form" render="example2form" /> 
+                <h:commandLink id="cmdTest"
+                               value="Next"
+                               class="btn btn-primary btn-md"
+                               action="#{examinationManager.nextQuestion}">
+                    <f:ajax execute="example2form" render="example2form" /> 
 
-            </h:commandLink>
-        <div>
-            <h:messages globalOnly="true" />
-        </div>
-    </h:form>
-    </div>
-        <div class="footer">
-            footer section
+                </h:commandLink>
+                <div>
+                    <h:messages globalOnly="true" />
+                </div>
+                </h:form>
+            </div>
+                <div class="footer">
+                    This is the footer section
+                </div>
+            </div>
         </div>
     </h:body>
 </html>

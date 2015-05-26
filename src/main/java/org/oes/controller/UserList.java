@@ -39,7 +39,11 @@ public class UserList {
         lstUsers=userEJB.getAllUser();
     }
     
-    
+    /**
+     * <p>action method to redirect 
+     * to the EditUser page</p>
+     * @return String Outcome
+     */
     public String editSelectedUser()
     {
         FacesContext fContext=FacesContext.getCurrentInstance();
@@ -57,6 +61,29 @@ public class UserList {
             return "/pages/ErrorPage.xhtml?faces-redirect=true";
         }
         return "EditUser?faces-redirect=true";
+    }
+    
+    /**
+     * <p>method to redirect
+     * to the UserPasswordChange page</p>
+     * @return String Outcome of the action method.
+     */
+    public String updateSelectedUserPassword()
+    {
+        FacesContext fContext=FacesContext.getCurrentInstance();
+        Map<String, Object> sObjectMap=fContext.getExternalContext().getSessionMap();
+        
+        try {
+            userToEdit=(User)tblUserList.getRowData();
+            
+            sObjectMap.put("userToEdit", userToEdit);
+            
+        } 
+        catch (Exception e)
+        {
+            return "/pages/ErrorPage.xhtml?faces-redirect=true";
+        }
+        return "UserPasswordChange?faces-redirect=true";
     }
     
     public HtmlDataTable getTblUserList()

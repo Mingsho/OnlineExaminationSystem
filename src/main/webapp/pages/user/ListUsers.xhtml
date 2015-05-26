@@ -32,7 +32,10 @@
                             <h:commandLink value="Edit"
                                            action="#{userList.editSelectedUser()}">
                             </h:commandLink>|
-                            <h:commandLink value="Change Password"></h:commandLink>
+                            <h:commandLink value="Change Password"
+                                           action="#{userList.updateSelectedUserPassword()}">
+                                               
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:form>

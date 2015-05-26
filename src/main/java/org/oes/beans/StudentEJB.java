@@ -88,7 +88,8 @@ public class StudentEJB {
      */
     public List<Student> getAllStudents()
     {
-        TypedQuery<Student> lstStudents=eManager.createNamedQuery("Student.GetAll", Student.class);
+        TypedQuery<Student> lstStudents=eManager.
+                createNamedQuery("Student.GetAll", Student.class);
         
         return lstStudents.getResultList();
     }
@@ -177,6 +178,19 @@ public class StudentEJB {
         
         return result;
         
+    }
+    
+    /**
+     * <p>Method to retrieve the list of
+     * all results that the student has sat for</p>
+     * @param student Student object for whom the result is to be retrieved.
+     * @return List List of student's results.
+     */
+    public List<Result> getStudentResults(Student student)
+    {
+        List<Result> lstResult=student.getExamResults();
+        
+        return lstResult;
     }
     
 }

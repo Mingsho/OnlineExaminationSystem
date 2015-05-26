@@ -54,7 +54,6 @@ public class CourseManager implements Serializable {
         lstCourse=courseEJB.getAllCourse();
         lstStudent=studentEJB.getAllStudents();
         
-        strTestString="Starting!";
     }
     
     /**
@@ -125,6 +124,7 @@ public class CourseManager implements Serializable {
        
         try {
             
+            //get selected course id and selected student id.
             Object objSelectedCId=sMap.get("selectedCourseId");
             Object objSelectedSId=sMap.get("selectedStudentId");
 
@@ -154,7 +154,6 @@ public class CourseManager implements Serializable {
                     "Selected student has already been enrolled into the course"));
 
             }
-            
             
         } 
         catch (Exception e) 
