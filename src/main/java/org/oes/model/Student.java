@@ -36,14 +36,20 @@ public class Student extends User implements Serializable {
            inverseJoinColumns = @JoinColumn(name= "Course_FK"))
    private List<Course> enrolledCourses;
    
-   @OneToMany(fetch = FetchType.LAZY,
-           cascade = CascadeType.PERSIST)
-   @JoinColumn(name="STUDENT_RESULT_FK")
+   @OneToMany(fetch = FetchType.EAGER,
+           cascade = CascadeType.PERSIST,
+           mappedBy = "student")
    private List<Result> examResults;
    
    
    public Student(){}
    
+   /**
+    * <p>Get student instance
+    * from the base instance</p>
+    * @param user The user instance.
+    * @return Student the returned student instance.
+    */
    public Student getStudentFromBaseInstance(User user)
    {
        Student std=new Student();

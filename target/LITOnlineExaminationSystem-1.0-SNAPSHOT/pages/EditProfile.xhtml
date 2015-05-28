@@ -18,7 +18,7 @@
                                        class="col-sm-2 control-label" />
                         <div class="col-sm-6">
                             <h:inputText id="txtFirstName"
-                                         value="#{editUser.user.firstName}"
+                                         value="#{editStudentProfile.user.firstName}"
                                          class="form-control"
                                          required="true"
                                          requiredMessage="*First Name cannot be blank!">
@@ -38,7 +38,7 @@
                                        class="col-sm-2 control-label" />
                         <div class="col-sm-6">
                             <h:inputText id="txtMiddleName"
-                                         value="#{editUser.user.middleName}"
+                                         value="#{editStudentProfile.user.middleName}"
                                          class="form-control">
                             </h:inputText>
                         </div>
@@ -53,7 +53,7 @@
                                        class="col-sm-2 control-label" />
                         <div class="col-sm-6">
                             <h:inputText id="txtLastName"
-                                         value="#{editUser.user.lastName}"
+                                         value="#{editStudentProfile.user.lastName}"
                                          class="form-control"
                                          required="true"
                                          requiredMessage="*Last Name cannot be blank">
@@ -72,7 +72,7 @@
                                        class="col-sm-2 control-label" />
                         <div class="col-sm-6">
                             <h:inputText id="txtContactNumber"
-                                         value="#{editUser.user.contactNumber}"
+                                         value="#{editStudentProfile.user.contactNumber}"
                                          class="form-control">
                             </h:inputText>
                         </div>
@@ -87,7 +87,7 @@
                                        class="col-sm-2 control-label" />
                         <div class="col-sm-6">
                             <h:inputText id="txtAddress"
-                                         value="#{editUser.user.address}"
+                                         value="#{editStudentProfile.user.address}"
                                          class="form-control">
                                              
                             </h:inputText>
@@ -103,7 +103,7 @@
                                        class="col-sm-2 control-label" />
                         <div class="col-sm-6">
                             <h:inputText id="txtEmail"
-                                         value="#{editUser.user.emailAddress}"
+                                         value="#{editStudentProfile.user.emailAddress}"
                                          class="form-control">
                                 <f:validateRegex pattern=".+\@.+\..+"/>
                                              
@@ -117,13 +117,13 @@
                         <h:commandButton id="btnUpdate"
                                          value="Update"
                                          class="btn btn-primary btn-md pull-right"
-                                         action="#{editUser.update()}">
+                                         action="#{editStudentProfile.update()}">
                                              
                         </h:commandButton>&#160;
                         <h:commandButton id="btnCancel"
                                          value="Cancel"
                                          class="btn btn-primary btn-md pull-right"
-                                         action="#{editUser.cancel()}">
+                                         action="#{editStudentProfile.cancel()}">
                                              
                         </h:commandButton>
                                          

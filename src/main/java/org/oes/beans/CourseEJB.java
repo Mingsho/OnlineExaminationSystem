@@ -22,6 +22,8 @@ import org.oes.utilities.Constants;
 /**
  *
  * @author Mingso
+ * Stateless session bean related to
+ * course business logic.
  */
 @Stateless
 public class CourseEJB {
@@ -145,6 +147,11 @@ public class CourseEJB {
         
     }
     
+    /**
+     * <p>Schedule and exam for a course</p>
+     * @param exam the exam object
+     * @param courseId id of the course to schedule.
+     */
     public void scheduleAnExam(long courseId, Exam exam)
     {
         Course course= getCourseById(courseId);
@@ -157,6 +164,46 @@ public class CourseEJB {
         
         updateCourse(course);
         
+    }
+    
+    /**
+     * <p>Method to return total student
+     * enrolment per course</p>
+     * @return List<Object[]> list of object types
+     * representing the scalar values.
+     */
+    public List<Object[]> totalEnrolmentsPerCourse()
+    {
+        String strSql="select course.COURSENAME, count(enrolment.STUDENT_FK) AS \"Total Students\" from course inner join\n" +
+                    "enrolment on course.COURSEID=enrolment.COURSE_FK\n" +
+                    "group by course.COURSENAME";
+        
+        Query query= eManager.createNativeQuery(strSql);
+        
+        List<Object[]> result= query.getResultList();
+        
+        return result;
+    }
+    
+    /**
+     * <p>Method to return total questions
+     * per course</p>
+     * @return List<Object[]> List of object types
+     * representing the scalar values.
+     */
+    public List<Object[]> totalQuestionsPerCourse()
+    {
+        String strSql="select course.COURSENAME, count(question.QUESTIONID) as \"Total Questions\" from course\n" +
+                    "inner join question on course.COURSEID=question.COURSE_QUESTION_FK\n" +
+                    "where course.COURSEID=1\n" +
+                    "Group by course.COURSENAME";
+        
+        Query query=eManager.createNativeQuery(strSql);
+        
+        List<Object[]> result=query.getResultList();
+        
+        return result;
+                
     }
     
 }

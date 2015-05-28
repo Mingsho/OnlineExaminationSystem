@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 /**
  *
  * @author Mingso
+ * Class to filter the request, response 
  */
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"*.xhtml"})
 public class AuthFilter implements Filter {
@@ -30,7 +31,19 @@ public class AuthFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
          
     }
- 
+    
+    
+    /**
+     * <p>Method to perform the
+     * filtering operations on
+     * incoming response and 
+     * outgoing requests</p>
+     * @param request the request object
+     * @param response the response object
+     * @param chain the object to view the 
+     * invoked chain of the filtered request
+     * for a resource.
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
          try {

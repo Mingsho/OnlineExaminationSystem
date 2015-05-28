@@ -54,6 +54,9 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Exam Start Date</f:facet>
+                            <h:outputText value="#{exam.examStartDate}">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                            </h:outputText>
                         </h:column>
                         <h:column>
                             <f:facet name="header"></f:facet>

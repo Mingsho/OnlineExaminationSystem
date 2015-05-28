@@ -16,6 +16,8 @@ import org.oes.utilities.Constants;
 /**
  *
  * @author Mingso
+ * Stateless session bean
+ * for admin related business logic
  */
 @Stateless
 public class AdminEJB {

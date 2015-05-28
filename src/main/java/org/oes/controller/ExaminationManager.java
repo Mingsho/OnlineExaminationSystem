@@ -16,6 +16,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 import org.oes.model.Exam;
 import org.oes.model.Course;
@@ -25,7 +26,6 @@ import org.oes.model.Student;
 import org.oes.model.OptionNumber;
 import org.oes.model.PassStatus;
 import org.oes.beans.CourseEJB;
-import org.oes.beans.ResultEJB;
 import org.oes.beans.StudentEJB;
 
 
@@ -39,7 +39,6 @@ public class ExaminationManager implements Serializable {
     
     
     @EJB private CourseEJB courseEJB;
-    @EJB private ResultEJB resultEJB;
     @EJB private StudentEJB studentEJB;
     @Inject LoginManager loginManager;
     
@@ -51,6 +50,7 @@ public class ExaminationManager implements Serializable {
     private int nCurrentIndex;
     
     private List<Question> lstQuestion;
+    private List<Question> examQuestionList;
     private Map<Long,Integer> userAttempt;
     
     /**
@@ -59,7 +59,6 @@ public class ExaminationManager implements Serializable {
     public ExaminationManager()
     {
         nCurrentIndex=0;
-        
     }
     
     /**
@@ -79,12 +78,27 @@ public class ExaminationManager implements Serializable {
         
         student=studentEJB.getStudentFromBaseInstance(loginManager.getUser());
         
-        course=courseEJB.getCourseByExamId(exam.getExamID());
-        lstQuestion=courseEJB.getQuestionsForCourse(course);
+        course=courseEJB.getCourseByExamId(exam.getExamID());//get related course of the exam
+        lstQuestion=courseEJB.getQuestionsForCourse(course);// retrieve the entire question set
         
         if(lstQuestion!=null)
-            currentQuestion=lstQuestion.get(nCurrentIndex);
+        {
+            examQuestionList=getExamQuestionList(lstQuestion);
+            currentQuestion=examQuestionList.get(nCurrentIndex);
+        }
         
+    }
+    
+    private List<Question> getExamQuestionList(List<Question> list)
+    {
+        List<Question> lstTemp= new ArrayList<>();
+        
+        if(list.size()<=exam.getTotalQuestions())
+            return list;
+        else
+          lstTemp=list.subList(0, exam.getTotalQuestions()-1);
+        
+        return lstTemp;
     }
    
     /**
@@ -98,7 +112,7 @@ public class ExaminationManager implements Serializable {
         
         try {
             
-            if(nCurrentIndex<=(lstQuestion.size()-0x1)) //is counter less than no of questions?
+            if(nCurrentIndex<=(examQuestionList.size()-0x1)) //is counter less than no of questions?
             {
                 if(null!=nSelectedOption)
                 {
@@ -129,17 +143,18 @@ public class ExaminationManager implements Serializable {
                 
                 nCurrentIndex++; //counter increment
                 
-                if(nCurrentIndex<=(lstQuestion.size()-0x1)) //to prevent index out of range 
-                    currentQuestion=lstQuestion.get(nCurrentIndex);
+                if(nCurrentIndex<=(examQuestionList.size()-0x1)) //to prevent index out of range 
+                    currentQuestion=examQuestionList.get(nCurrentIndex);
             }
             else
             {
                 Map<String, Object> sObjectMap=fContext.getExternalContext().getSessionMap();
                 
-                //persist the calcuated result.
+                //calculate the result.
                 Result result=calculateResult();
-                
-                result=resultEJB.persistResult(result, exam);
+                Student std=studentEJB.getStudentById(student.getUserID());
+                result.setExam(exam);
+                result.setStudent(student);
                 
                 result=studentEJB.insertResult(result, student.getUserID());
                 
@@ -163,12 +178,12 @@ public class ExaminationManager implements Serializable {
     }
     /**
      * <p>Calculate students result</p>
-     * @return Result caluclated result object
+     * @return Result calculated result object
      */
     private Result calculateResult()
             throws NullPointerException
     {
-        int nTotalQuestions=lstQuestion.size();
+        int nTotalQuestions=examQuestionList.size();
         int nTotalCorrect=0;
         int nTotalPassed=0;
         int nTotalIncorrect=0;
@@ -176,7 +191,7 @@ public class ExaminationManager implements Serializable {
         
         Result result=new Result();
         
-        for(Question question: lstQuestion)
+        for(Question question: examQuestionList)
         {
             OptionNumber opt=question.getCorrectOption();
             Integer nUserSelection=userAttempt.get(question.getQuestionID());
@@ -191,7 +206,7 @@ public class ExaminationManager implements Serializable {
                 
         }
         
-        nTotalAttempted=lstQuestion.size()-nTotalPassed;
+        nTotalAttempted=examQuestionList.size()-nTotalPassed;
         result.setExamAttemptedDate(new Date());
         result.setTotalQuestionsAttempted(nTotalAttempted);
         result.setTotalPassedQuestions(nTotalPassed);
@@ -201,7 +216,12 @@ public class ExaminationManager implements Serializable {
         return result;
         
     }
-    
+    /**
+     * <p>Method to determine the 
+     * pass status of the student</p>
+     * @param nTotalQuestions The total questions in the exam
+     * @param nTotalCorrect The total correct answers
+     */
     private PassStatus determinePassStatus(int nTotalQuestions,
             int nTotalCorrect)
     {
@@ -219,6 +239,10 @@ public class ExaminationManager implements Serializable {
     public List<Question> getLstQuestion()
     {
         return this.lstQuestion;
+    }
+    public List<Question> getExamQuestionList()
+    {
+        return this.examQuestionList;
     }
     public Question getCurrentQuestion()
     {

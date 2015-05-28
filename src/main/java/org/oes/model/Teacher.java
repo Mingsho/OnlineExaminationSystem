@@ -19,6 +19,12 @@ import java.io.Serializable;
 public class Teacher extends User {
     
     
+    /**
+     * <p>Get the teacher instance
+     * from the user instance</p>
+     * @param user The user instance
+     * @return Teacher the teacher instance.
+     */
     public Teacher getTeacherFromBaseInstance(User user)
     {
         Teacher teacher=new Teacher();

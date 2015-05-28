@@ -15,10 +15,11 @@ import javax.annotation.PostConstruct;
 import java.util.Map;
 import org.oes.model.User;
 import org.oes.beans.UserEJB;
-import org.oes.model.Student;
+
 /**
- *
- * @author Mingso
+ * @author 
+ * Backing bean for editing general 
+ * user profile.
  */
 
 @Named
@@ -79,10 +80,7 @@ public class EditUser {
      */
     public String cancel()
     {
-        if(!(user instanceof Student))
-            return "ListUsers?faces-redirect=true";
-        else
-            return "/pages/StudentWelcomePage.xhtml?faces-redirect=true";
+        return "ListUsers?faces-redirect=true";
     }
     
     /**
@@ -95,7 +93,8 @@ public class EditUser {
     }
     /**
      * <p>Set current instance to 
-     * user entity</P>
+     * user entity</p>
+     * @param user the User instance.
      */
     public void setUser(User user)
     {

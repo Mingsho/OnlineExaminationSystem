@@ -13,13 +13,14 @@
                 <div class="form-group">
                     <h:dataTable id="tblExamResults"
                                  value="#{resultManager.lstStudentResults}"
+                                 binding="#{resultManager.tblExamResults}"
                                  var="result"
                                  class="gridtable">
                     
                         <h:column>
-                            <f:facet name="header">Result ID</f:facet>
+                            <f:facet name="header">Exam ID</f:facet>
                             <h:outputLabel id="lblResultID"
-                                           value="#{result.resultID}" />
+                                           value="#{result.exam.examID}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">Exam Title</f:facet>
@@ -30,10 +31,20 @@
                             <f:facet name="header">Attempted Date</f:facet>
                             <h:outputLabel id="lblAttemptedDate"
                                            value="#{result.examAttemptedDate}">
-                                <f:convertDateTime pattern="dd/mm/yyyy" />
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy" />
                             </h:outputLabel>
                         </h:column>
-                    
+                        <h:column>
+                            <f:facet name="header">Status</f:facet>
+                            <h:outputLabel id="lblStatus"
+                                           value="#{result.passedStatus}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink id="lnkViewResult"
+                                        value="View Result"
+                                        action="#{resultManager.viewResult()}"
+                                        target="_blank"/>
+                        </h:column>
                     </h:dataTable>
                                  
                 </div>

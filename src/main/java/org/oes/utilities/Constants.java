@@ -6,8 +6,9 @@
 package org.oes.utilities;
 
 /**
- *
  * @author Mingso
+ * Simple class that holds the 
+ * persistence information.
  */
 public class Constants {
     

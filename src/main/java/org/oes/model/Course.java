@@ -31,7 +31,7 @@ import javax.persistence.CascadeType;
     @NamedQuery(name="Course.GetAllCourses", query="SELECT C FROM Course C"),
     @NamedQuery(name="Course.GetCourseById", query="SELECT C FROM Course C WHERE C.courseId= :Id"),
     @NamedQuery(name="Course.GetByExamId",
-            query="SELECT C FROM Course C INNER JOIN C.scheduledExams CS WHERE CS.examID= :Id")
+            query="SELECT C FROM Course C INNER JOIN C.scheduledExams CS WHERE CS.examID= :Id"),
 })
 public class Course implements Serializable {
     

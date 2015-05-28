@@ -9,8 +9,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 /**
- *
  * @author Mingso
+ * Class to handle the session 
+ * of the logged in users
  */
 public class SessionHandler {
     
@@ -28,12 +29,23 @@ public class SessionHandler {
                 FacesContext.getCurrentInstance().
                 getExternalContext().getRequest();
     }
+    
+    /**
+     * <p>Get the currently logged 
+     * in users username</p>
+     * @return String the username
+     */
     public static String getUserName()
     {
         HttpSession session= (HttpSession)FacesContext.getCurrentInstance().
                 getExternalContext().getSession(false);
         return session.getAttribute("username").toString();
     }
+    /**
+     * <p>Get the user id of the logged 
+     * in user</p>
+     * @return String the user id.
+     */
     public static String getUserId()
     {
         HttpSession session= getSession();

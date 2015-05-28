@@ -6,7 +6,10 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <h:link  value="Dashboard"
+                                 outcome="/pages/index.xhtml">
+                            <i class="fa fa-fw fa-dashboard"></i>
+                        </h:link>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#user">
@@ -50,6 +53,23 @@
                             </li>
                             <li>
                                 <h:link outcome="/pages/exam/CreateQuestion" value="Create Question" />
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#report">
+                            <i class="fa fa-fw fa-bar-chart"></i> Reports <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="report" class="collapse">
+                            <li>
+                                
+                                <h:link outcome="/pages/reports/TotalEnrolmentsPerCourse" value="Total Enrolments" />
+                            </li>
+                            <li>
+                                <h:link outcome="/pages/reports/TotalQuestionsPerCourse" value="Total Questions" />
+                            </li>
+                            <li>
+                                <a href="#">Results</a>
                             </li>
                         </ul>
                     </li>

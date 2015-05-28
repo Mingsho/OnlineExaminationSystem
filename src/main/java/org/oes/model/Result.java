@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Temporal;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.TemporalType;
@@ -24,6 +25,8 @@ import javax.persistence.TemporalType;
  * @author Mingso
  */
 @Entity
+@NamedQuery(name="Result.GetByStudent",
+        query="SELECT R FROM Result R WHERE R.student.userId= :Id")
 public class Result implements Serializable {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +41,9 @@ public class Result implements Serializable {
     private int totalPassedQuestions;
     
     private int totalCorrectAnswers;
+    
+    @ManyToOne(optional = false)
+    private Student student;
     
     @ManyToOne
     @JoinColumn(name="EXAM_RESULT_FK")
@@ -102,7 +108,14 @@ public class Result implements Serializable {
     {
         this.exam=exam;
     }
-    
+    public Student getStudent()
+    {
+        return this.student;
+    }
+    public void setStudent(Student student)
+    {
+        this.student=student;
+    }
     
     //</editor-fold>
     

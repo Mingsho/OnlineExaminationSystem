@@ -1,31 +1,51 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>My Result</title>
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="customOES.css" />
     </h:head>
     <h:body>
-        <h:outputLabel id="lblExamTitle"
-                       value="Exam Title: " />
-        <h:outputLabel id="lblExamTitleValue"
-                       value="#{resultManager.result.exam.examTitle}" /><br/>
-        <h:outputLabel id="lblExamDate"
-                       value="Exam taken date: "/>
-        <h:outputLabel id="lblExamDateValue"
-                       value="#{resultManager.result.examAttemptedDate}"/><br/>
-        <h:outputLabel id="lblTotalAttempted"
-                       value="Total Questions Attempted: " />
-        <h:outputLabel id="lblTotalAttemptedValue"
-                       value="#{resultManager.result.totalQuestionsAttempted}" /><br/>
-        <h:outputLabel id="lblTotalPassed"
-                       value="Total Passed: " />
-        <h:outputLabel id="lblTotalPassedValue"
-                       value="#{resultManager.result.totalPassedQuestions}" /><br/>
-        <h:outputLabel id="lblTotalCorrect"
-                       value="Total Correct: " />
-        <h:outputLabel id="lblTotalCorrectValue"
-                       value="#{resultManager.result.totalCorrectAnswers}" />
+        <fieldset>
+            
+            <legend>
+                Student Exam Result
+            </legend>
+            
+            <h:form id="frmStudentResult" class="form-horizontal">
+                <h:dataTable id="tblStudentResult"
+                    class="gridtable"
+                    
+                    value="#{resultManager.result}">
+                    
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        Exam Title: <br/>
+                        Exam Attempted Date:<br/>
+                        Total Questions Attempted: <br/>
+                        Total Passed: <br/>
+                        Total Correct: 
+                      
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Value</f:facet>
+                        #{resultManager.result.exam.examTitle}<br/>
+                        <h:outputText value="#{resultManager.result.examAttemptedDate}">
+                            <f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                        </h:outputText><br/>
+                        #{resultManager.result.totalQuestionsAttempted}<br/>
+                        #{resultManager.result.totalPassedQuestions}<br/>
+                        #{resultManager.result.totalCorrectAnswers}
+                    </h:column>
+                    
+                </h:dataTable>
+                <h:link outcome="MyExams" value="My Exams" />
+            </h:form>
+        </fieldset>
+        
         
     </h:body>
 </html>
