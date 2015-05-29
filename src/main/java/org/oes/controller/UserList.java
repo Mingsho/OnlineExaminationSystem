@@ -17,7 +17,8 @@ import org.oes.model.User;
 import org.oes.beans.UserEJB;
 
 /**
- *
+ * <p>Class for handling the retrieval of the
+ * users and supporting the ListUsers view</p>
  * @author Mingso
  */
 @Named

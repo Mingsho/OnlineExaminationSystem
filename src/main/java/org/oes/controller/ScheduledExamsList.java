@@ -11,8 +11,11 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import org.oes.model.Exam;
 import org.oes.beans.ExamEJB;
+
+
 /**
- *
+ * <p>Class for handling the retrieval of
+ * scheduled exams</p>
  * @author Mingso
  */
 @Named

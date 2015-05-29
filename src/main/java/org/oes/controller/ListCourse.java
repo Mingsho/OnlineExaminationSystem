@@ -17,8 +17,9 @@ import org.oes.model.Course;
 import org.oes.beans.CourseEJB;
 
 /**
- *
- * @author Mingso
+ * <p>Class for handling the course retrieval
+ * logic for the ListCourse view.</p>
+ * @author Rumisha
  */
 
 @Named

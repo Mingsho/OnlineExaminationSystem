@@ -13,9 +13,9 @@ import org.oes.model.Teacher;
 import org.oes.utilities.Constants;
 
 /**
- * @author Mingso
  * Stateless session bean related to
  * teacher business logic.
+ * @author Mingso
  */
 @Stateless
 public class TeacherEJB {

@@ -21,7 +21,8 @@ import java.util.Date;
 import javax.persistence.TemporalType;
 
 /**
- *
+ * <p>Result entity for holding the result information for 
+ * examinees</p>
  * @author Mingso
  */
 @Entity

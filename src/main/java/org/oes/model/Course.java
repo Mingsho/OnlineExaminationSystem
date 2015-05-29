@@ -23,7 +23,8 @@ import javax.persistence.CascadeType;
 
 
 /**
- *
+ * <p>Course Entity for holding the course related information
+ * of the application</p>
  * @author Mingso
  */
 @Entity

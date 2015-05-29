@@ -30,12 +30,12 @@
                     <br/>
                     
                     <h:outputLabel id="lblQuestion"
-                                   value="#{examinationManager.currentQuestion.question}" />
+                                   value="#{examinationManager.questionNumber}\.#{examinationManager.currentQuestion.question}" />
 
                     <h:selectOneRadio id="rdBtnOptions"
-                                        value="#{examinationManager.optionSelected}"
-                                        layout="pageDirection"
-                                        class="radio">
+                                    value="#{examinationManager.optionSelected}"
+                                    layout="pageDirection"
+                                    class="radio">
 
 
                                 <f:selectItem itemLabel="#{examinationManager.currentQuestion.option1}"

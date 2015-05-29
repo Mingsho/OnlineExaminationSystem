@@ -62,10 +62,10 @@
                         <h:inputText id="txtStartDate"
                                      class="form-control"
                                      value="#{scheduleExam.exam.examStartDate}"
-                                     a:placeholder="dd/mm/yyyy"
+                                     a:placeholder="dd-mm-yyyy"
                                      required="true"
                                      requiredMessage="*Start Date cannot be blank!">
-                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                            <f:convertDateTime type="both" pattern="dd-MM-yyyy"/>
                             <f:validateRequired/>
                         </h:inputText>
                     </div>
@@ -81,10 +81,10 @@
                         <h:inputText id="txtEndDate"
                                      class="form-control"
                                      value="#{scheduleExam.exam.examEndDate}"
-                                     a:placeholder="dd/mm/yyyy"
+                                     a:placeholder="dd-mm-yyyy"
                                      required="true"
                                      requiredMessage="*End Date cannot be blank!">
-                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                            <f:convertDateTime type="both" pattern="dd-MM-yyyy"/>
                             <f:validateRequired/>
                         
                         </h:inputText>
@@ -101,7 +101,7 @@
                         <h:inputText id="txtDuration"
                                      class="form-control"
                                      value="#{scheduleExam.exam.examDuration}"
-                                     a:placeholder="e.g. 120"
+                                     a:placeholder="e.g. 120 mins"
                                      required="true"
                                      requiredMessage="*Exam duration cannot be empty!">
                             <f:validateRequired/>

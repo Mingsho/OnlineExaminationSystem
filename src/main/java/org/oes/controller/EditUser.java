@@ -17,9 +17,9 @@ import org.oes.model.User;
 import org.oes.beans.UserEJB;
 
 /**
+ *<p>Class for handling the editing
+ * of general user profile.</p>
  * @author 
- * Backing bean for editing general 
- * user profile.
  */
 
 @Named

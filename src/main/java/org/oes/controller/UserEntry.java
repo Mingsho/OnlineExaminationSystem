@@ -22,7 +22,8 @@ import org.oes.model.UserType;
 
 
 /**
- *
+ * <p>Class for handling the user creation logic
+ * in the application</p>
  * @author Mingso
  */
 @Named
@@ -41,6 +42,11 @@ public class UserEntry {
         user=new User();
     }
     
+    /**
+     * <p>Method for handling the creation
+     * of users</p>
+     * @return  the outcome of the action method.
+     */
     public String createUser()
     {
         //outcome for the result of this subroutine.

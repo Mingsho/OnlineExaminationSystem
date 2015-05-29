@@ -11,7 +11,8 @@ import java.io.Serializable;
 
 
 /**
- *
+ * <p>Teacher entity for holding the teacher instance
+ * of a User in the application</p>
  * @author Mingso
  */
 

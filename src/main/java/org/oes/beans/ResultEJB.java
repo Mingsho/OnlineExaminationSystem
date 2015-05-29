@@ -16,9 +16,9 @@ import org.oes.model.Student;
 import org.oes.utilities.Constants;
 
 /**
- * @author Mingso
  * Stateless bean related to result
  * business logic.
+ * @author Rumisha
  */
 @Stateless
 public class ResultEJB {

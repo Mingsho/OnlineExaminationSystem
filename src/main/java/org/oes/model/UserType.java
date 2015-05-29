@@ -6,7 +6,8 @@
 package org.oes.model;
 
 /**
- *
+ * <p>Enumeration for holding the values of different
+ * User types in the application</p>
  * @author Mingso
  */
 public enum UserType {

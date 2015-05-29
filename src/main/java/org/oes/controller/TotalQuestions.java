@@ -13,7 +13,9 @@ import java.util.List;
 import org.oes.beans.CourseEJB;
 
 /**
- *
+ * <p>Class for supporting the 
+ * TotalQuestionPerCourse View of the
+ * application</p>
  * @author Mingso
  */
 @Named

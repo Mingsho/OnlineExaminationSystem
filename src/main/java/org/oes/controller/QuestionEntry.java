@@ -23,8 +23,9 @@ import org.oes.beans.CourseEJB;
 
 
 /**
- *
- * @author Mingso
+ * <p>Class for handling the Question entry logic,
+ * supporting the CreateQuestion view</p>
+ * @author Rumisha
  */
 @Named
 @RequestScoped

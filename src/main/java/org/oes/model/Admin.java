@@ -10,7 +10,8 @@ import javax.persistence.Entity;
 
 
 /**
- *
+ * <p>Admin Entity for holding the instances 
+ * of admin users.</p>
  * @author Mingso
  */
 

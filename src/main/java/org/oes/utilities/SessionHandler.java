@@ -8,10 +8,12 @@ package org.oes.utilities;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+
 /**
+ * <p>Class to handle the session 
+ * of the logged in users</p>
  * @author Mingso
- * Class to handle the session 
- * of the logged in users
  */
 public class SessionHandler {
     

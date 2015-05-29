@@ -18,8 +18,10 @@ import javax.persistence.FetchType;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+
 /**
- *
+ * <p>Student entity for holding student instance
+ * of a User in the application</p>
  * @author Mingso
  */
 

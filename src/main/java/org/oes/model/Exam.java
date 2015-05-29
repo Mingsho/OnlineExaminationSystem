@@ -25,7 +25,8 @@ import javax.persistence.TemporalType;
 
 
 /**
- *
+ * <p>Exam entity for holding information related
+ * to exam in the application</p>
  * @author Mingso
  */
 @Entity

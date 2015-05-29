@@ -21,8 +21,9 @@ import org.oes.beans.ResultEJB;
 
 
 /**
- *
- * @author Mingso
+ * <p>Class for handling the viewing of results
+ * by the examinees</p>
+ * @author Rumisha
  */
 @Named
 @RequestScoped
@@ -54,8 +55,6 @@ public class ResultManager {
         std= std.getStudentFromBaseInstance(loginManager.getUser());//get student instance of the current user.
         lstStudentResults=resultEJB.getStudentResults(std);//retrieve student results list
         
-        
-        
     }
     
     /**
@@ -70,8 +69,8 @@ public class ResultManager {
         
         try {
             
-            Result result=(Result)tblExamResults.getRowData();
-            sObj.put("viewStdResult", result);
+            Result resultTemp=(Result)tblExamResults.getRowData();
+            sObj.put("viewStdResult", resultTemp);
             
         } 
         catch (Exception e)

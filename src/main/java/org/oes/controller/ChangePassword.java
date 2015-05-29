@@ -17,8 +17,9 @@ import org.oes.model.User;
 import org.oes.beans.UserEJB;
 
 /**
- *
- * @author Mingso
+ * <p>Class for handling the change password
+ * view logics.</p>
+ * @author Rumisha
  */
 @Named
 @RequestScoped

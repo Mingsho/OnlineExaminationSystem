@@ -22,7 +22,8 @@ import javax.persistence.CascadeType;
 
 
 /**
- *
+ * <p>The base entity for all user types
+ * in the application</p>
  * @author Mingso
  */
 @Entity

@@ -20,10 +20,9 @@ import org.oes.utilities.Constants;
 
 
 /**
- *
- * @author Mingso
  * Stateless session bean related to
  * course business logic.
+ * @author Rumisha
  */
 @Stateless
 public class CourseEJB {
@@ -195,7 +194,6 @@ public class CourseEJB {
     {
         String strSql="select course.COURSENAME, count(question.QUESTIONID) as \"Total Questions\" from course\n" +
                     "inner join question on course.COURSEID=question.COURSE_QUESTION_FK\n" +
-                    "where course.COURSEID=1\n" +
                     "Group by course.COURSENAME";
         
         Query query=eManager.createNativeQuery(strSql);

@@ -23,7 +23,10 @@ import org.oes.utilities.SessionHandler;
 
 
 /**
- *
+ * <p>The main class for handling the authentication
+ * logic for the application. The class
+ * provides methods for logging in and logging
+ * out users from the system.</p>
  * @author Mingso
  */
 @Named
@@ -43,6 +46,13 @@ public class LoginManager implements Serializable {
     {
         user=new User();
     }
+    /**
+     * <p>Method for loggin users into the system</p>
+     * @param userName the username with which users log in
+     * @param password the password to be provided to the system
+     * the password and username combination must match to be authenticated.
+     * @return  the outcome of the action method.
+     */
     public String login() 
     {
         try {
@@ -80,7 +90,10 @@ public class LoginManager implements Serializable {
         }
         return null;
     }
-    
+    /**
+     * <p>Method for logging users out of the system</p>
+     * @return  the outcome of the action method.
+     */
     public String logout()  
     {
         HttpSession session=SessionHandler.getSession();

@@ -18,8 +18,10 @@ import org.oes.model.Admin;
 import org.oes.model.Student;
 import org.oes.model.Teacher;
 import org.oes.model.UserAccount;
+
 /**
- *
+ * <p>Class for handling the UserAccount creation
+ * of the users in the application</p>
  * @author Mingso
  */
 @Named

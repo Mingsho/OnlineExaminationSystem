@@ -16,10 +16,13 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 /**
- *
+ * <p>Class for filtering the request and response cycle
+ * of the application. The class is used for basic authorization
+ * in the application</p>
  * @author Mingso
- * Class to filter the request, response 
+ * 
  */
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"*.xhtml"})
 public class AuthFilter implements Filter {

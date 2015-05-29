@@ -28,14 +28,18 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Exam Start Date</f:facet>
-                            <h:outputLabel value="#{exam.examStartDate}" />
+                            <h:outputLabel value="#{exam.examStartDate}">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                            </h:outputLabel>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Exam End Date</f:facet>
-                            <h:outputLabel value="#{exam.examEndDate}" />
+                            <h:outputLabel value="#{exam.examEndDate}">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                            </h:outputLabel>
                         </h:column>
                         <h:column>
-                            <f:facet name="header"></f:facet>
+                            <f:facet name="header">Duration (Mins)</f:facet>
                             <h:outputLabel value="#{exam.examDuration}" />
                         </h:column>
                     </h:dataTable>

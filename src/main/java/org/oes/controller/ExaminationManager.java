@@ -30,7 +30,8 @@ import org.oes.beans.StudentEJB;
 
 
 /**
- *
+ * <p>The main class for handling the 
+ * examination session of an examinee.</p>
  * @author Mingso
  */
 @Named
@@ -152,7 +153,6 @@ public class ExaminationManager implements Serializable {
                 
                 //calculate the result.
                 Result result=calculateResult();
-                Student std=studentEJB.getStudentById(student.getUserID());
                 result.setExam(exam);
                 result.setStudent(student);
                 
@@ -195,7 +195,6 @@ public class ExaminationManager implements Serializable {
         {
             OptionNumber opt=question.getCorrectOption();
             Integer nUserSelection=userAttempt.get(question.getQuestionID());
-            int n=opt.ordinal();
             
             if(nUserSelection.equals(opt.ordinal()+1))//as enums have indices starting from 0.
                 nTotalCorrect++;
@@ -211,7 +210,7 @@ public class ExaminationManager implements Serializable {
         result.setTotalQuestionsAttempted(nTotalAttempted);
         result.setTotalPassedQuestions(nTotalPassed);
         result.setTotalCorrectAnswers(nTotalCorrect);
-        result.setPassedStatus(determinePassStatus(nTotalCorrect,nTotalQuestions));
+        result.setPassedStatus(determinePassStatus(nTotalQuestions, nTotalCorrect));
         
         return result;
         
@@ -225,9 +224,10 @@ public class ExaminationManager implements Serializable {
     private PassStatus determinePassStatus(int nTotalQuestions,
             int nTotalCorrect)
     {
-        double percentage=(nTotalCorrect/nTotalQuestions)*100;
+        //cast double to int values as we are dealing with floating-point division
+        double percentage=((double)nTotalCorrect/(double)nTotalQuestions)*100;
         
-        if(percentage>60)
+        if(percentage>exam.getPassPercentage())
             return PassStatus.PASSED;
         else
             return PassStatus.FAILED;
@@ -255,6 +255,10 @@ public class ExaminationManager implements Serializable {
     public void setOptionSelected(String strSelected)
     {
         this.nSelectedOption=strSelected;
+    }
+    public int getQuestionNumber()
+    {
+        return this.nCurrentIndex+1;
     }
     
     

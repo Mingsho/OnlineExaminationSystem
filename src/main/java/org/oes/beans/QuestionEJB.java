@@ -14,9 +14,9 @@ import org.oes.utilities.Constants;
 
 
 /**
- * @author Mingso
  * Stateless bean related to question
  * business logic.
+ * @author Mingso
  */
 @Stateless
 public class QuestionEJB {

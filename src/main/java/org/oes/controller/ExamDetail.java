@@ -25,8 +25,10 @@ import org.oes.beans.CourseEJB;
 import org.oes.model.Student;
 import org.oes.beans.StudentEJB;
 import org.oes.model.User;
+
 /**
- *
+ * <p>Class for retrieving and handling
+ * the details of the scheduled exams</p>
  * @author Mingso
  */
 @Named

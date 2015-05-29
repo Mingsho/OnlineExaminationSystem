@@ -14,10 +14,9 @@ import org.oes.model.Exam;
 import org.oes.model.Course;
 
 /**
- *
- * @author Mingso
  * Stateless session bean related to
  * exam business logic.
+ * @author Mingso
  */
 @Stateless
 public class ExamEJB {

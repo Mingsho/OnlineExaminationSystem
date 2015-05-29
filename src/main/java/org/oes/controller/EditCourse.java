@@ -14,9 +14,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.oes.model.Course;
 import org.oes.beans.CourseEJB;
+
 /**
- *
- * @author Mingso
+ * <p> Class for handling the Edit course 
+ * view logic</p>
+ * @author Rumisha
  */
 @Named
 @RequestScoped

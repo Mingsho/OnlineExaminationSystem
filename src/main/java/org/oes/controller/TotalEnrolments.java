@@ -13,9 +13,9 @@ import java.util.List;
 import org.oes.beans.CourseEJB;
 
 /**
- *
+ * <p>Class for handling or supporting the
+ * TotalEnrolmentsPerCourse View</p>
  * @author Mingso
- * Backing bean for TotalEnrolmentsPerCourse View
  */
 @Named
 @RequestScoped

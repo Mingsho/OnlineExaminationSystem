@@ -6,8 +6,10 @@
 package org.oes.model;
 
 /**
+ * <p>Enumeration for holding the pass status
+ * of the examinees</p>
  * @author Mingso
- * The Pass Status enumeration
+ * 
  */
 public enum PassStatus {
     

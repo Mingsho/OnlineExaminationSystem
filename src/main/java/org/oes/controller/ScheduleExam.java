@@ -21,7 +21,8 @@ import org.oes.model.Exam;
 import org.oes.beans.ExamEJB;
 
 /**
- *
+ * <p>Class for handling the logic of 
+ * scheduling exams</p>
  * @author Mingso
  */
 @Named

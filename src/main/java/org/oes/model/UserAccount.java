@@ -22,7 +22,8 @@ import javax.persistence.FetchType;
 
 
 /**
- *
+ * <p>Entity for holding the user account information 
+ * of all the users in the application</p>
  * @author Mingso
  */
 

@@ -20,7 +20,8 @@ import org.oes.model.Student;
 import org.oes.beans.StudentEJB;
 
 /**
- *
+ * <p> Class for handling course creation
+ * and student enrolment logic</p>
  * @author Mingso
  */
 @Named

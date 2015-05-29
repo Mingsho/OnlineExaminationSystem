@@ -19,7 +19,8 @@ import javax.persistence.JoinColumn;
 import java.io.Serializable;
 
 /**
- *
+ * <p>Question Entity for holding information for questions
+ * in the application</p>
  * @author Mingso
  */
 @Entity

@@ -6,7 +6,8 @@
 package org.oes.model;
 
 /**
- *
+ * <p>Enumeration for holding the option numbers
+ * for the questions in the application</p>
  * @author Mingso
  */
 public enum OptionNumber {

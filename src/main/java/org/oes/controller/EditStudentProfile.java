@@ -15,12 +15,12 @@ import javax.annotation.PostConstruct;
 import java.util.Map;
 import org.oes.model.User;
 import org.oes.beans.UserEJB;
-import org.oes.model.Student;
 
 /**
- * @author Mingso
- * Backing bean for the student
- * entity
+ * <p>Class for handling the editing of student
+ * profile</p>
+ * @author Rumisha
+ * 
  */
 @Named
 @RequestScoped

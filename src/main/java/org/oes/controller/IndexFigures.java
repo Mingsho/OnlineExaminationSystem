@@ -14,10 +14,11 @@ import org.oes.beans.UserEJB;
 import org.oes.beans.ExamEJB;
 
 /**
+ * <p>Class for handling the index page 
+ * logics. The class retrieves figures 
+ * and number for the index page.</p>
  * @author Mingso
- * Backing bean for the figures
- * in the index page of the application.
- */
+ */  
 
 @Named
 @RequestScoped
